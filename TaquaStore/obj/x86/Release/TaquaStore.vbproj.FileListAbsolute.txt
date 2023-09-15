@@ -913,3 +913,6 @@ D:\Work Folder\TaquaStore\TaquaStore\bin\Release\Syncfusion.Tools.Base.xml
 D:\Work Folder\TaquaStore\TaquaStore\bin\Release\Syncfusion.Tools.Windows.xml
 D:\Work Folder\TaquaStore\TaquaStore\bin\Release\Syncfusion.Grid.Windows.XmlSerializers.dll
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Release\TaquaStore.Products3.resources
+D:\Work Folder\TaquaStore\TaquaStore\bin\Release\Syncfusion.Core.WinForms.dll
+D:\Work Folder\TaquaStore\TaquaStore\bin\Release\Syncfusion.Core.WinForms.xml
+D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Release\TaquaStore.Verifier.resources

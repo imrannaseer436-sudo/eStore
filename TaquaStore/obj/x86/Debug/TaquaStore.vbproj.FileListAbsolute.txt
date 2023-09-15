@@ -1274,3 +1274,6 @@ D:\Work Folder\TaquaStore\TaquaStore\bin\Debug\Syncfusion.Tools.Base.xml
 D:\Work Folder\TaquaStore\TaquaStore\bin\Debug\Syncfusion.Tools.Windows.xml
 D:\Work Folder\TaquaStore\TaquaStore\bin\Debug\Syncfusion.Grid.Windows.XmlSerializers.dll
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Debug\TaquaStore.Products3.resources
+D:\Work Folder\TaquaStore\TaquaStore\bin\Debug\Syncfusion.Core.WinForms.dll
+D:\Work Folder\TaquaStore\TaquaStore\bin\Debug\Syncfusion.Core.WinForms.xml
+D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Debug\TaquaStore.Verifier.resources

@@ -248,6 +248,9 @@ Public Class MainWindowX
                 AddTab(SalesReportHSNwise)
             Case "64"
                 AddTab(frmChequeDetails)
+            Case "65"
+                Verifier.Visible = False
+                Verifier.Show(Me)
         End Select
 
     End Sub

@@ -197,8 +197,6 @@ Public Class DiscountAssigner
         Dim Rs As SqlDataReader
         Dim Amt As Double = 0
 
-
-
         For i As Integer = 0 To TG.Rows.Count - 1
 
             SQL = "select m.pluid,pluname+'-'+id,pm.costprice,pm.retailprice,id,substring(a.department,1,len(a.department) - 4) + '-' + a.category,a.style,a.material,a.color from productmaster m,productattributes a,pricemaster pm where m.pluid = a.pluid and m.pluid = pm.pluid and pm.shopid = " & CmbShop.SelectedValue & " and m.plucode='" & TG.Item(2, i).Value & "'"

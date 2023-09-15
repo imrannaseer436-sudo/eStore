@@ -105,6 +105,7 @@
       <HintPath>..\..\..\eWarehouse\eWarehouse\bin\Debug\Line.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic.Compatibility" />
+    <Reference Include="Syncfusion.Core.WinForms, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.Grid.Base, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Grid.Windows, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Shared.Base, Version=20.4460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
@@ -501,6 +502,12 @@
     <Compile Include="Purchase\AdvancePayment.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Verifier.Designer.vb">
+      <DependentUpon>Verifier.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Verifier.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilites\ChangePassword.Designer.vb">
       <DependentUpon>ChangePassword.vb</DependentUpon>
     </Compile>
@@ -705,7 +712,9 @@
     <Compile Include="Utilites\UnusedProductReport.Designer.vb">
       <DependentUpon>UnusedProductReport.vb</DependentUpon>
     </Compile>
-    <Compile Include="Utilites\UnusedProductReport.vb" />
+    <Compile Include="Utilites\UnusedProductReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilites\UnusedProducts.Designer.vb">
       <DependentUpon>UnusedProducts.vb</DependentUpon>
     </Compile>
@@ -975,7 +984,9 @@
     <Compile Include="Utilites\DeliveryUpdaters.Designer.vb">
       <DependentUpon>DeliveryUpdaters.vb</DependentUpon>
     </Compile>
-    <Compile Include="Utilites\DeliveryUpdaters.vb" />
+    <Compile Include="Utilites\DeliveryUpdaters.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilites\LablePrinting.Designer.vb">
       <DependentUpon>LablePrinting.vb</DependentUpon>
     </Compile>
@@ -1357,6 +1368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\frmContactViewer.resx">
       <DependentUpon>frmContactViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Verifier.resx">
+      <DependentUpon>Verifier.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucTabHeader.resx">
       <DependentUpon>ucTabHeader.vb</DependentUpon>
