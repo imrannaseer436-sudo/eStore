@@ -23,11 +23,11 @@ Partial Class Verifier
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Verifier))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
@@ -43,6 +43,8 @@ Partial Class Verifier
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BtnSave = New Syncfusion.WinForms.Controls.SfButton()
+        Me.BtnFetch = New Syncfusion.WinForms.Controls.SfButton()
         Me.Panel3.SuspendLayout()
         CType(Me.CmbDeliveryCodes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel4.SuspendLayout()
@@ -70,6 +72,8 @@ Partial Class Verifier
         '
         'Panel3
         '
+        Me.Panel3.Controls.Add(Me.BtnFetch)
+        Me.Panel3.Controls.Add(Me.BtnSave)
         Me.Panel3.Controls.Add(Me.Label3)
         Me.Panel3.Controls.Add(Me.TxtCode)
         Me.Panel3.Controls.Add(Me.BtnLoad)
@@ -153,28 +157,28 @@ Partial Class Verifier
         Me.DgVerifier.AllowUserToDeleteRows = False
         Me.DgVerifier.BackgroundColor = System.Drawing.Color.White
         Me.DgVerifier.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Navy
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DgVerifier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.Navy
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgVerifier.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
         Me.DgVerifier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.DgVerifier.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5})
         Me.DgVerifier.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgVerifier.EnableHeadersVisualStyles = False
         Me.DgVerifier.Location = New System.Drawing.Point(0, 0)
         Me.DgVerifier.Name = "DgVerifier"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DgVerifier.RowHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgVerifier.RowHeadersDefaultCellStyle = DataGridViewCellStyle15
         Me.DgVerifier.Size = New System.Drawing.Size(800, 411)
         Me.DgVerifier.TabIndex = 0
         '
@@ -192,8 +196,8 @@ Partial Class Verifier
         '
         'Column3
         '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Column3.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Column3.DefaultCellStyle = DataGridViewCellStyle12
         Me.Column3.HeaderText = "Delivery"
         Me.Column3.Name = "Column3"
         Me.Column3.ReadOnly = True
@@ -201,20 +205,50 @@ Partial Class Verifier
         '
         'Column4
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle13
         Me.Column4.HeaderText = "Scanned"
         Me.Column4.Name = "Column4"
         Me.Column4.Width = 80
         '
         'Column5
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Column5.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Column5.DefaultCellStyle = DataGridViewCellStyle14
         Me.Column5.HeaderText = "Variation"
         Me.Column5.Name = "Column5"
         Me.Column5.ReadOnly = True
         Me.Column5.Width = 80
+        '
+        'BtnSave
+        '
+        Me.BtnSave.AccessibleName = "Button"
+        Me.BtnSave.BackColor = System.Drawing.Color.Navy
+        Me.BtnSave.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!)
+        Me.BtnSave.ForeColor = System.Drawing.Color.White
+        Me.BtnSave.Location = New System.Drawing.Point(365, 65)
+        Me.BtnSave.Name = "BtnSave"
+        Me.BtnSave.Size = New System.Drawing.Size(96, 28)
+        Me.BtnSave.Style.BackColor = System.Drawing.Color.Navy
+        Me.BtnSave.Style.ForeColor = System.Drawing.Color.White
+        Me.BtnSave.TabIndex = 9
+        Me.BtnSave.Text = "Save"
+        Me.BtnSave.UseVisualStyleBackColor = False
+        '
+        'BtnFetch
+        '
+        Me.BtnFetch.AccessibleName = "Button"
+        Me.BtnFetch.BackColor = System.Drawing.Color.Navy
+        Me.BtnFetch.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!)
+        Me.BtnFetch.ForeColor = System.Drawing.Color.White
+        Me.BtnFetch.Location = New System.Drawing.Point(467, 65)
+        Me.BtnFetch.Name = "BtnFetch"
+        Me.BtnFetch.Size = New System.Drawing.Size(96, 28)
+        Me.BtnFetch.Style.BackColor = System.Drawing.Color.Navy
+        Me.BtnFetch.Style.ForeColor = System.Drawing.Color.White
+        Me.BtnFetch.TabIndex = 10
+        Me.BtnFetch.Text = "Fetch"
+        Me.BtnFetch.UseVisualStyleBackColor = False
         '
         'Verifier
         '
@@ -254,4 +288,6 @@ Partial Class Verifier
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents BtnSave As Syncfusion.WinForms.Controls.SfButton
+    Friend WithEvents BtnFetch As Syncfusion.WinForms.Controls.SfButton
 End Class

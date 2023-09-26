@@ -1,6 +1,7 @@
 ﻿'*********************** In the name of Allah, Most Merciful, Most Compassionate ****************
 Imports System.Data.SqlClient
 Imports System.Net.NetworkInformation
+Imports System.Threading.Tasks
 Imports Microsoft.VisualBasic.Compatibility
 Public Class ESSA
 
@@ -478,5 +479,45 @@ Public Class ESSA
 
     End Sub
 
+    Public Shared Async Function ExecuteAsync(ByVal Qry As String) As Task(Of Boolean)
+
+        Try
+            Using nCon As New SqlConnection(ConStr)
+                Await nCon.OpenAsync()
+                Using Cmd As New SqlCommand(Qry, nCon)
+                    Await Cmd.ExecuteNonQueryAsync()
+                    Return True
+                End Using
+            End Using
+        Catch ex As SqlException
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        End Try
+
+        Return False
+
+    End Function
+
+    Public Shared Async Function OpenReaderAsync(ByVal Qry As String) As Task(Of SqlDataReader)
+
+        Dim cmd As SqlCommand = Nothing
+        Dim reader As SqlDataReader = Nothing
+
+        Try
+            Using con As New SqlConnection(ConStr)
+                con.Open()
+                cmd = New SqlCommand(Qry, con)
+                cmd.CommandTimeout = 0
+                reader = Await cmd.ExecuteReaderAsync(CommandBehavior.CloseConnection)
+            End Using
+        Catch ex As SqlException
+            If reader IsNot Nothing Then
+                reader.Close()
+            End If
+
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        End Try
+
+        Return reader
+    End Function
 
 End Class

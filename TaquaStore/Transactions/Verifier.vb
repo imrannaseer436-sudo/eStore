@@ -32,10 +32,11 @@ Public Class Verifier
 
         Dim list As String = Mid(CmbDeliveryCodes.Text, 1, CmbDeliveryCodes.Text.Length - 1)
 
-        SQL = $"select dd.pluid,pm.plucode,dd.quantity,0 received 
+        SQL = $"select dd.pluid,pm.plucode,sum(dd.quantity) quantity,0 received 
         from deliverymaster dm
         inner join deliverydetails dd on dm.id = dd.id and dm.deliverycode in ({list})
-        inner join productmaster pm on pm.pluid = dd.pluid"
+        inner join productmaster pm on pm.pluid = dd.pluid
+        group by dd.pluid,pm.plucode"
 
         DgVerifier.Rows.Clear()
         With ESSA.OpenReader(SQL)
@@ -117,4 +118,58 @@ Public Class Verifier
         End If
 
     End Sub
+
+    Private Async Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+
+        If DgVerifier.Rows.Count = 0 Then Exit Sub
+
+        Dim id = Val(InputBox("Please enter id"))
+        If id <= 0 Then Exit Sub
+        Dim executed As Boolean
+
+        SQL = $"delete from verify_details where id = {id}"
+        ESSA.Execute(SQL)
+
+        For i As Integer = 0 To DgVerifier.Rows.Count - 1
+
+            SQL = $"insert into verify_details values (
+            {id},
+            {DgVerifier.Item(0, i).Value},
+            {DgVerifier.Item(3, i).Value})"
+
+            executed = Await ESSA.ExecuteAsync(SQL)
+
+        Next
+
+        If executed Then
+            MsgBox("Saved", MsgBoxStyle.Critical)
+        End If
+
+    End Sub
+
+    Private Sub BtnFetch_Click(sender As Object, e As EventArgs) Handles BtnFetch.Click
+
+        If DgVerifier.Rows.Count = 0 Then Exit Sub
+        Dim Id = Val(InputBox("Enter Id"))
+
+        SQL = $"select * 
+        from verify_details where id = {Id}"
+
+        With ESSA.OpenReader(SQL)
+
+            While .Read
+
+                Dim NRI As Integer = ESSA.FindGridIndex(DgVerifier, 0, .Item(1))
+                If NRI <> -1 Then
+                    DgVerifier.Item(3, NRI).Value = .Item(2)
+                End If
+
+            End While
+            .Close()
+        End With
+
+        CalculateVariation()
+
+    End Sub
+
 End Class
