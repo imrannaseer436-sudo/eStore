@@ -49,7 +49,11 @@ Public Class NewBillGenerator
           & "paymentmaster) order by vendorname"
         ESSA.LoadCombo(cmbVendor2, SQL, "vendorname", "vendorid", "All Vendor(s)")
 
-        SQL = "select ledgerid,ledgername from ledger where groupid=5 order by ledgername"
+        'old
+        'SQL = "select ledgerid,ledgername from ledger where groupid=5 order by ledgername"
+
+        SQL = "select ledgerid,ledgername from ledger order by ledgername"
+
         ESSA.LoadCombo(cmbLedger, SQL, "ledgername", "ledgerid")
 
         cmbMode.SelectedIndex = 0
@@ -854,24 +858,53 @@ Public Class NewBillGenerator
 
         'SERVER ABU QUERY
 
-        SQL = "SELECT S.SHOPNAME,SUM(M.A) PURCHASE,SUM(M.B) DELIVERY,SUM(M.C) SALES,SUM(M.B-M.C) STOCK FROM SHOPS S," _
-            & "(SELECT M.SHOPID,SUM(D.Qty) A,0 B,0 C FROM GRNDETAILS D,GRNMASTER M,PSR_PRODUCTGRNWISE V,PAYMENTMASTER P " _
-            & "WHERE M.GRNNO=D.GRNNO AND D.PLUID=V.PLUID AND M.BILLNO=P.BILLNO AND P.BILLNO={0} GROUP BY M.SHOPID " _
-            & "UNION ALL " _
-            & "SELECT M.DELIVERYTO,0,SUM(D.QUANTITY),0 FROM DELIVERYMASTER M,DELIVERYDETAILS D,PSR_PRODUCTGRNWISE V " _
-            & "WHERE M.DELIVERYCODE=D.DELIVERYCODE AND D.PLUID=V.PLUID AND V.BILLNO={0} " _
-            & "GROUP BY M.DELIVERYTO " _
-            & "UNION ALL " _
-            & "SELECT M.DELIVERYFROM,0,SUM(-D.QUANTITY),0 FROM RECEIVEDMASTER M,RECEIVEDDETAILS D,PSR_PRODUCTGRNWISE V " _
-            & "WHERE M.DELIVERYCODE=D.DELIVERYCODE AND D.PLUID=V.PLUID AND V.BILLNO={0} " _
-            & "GROUP BY M.DELIVERYFROM " _
-            & "UNION ALL " _
-            & "SELECT D.SHOPID,0,0,SUM(D.QTY) FROM BILLDETAILS D,PSR_PRODUCTGRNWISE V " _
-            & "WHERE D.PLUID=V.PLUID AND V.BILLNO={0} " _
-            & "GROUP BY D.SHOPID) M WHERE M.SHOPID=S.SHOPID " _
-            & "GROUP BY S.SHOPNAME,S.SHOPID ORDER BY S.SHOPID DESC"
+        'SQL = "SELECT S.SHOPNAME,SUM(M.A) PURCHASE,SUM(M.B) DELIVERY,SUM(M.C) SALES,SUM(M.B-M.C) STOCK FROM SHOPS S," _
+        '    & "(SELECT M.SHOPID,SUM(D.Qty) A,0 B,0 C FROM GRNDETAILS D,GRNMASTER M,PSR_PRODUCTGRNWISE V,PAYMENTMASTER P " _
+        '    & "WHERE M.GRNNO=D.GRNNO AND D.PLUID=V.PLUID AND M.BILLNO=P.BILLNO AND P.BILLNO={0} GROUP BY M.SHOPID " _
+        '    & "UNION ALL " _
+        '    & "SELECT M.DELIVERYTO,0,SUM(D.QUANTITY),0 FROM DELIVERYMASTER M,DELIVERYDETAILS D,PSR_PRODUCTGRNWISE V " _
+        '    & "WHERE M.DELIVERYCODE=D.DELIVERYCODE AND D.PLUID=V.PLUID AND V.BILLNO={0} " _
+        '    & "GROUP BY M.DELIVERYTO " _
+        '    & "UNION ALL " _
+        '    & "SELECT M.DELIVERYFROM,0,SUM(-D.QUANTITY),0 FROM RECEIVEDMASTER M,RECEIVEDDETAILS D,PSR_PRODUCTGRNWISE V " _
+        '    & "WHERE M.DELIVERYCODE=D.DELIVERYCODE AND D.PLUID=V.PLUID AND V.BILLNO={0} " _
+        '    & "GROUP BY M.DELIVERYFROM " _
+        '    & "UNION ALL " _
+        '    & "SELECT D.SHOPID,0,0,SUM(D.QTY) FROM BILLDETAILS D,PSR_PRODUCTGRNWISE V " _
+        '    & "WHERE D.PLUID=V.PLUID AND V.BILLNO={0} " _
+        '    & "GROUP BY D.SHOPID) M WHERE M.SHOPID=S.SHOPID " _
+        '    & "GROUP BY S.SHOPNAME,S.SHOPID ORDER BY S.SHOPID DESC"
 
-        SQL = String.Format(SQL, iBillNo)
+        'YASEEN QUERY FOR eStore
+
+        SQL = $"SELECT S.SHOPNAME,SUM(M.Purchase) PURCHASE,SUM(M.Received) DELIVERY,SUM(M.Sales) SALES,
+                CASE S.ShopID
+                WHEN 1 THEN  
+                SUM(M.Purchase-M.Delivery+M.Received)
+                ELSE SUM(M.Received-M.Sales-M.Delivery) END AS STOCK 
+                FROM SHOPS S,(SELECT M.SHOPID,SUM(D.Qty) Purchase,0 Delivery,0 Received,0 Sales
+                FROM GRNDETAILS D,GRNMASTER M,PSR_PRODUCTGRNWISE V,PAYMENTMASTER P 
+                WHERE M.GRNNO=D.GRNNO AND D.PLUID=V.PLUID AND M.BILLNO=P.BILLNO AND P.BILLNO={iBillNo} 
+                GROUP BY M.SHOPID 
+                UNION ALL 
+                SELECT M.DELIVERYTO,0,0,SUM(D.QUANTITY),0
+                FROM DELIVERYMASTER M,DELIVERYDETAILS D,PSR_PRODUCTGRNWISE V 
+                WHERE M.ID=D.ID AND D.PLUID=V.PLUID AND V.BILLNO={iBillNo}
+                GROUP BY M.DELIVERYTO 
+                UNION ALL 
+                SELECT M.DELIVERYFROM,0,SUM(D.QUANTITY),0,0 
+                FROM DELIVERYMASTER M,DELIVERYDETAILS D,PSR_PRODUCTGRNWISE V 
+                WHERE M.ID=D.ID AND D.PLUID=V.PLUID AND V.BILLNO={iBillNo}
+                GROUP BY M.DELIVERYFROM 
+                UNION ALL 
+                SELECT D.SHOPID,0,0,0,SUM(D.QTY) 
+                FROM BILLDETAILS D,PSR_PRODUCTGRNWISE V 
+                WHERE D.PLUID=V.PLUID AND V.BILLNO={iBillNo} 
+                GROUP BY D.SHOPID
+                ) M WHERE M.SHOPID=S.SHOPID 
+                GROUP BY S.SHOPNAME,S.SHOPID ORDER BY S.SHOPID DESC"
+
+        'SQL = String.Format(SQL, iBillNo)
 
         Dim nTbl As New DataTable
 
@@ -1414,6 +1447,16 @@ Public Class NewBillGenerator
     Private Sub btnRefBankList_Click(sender As Object, e As EventArgs) Handles btnRefBankList.Click
 
         LoadBankList(cmbVendor.SelectedValue)
+
+    End Sub
+
+    Private Sub mebFrom_ValueChanged(sender As Object, e As EventArgs) Handles mebFrom.ValueChanged
+
+        SQL = "select vendorid,vendorname from vendors where vendorid in (select distinct vendorid from  " _
+             & "grnmaster where billno=0 and invdt between '" & Format(mebFrom.Value, "yyyy-MM-dd") & "' and '" _
+             & Format(mebTo.Value, "yyyy-MM-dd") & "') order by vendorname"
+
+        ESSA.LoadCombo(cmbVendor, SQL, "vendorname", "vendorid")
 
     End Sub
 
