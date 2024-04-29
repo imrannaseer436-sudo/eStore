@@ -284,14 +284,14 @@ Public Class DiscountAssigner
 
                     If TG.Item(10, i).Value = "NO" Then
 
-                        SQL = "UPDATE ProductMaster SET RetailPrice={0}, WholeSalePrice={0}, MRP={0}, ISUpdated=0 WHERE PluID={1}"
-                        SQL = String.Format(SQL, Val(TG.Item(6, i).Value), Val(TG.Item(0, i).Value))
+                        SQL = "UPDATE ProductMaster SET RetailPrice={0}, WholeSalePrice={2}, MRP={2}, ISUpdated=0 WHERE PluID={1}"
+                        SQL = String.Format(SQL, Val(TG.Item(6, i).Value), Val(TG.Item(0, i).Value), Val(TG.Item(4, i).Value))
 
                         Cmd.CommandText = SQL
                         Cmd.ExecuteNonQuery()
 
-                        SQL = "UPDATE PriceMaster SET RetailPrice={0}, WholeSalePrice={0}, MRP={0},UpdatedBy = {3},UpdatedAt = '{4}'  WHERE ShopID = {2} AND PluID={1}"
-                        SQL = String.Format(SQL, Val(TG.Item(6, i).Value), Val(TG.Item(0, i).Value), CmbShop.SelectedValue, UserID, Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss"))
+                        SQL = "UPDATE PriceMaster SET RetailPrice={0}, WholeSalePrice={5}, MRP={5},UpdatedBy = {3},UpdatedAt = '{4}'  WHERE ShopID = {2} AND PluID={1}"
+                        SQL = String.Format(SQL, Val(TG.Item(6, i).Value), Val(TG.Item(0, i).Value), CmbShop.SelectedValue, UserID, Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss"), Val(TG.Item(4, i).Value))
 
                         Cmd.CommandText = SQL
                         Cmd.ExecuteNonQuery()

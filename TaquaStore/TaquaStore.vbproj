@@ -201,6 +201,12 @@
     <Compile Include="cListBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Crystal\PaymentSummaryNew.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentSummaryNew.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Crystal\ProductStatusReportNew.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -212,6 +218,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RptAdvancePayment.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Crystal\RptReturnFromShops.vb">
+      <DependentUpon>RptReturnFromShops.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Crystal\RptDeliveryValueReportNew.vb">
       <DependentUpon>RptDeliveryValueReportNew.rpt</DependentUpon>
@@ -1186,6 +1198,10 @@
     <EmbeddedResource Include="cListBox.resx">
       <DependentUpon>cListBox.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Crystal\PaymentSummaryNew.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PaymentSummaryNew.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Crystal\ProductStatusReportNew.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ProductStatusReportNew.vb</LastGenOutput>
@@ -1193,6 +1209,10 @@
     <EmbeddedResource Include="Crystal\RptAdvancePayment.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptAdvancePayment.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Crystal\RptReturnFromShops.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptReturnFromShops.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Crystal\RptDeliveryValueReportNew.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -2,7 +2,7 @@
 Public Class ProductReturnReport
 
     Private Rpt As New RptProductReturnReport
-    Private Rpt1 As New RptDeliveryQuantityReportDW
+    Private Rpt1 As New RptReturnFromShops
 
     Private Sub ProductReturnReport_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
@@ -102,16 +102,20 @@ Public Class ProductReturnReport
 
     Private Sub btnDisplay_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDisplay.Click
 
-        SQL = "SELECT M.DELIVERYCODE,M.DELIVERYDATE BILLDT,S.SHOPNAME UNITS,P.PLUCODE,P.PLUNAME,P.ID,D.QUANTITY,D.RETAILPRICE MRP,(D.QUANTITY*D.RETAILPRICE) AMOUNT,l.department,l.category,l.catalog material,l.Style,l.brand,v.VENDORNAME FROM " _
-            & "RECEIVEDMASTER M,RECEIVEDDETAILS D,PRODUCTMASTER P,PRODUCTATTRIBUTES L,SHOPS S,VENDORS V WHERE M.DELIVERYFROM=S.SHOPID AND M.ID=D.ID AND M.DELIVERYTO = " & ShopID & " AND D.PLUID=P.PLUID AND P.PLUID=L.PLUID " _
-            & "AND P.VENDORID=V.VENDORID AND CONVERT(DATE,M.DELIVERYDATE) BETWEEN '" & Format(mebFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(mebTo.Value, "yyyy-MM-dd") & "'"
+        SQL = "SELECT M.DELIVERYCODE,M.DELIVERYDATE BILLDT,S.SHOPNAME UNITS,P.PLUCODE,P.PLUNAME,P.ID,D.QUANTITY,D.COSTPRICE,D.RETAILPRICE MRP,(D.QUANTITY*D.COSTPRICE) AMOUNT,l.department,l.category,l.catalog material,l.Style,l.brand,v.VENDORNAME,GM.GRNNO [INV_NO],GM.GRNDT [INV_DATE]  FROM " _
+            & "DELIVERYMASTER M,DELIVERYDETAILS D,PRODUCTMASTER P,PRODUCTATTRIBUTES L,SHOPS S,VENDORS V,GRNMASTER GM,GRNDETAILS GD WHERE M.DELIVERYFROM=S.SHOPID AND M.ID=D.ID AND M.DELIVERYTO = " & ShopID & " AND D.PLUID=P.PLUID AND P.PLUID=L.PLUID " _
+            & "AND P.VENDORID=V.VENDORID AND GM.GRNNO = GD.GRNNO AND GD.PLUID = D.PLUID AND CONVERT(DATE,M.DELIVERYDATE) BETWEEN '" & Format(mebFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(mebTo.Value, "yyyy-MM-dd") & "'"
 
         If chkECF.Checked = True Then
             SQL &= " AND P.PLUCODE LIKE '%" & txtCode.Text.Trim & "%'"
         End If
 
-        If cmbLocation.SelectedIndex > 0 Then
+        If cmbLocation.SelectedValue > 0 Then
             SQL &= " AND S.SHOPID=" & cmbLocation.SelectedValue
+        End If
+
+        If ChkPending.Checked Then
+            SQL &= " AND M.STATUS = 0"
         End If
 
         If pnlCatFilter.Visible = True Then

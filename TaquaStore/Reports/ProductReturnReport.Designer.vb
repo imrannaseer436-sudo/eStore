@@ -64,6 +64,7 @@ Partial Class ProductReturnReport
         Me.Label13 = New System.Windows.Forms.Label()
         Me.CmbSCat1 = New System.Windows.Forms.ComboBox()
         Me.CmbCat = New System.Windows.Forms.ComboBox()
+        Me.ChkPending = New System.Windows.Forms.CheckBox()
         Me.Panel3.SuspendLayout()
         Me.pnlVerify.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -224,6 +225,7 @@ Partial Class ProductReturnReport
         '
         'Panel4
         '
+        Me.Panel4.Controls.Add(Me.ChkPending)
         Me.Panel4.Controls.Add(Me.chkECF)
         Me.Panel4.Controls.Add(Me.Label12)
         Me.Panel4.Controls.Add(Me.txtCode)
@@ -343,7 +345,7 @@ Partial Class ProductReturnReport
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(121, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(752, 12)
+        Me.Label1.Location = New System.Drawing.Point(752, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(65, 17)
         Me.Label1.TabIndex = 45
@@ -566,6 +568,18 @@ Partial Class ProductReturnReport
         Me.CmbCat.Size = New System.Drawing.Size(280, 21)
         Me.CmbCat.TabIndex = 1
         '
+        'ChkPending
+        '
+        Me.ChkPending.AutoSize = True
+        Me.ChkPending.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChkPending.ForeColor = System.Drawing.Color.Black
+        Me.ChkPending.Location = New System.Drawing.Point(755, 29)
+        Me.ChkPending.Name = "ChkPending"
+        Me.ChkPending.Size = New System.Drawing.Size(70, 17)
+        Me.ChkPending.TabIndex = 50
+        Me.ChkPending.Text = "Pending"
+        Me.ChkPending.UseVisualStyleBackColor = True
+        '
         'ProductReturnReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -634,4 +648,5 @@ Partial Class ProductReturnReport
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents CmbSCat1 As System.Windows.Forms.ComboBox
     Friend WithEvents CmbCat As System.Windows.Forms.ComboBox
+    Friend WithEvents ChkPending As CheckBox
 End Class
