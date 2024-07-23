@@ -335,8 +335,13 @@ Public Class GeneralDelivery
 
     Private Sub PrintBill(ByVal iVchNo As Short, ByVal iVchDt As Date, ByVal Cust As String)
 
-        SQL = "select p.plucode,p.pluname,d.rate,d.qty from " _
+        If chkCostPrice.Checked Then
+            SQL = "select p.plucode,p.pluname,p.costprice rate,d.qty from " _
             & "productmaster p,dcdet d where p.pluid=d.pluid and d.vchno=" & iVchNo & " order by d.sno"
+        Else
+            SQL = "select p.plucode,p.pluname,d.rate,d.qty from " _
+            & "productmaster p,dcdet d where p.pluid=d.pluid and d.vchno=" & iVchNo & " order by d.sno"
+        End If
 
         ESSA.OpenConnection()
         Using Adp As New SqlDataAdapter(SQL, Con)

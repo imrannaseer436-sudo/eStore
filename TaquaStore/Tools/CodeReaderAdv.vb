@@ -1,5 +1,10 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
 Imports System.Net.NetworkInformation
+Imports Excel = Microsoft.Office.Interop.Excel
+
+
+
 Public Class CodeReaderAdv
 
     Private Sub CodeReaderAdv_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -728,6 +733,94 @@ Public Class CodeReaderAdv
         End With
 
     End Function
+
+    Private Async Sub btnDownload_Click(sender As Object, e As EventArgs) Handles btnDownload.Click
+
+        If MsgBox("Did you completed scanning all products ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+            Exit Sub
+        End If
+
+        pnlLoading.Visible = True
+
+        ' Specify your SQL query
+        'Dim sqlQuery As String = $"SELECT P.PLUCODE [BARCODE],P.PLUNAME [DESC],P.ID [SIZE],P.COSTPRICE,COUNT(C.PLUID) QTY,
+        'COUNT(C.PLUID) * P.COSTPRICE [VALUE]
+        'FROM PRODUCTMASTER P
+        'INNER JOIN CODEREADER C ON C.PLUID = P.PLUID AND C.SHOPID = { ShopID }
+        'GROUP BY P.PLUCODE, P.PLUNAME, P.ID, P.COSTPRICE"
+
+        Dim sqlQuery As String = $"SELECT P.PLUCODE [BARCODE], P.PLUNAME [DESC], P.ID [SIZE], COALESCE(PM.COSTPRICE, P.COSTPRICE) AS COSTPRICE,
+        COUNT(C.PLUID) QTY, COUNT(C.PLUID) * COALESCE(PM.COSTPRICE, P.COSTPRICE) AS [VALUE]
+        FROM PRODUCTMASTER P
+        LEFT JOIN PRICEMASTER PM ON PM.PLUID = P.PLUID AND PM.ShopId = {ShopID}
+        LEFT JOIN CODEREADER C ON C.PLUID = COALESCE(PM.PLUID, P.PLUID) AND C.SHOPID = {ShopID}
+        GROUP BY P.PLUCODE, P.PLUNAME, P.ID, P.COSTPRICE, PM.COSTPRICE
+        HAVING 
+        COUNT(C.PLUID) <> 0"
+
+        Try
+            ' Create a SqlConnection
+            Using connection As New SqlConnection(ConStr)
+                ' Open the connection
+                Await connection.OpenAsync()
+
+                ' Create a SqlCommand
+                Using command As New SqlCommand(sqlQuery, connection)
+                    ' Execute the query and get the data using SqlDataReader
+                    Using reader As SqlDataReader = Await command.ExecuteReaderAsync()
+                        ' Create a new Excel application
+                        Dim excelApp As New Excel.Application()
+
+                        ' Add a new workbook
+                        Dim workbook As Excel.Workbook = excelApp.Workbooks.Add()
+
+                        ' Add a new worksheet
+                        Dim worksheet As Excel.Worksheet = workbook.Sheets(1)
+
+                        ' Write the column headers
+                        For col = 1 To reader.FieldCount
+                            worksheet.Cells(1, col).Value = reader.GetName(col - 1)
+                        Next
+
+                        ' Write the data to the Excel worksheet
+                        Dim row As Integer = 2
+                        While Await reader.ReadAsync()
+                            For col = 1 To reader.FieldCount
+                                worksheet.Cells(row, col).Value = reader(col - 1)
+                            Next
+                            row += 1
+                        End While
+
+                        ' Autofit columns
+                        worksheet.UsedRange.Columns.AutoFit()
+
+                        ' Get the desktop path
+                        Dim desktopPath As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+
+                        ' Save the workbook on the desktop
+                        Dim fileName As String = $"{ShopNm} Stock {Now:dd-MM-yyyy hh.mm}.xlsx"
+                        Dim filePath As String = Path.Combine(desktopPath, fileName)
+                        workbook.SaveAs(filePath)
+
+                        ' Close the Excel application
+                        excelApp.Quit()
+
+                        ' Release resources
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook)
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp)
+
+                        pnlLoading.Visible = False
+
+                        MessageBox.Show("Data exported to excel successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            pnlLoading.Visible = False
+            MessageBox.Show("Error exporting data to Excel: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
 
     'Private Sub TG_RowsAdded(sender As Object, e As DataGridViewRowsAddedEventArgs) Handles TG.RowsAdded
 

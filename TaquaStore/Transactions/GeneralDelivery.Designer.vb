@@ -83,6 +83,7 @@ Partial Class GeneralDelivery
         Me.Column12 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Column13 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.chkCostPrice = New System.Windows.Forms.CheckBox()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -248,7 +249,7 @@ Partial Class GeneralDelivery
         Me.Label11.ForeColor = System.Drawing.Color.DimGray
         Me.Label11.Location = New System.Drawing.Point(413, 180)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(57, 13)
+        Me.Label11.Size = New System.Drawing.Size(58, 13)
         Me.Label11.TabIndex = 34
         Me.Label11.Text = "QUANTITY"
         '
@@ -268,7 +269,7 @@ Partial Class GeneralDelivery
         Me.Label9.ForeColor = System.Drawing.Color.DimGray
         Me.Label9.Location = New System.Drawing.Point(100, 180)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(128, 13)
+        Me.Label9.Size = New System.Drawing.Size(130, 13)
         Me.Label9.TabIndex = 34
         Me.Label9.Text = "PRODUCT DESCRIPTION"
         '
@@ -579,6 +580,7 @@ Partial Class GeneralDelivery
         '
         Me.pnlAlter.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(121, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.pnlAlter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlAlter.Controls.Add(Me.chkCostPrice)
         Me.pnlAlter.Controls.Add(Me.btnHide)
         Me.pnlAlter.Controls.Add(Me.Label14)
         Me.pnlAlter.Controls.Add(Me.TGAlter)
@@ -712,6 +714,17 @@ Partial Class GeneralDelivery
         Me.Column14.ReadOnly = True
         Me.Column14.Width = 20
         '
+        'chkCostPrice
+        '
+        Me.chkCostPrice.AutoSize = True
+        Me.chkCostPrice.ForeColor = System.Drawing.SystemColors.HighlightText
+        Me.chkCostPrice.Location = New System.Drawing.Point(436, 7)
+        Me.chkCostPrice.Name = "chkCostPrice"
+        Me.chkCostPrice.Size = New System.Drawing.Size(86, 17)
+        Me.chkCostPrice.TabIndex = 10
+        Me.chkCostPrice.Text = "COST PRICE"
+        Me.chkCostPrice.UseVisualStyleBackColor = True
+        '
         'GeneralDelivery
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -792,4 +805,5 @@ Partial Class GeneralDelivery
     Friend WithEvents Column12 As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents Column13 As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents Column14 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents chkCostPrice As CheckBox
 End Class

@@ -22,7 +22,7 @@ Partial Class CodeReaderAdv
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtCode = New System.Windows.Forms.TextBox()
         Me.TG = New System.Windows.Forms.DataGridView()
@@ -106,12 +106,16 @@ Partial Class CodeReaderAdv
         Me.lblLink = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.ChkCount = New System.Windows.Forms.CheckBox()
+        Me.btnDownload = New System.Windows.Forms.Button()
+        Me.pnlLoading = New System.Windows.Forms.Panel()
+        Me.Label23 = New System.Windows.Forms.Label()
         CType(Me.TG, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlList.SuspendLayout()
         CType(Me.TGLst, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        Me.pnlLoading.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -177,9 +181,9 @@ Partial Class CodeReaderAdv
         '
         'Column4
         '
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Webdings", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Webdings", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle2
         Me.Column4.HeaderText = ""
         Me.Column4.Name = "Column4"
         Me.Column4.ReadOnly = True
@@ -230,7 +234,7 @@ Partial Class CodeReaderAdv
         Me.btnSave.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.Location = New System.Drawing.Point(714, 226)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(152, 38)
+        Me.btnSave.Size = New System.Drawing.Size(114, 38)
         Me.btnSave.TabIndex = 13
         Me.btnSave.Text = "&Save"
         Me.btnSave.UseVisualStyleBackColor = True
@@ -853,9 +857,9 @@ Partial Class CodeReaderAdv
         '
         Me.btnUpdate.Enabled = False
         Me.btnUpdate.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUpdate.Location = New System.Drawing.Point(787, 275)
+        Me.btnUpdate.Location = New System.Drawing.Point(714, 275)
         Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(152, 38)
+        Me.btnUpdate.Size = New System.Drawing.Size(114, 38)
         Me.btnUpdate.TabIndex = 39
         Me.btnUpdate.Text = "Update"
         Me.btnUpdate.UseVisualStyleBackColor = True
@@ -911,11 +915,45 @@ Partial Class CodeReaderAdv
         Me.ChkCount.Text = "Count"
         Me.ChkCount.UseVisualStyleBackColor = True
         '
+        'btnDownload
+        '
+        Me.btnDownload.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDownload.Location = New System.Drawing.Point(872, 275)
+        Me.btnDownload.Name = "btnDownload"
+        Me.btnDownload.Size = New System.Drawing.Size(114, 38)
+        Me.btnDownload.TabIndex = 42
+        Me.btnDownload.Text = "Download"
+        Me.btnDownload.UseVisualStyleBackColor = True
+        '
+        'pnlLoading
+        '
+        Me.pnlLoading.BackColor = System.Drawing.Color.Navy
+        Me.pnlLoading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlLoading.Controls.Add(Me.Label23)
+        Me.pnlLoading.Location = New System.Drawing.Point(368, 230)
+        Me.pnlLoading.Name = "pnlLoading"
+        Me.pnlLoading.Size = New System.Drawing.Size(276, 60)
+        Me.pnlLoading.TabIndex = 47
+        Me.pnlLoading.Visible = False
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Garamond", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.ForeColor = System.Drawing.Color.Yellow
+        Me.Label23.Location = New System.Drawing.Point(24, 20)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(226, 18)
+        Me.Label23.TabIndex = 0
+        Me.Label23.Text = "Downloading Data, Please Wait"
+        '
         'CodeReaderAdv
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1012, 521)
+        Me.Controls.Add(Me.pnlLoading)
+        Me.Controls.Add(Me.btnDownload)
         Me.Controls.Add(Me.ChkCount)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.btnUpdate)
@@ -973,6 +1011,8 @@ Partial Class CodeReaderAdv
         Me.Panel2.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        Me.pnlLoading.ResumeLayout(False)
+        Me.pnlLoading.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1060,4 +1100,7 @@ Partial Class CodeReaderAdv
     Friend WithEvents lblLink As Label
     Friend WithEvents Label24 As Label
     Friend WithEvents ChkCount As CheckBox
+    Friend WithEvents btnDownload As Button
+    Friend WithEvents pnlLoading As Panel
+    Friend WithEvents Label23 As Label
 End Class
