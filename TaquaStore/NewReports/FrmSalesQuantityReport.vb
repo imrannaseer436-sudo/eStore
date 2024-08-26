@@ -17,33 +17,42 @@ Public Class FrmSalesQuantityReport
     Private Sub BtnDisplay_Click(sender As Object, e As EventArgs) Handles BtnDisplay.Click
 
         SQL = "SELECT A.Code, A.Description, A.Size, A.Quantity, A.CostPrice, A.MRP, A.Amount, A.VendorName," _
-            & "B.Department, B.Category, B.Style, B.Pattern, B.Material, B.Color, B.Sleeve, B.Brand, B.Catalog FROM " _
+            & "B.Department, B.Category, B.Style, B.Pattern, B.Material, B.Color, B.Sleeve, B.Brand, B.Catalog, ISNULL(C.Qty,0) [Delivery], ISNULL(D.stock,0) [Stock] FROM " _
             & "(SELECT " _
             & "P.PluId," _
             & "P.Plucode [Code]," _
             & "P.Pluname [Description]," _
             & "P.Id [Size]," _
-            & "D.Qty [Quantity]," _
-            & "CONVERT(DECIMAL(10,2), P.CostPrice) CostPrice," _
-            & "CONVERT(DECIMAL(10,2), P.MRP) MRP," _
-            & "CONVERT(DECIMAL(10,2), D.Amount) Amount," _
-            & "V.VendorName " _
-            & "FROM BillDetails D, ProductMaster P, Vendors V " _
-            & "WHERE V.VendorId = P.VendorId And D.PluId = P.PluId And D.BillDt BETWEEN '" _
+            & "SUM(D.Qty) [Quantity]," _
+            & "CONVERT(DECIMAL(10,2), PM.CostPrice) CostPrice," _
+            & "CONVERT(DECIMAL(10,2), PM.MRP) MRP," _
+            & "CONVERT(DECIMAL(10,2), SUM(D.Amount)) Amount," _
+            & "V.VendorName, " _
+            & "D.ShopId " _
+            & "FROM BillDetails D, ProductMaster P, Vendors V, PriceMaster PM " _
+            & "WHERE V.VendorId = P.VendorId And D.PluId = P.PluId And PM.ShopId = D.ShopId AND PM.PluId = D.PluId AND D.BillDt BETWEEN '" _
             & Format(DtpFrom.Value, "yyyy-MM-dd") & "' AND '" _
             & Format(DtpTo.Value, "yyyy-MM-dd") & "' AND D.ShopId=" _
             & CmbLocation.SelectedValue
 
         If chkReturn.Checked Then
             SQL &= " AND D.Qty < 0"
-        Else
+        ElseIf ChkSales.Checked Then
             SQL &= " AND D.Qty >= 0"
         End If
 
-        SQL &= ") A " _
+        SQL &= " GROUP BY P.PluId, P.Plucode, P.Pluname, P.Id, PM.CostPrice, PM.MRP, V.VendorName, D.ShopId) A " _
             & "LEFT OUTER JOIN " _
             & "(SELECT * FROM ProductAttributes) B " _
             & "ON A.PluID = B.PluId"
+
+        SQL &= " LEFT OUTER JOIN " _
+            & "(SELECT * FROM V_DeliveryQty) C " _
+            & "ON C.ShopId = A.ShopId AND C.PluId = A.PluId"
+
+        SQL &= " LEFT OUTER JOIN " _
+            & "(SELECT * FROM V_StockPOS) D " _
+            & "ON D.Location_Id = A.ShopId AND D.PluId = A.PluId"
 
         ESSA.OpenConnection()
         Using Adp As New SqlDataAdapter(SQL, Con)

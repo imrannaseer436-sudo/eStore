@@ -23,13 +23,13 @@ Partial Class FrmSalesQuantityReport
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.DgvList = New Zuby.ADGV.AdvancedDataGridView()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.lblAmt = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.lblQty = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.SimpleLine4 = New simpleline.assemblies.simpleLine()
-        Me.DgvList = New Zuby.ADGV.AdvancedDataGridView()
         Me.PnlHeader = New System.Windows.Forms.TableLayoutPanel()
         Me.PnlFilter = New System.Windows.Forms.Panel()
         Me.btnClose = New System.Windows.Forms.Button()
@@ -48,9 +48,10 @@ Partial Class FrmSalesQuantityReport
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.ChkSales = New System.Windows.Forms.CheckBox()
         Me.Panel2.SuspendLayout()
-        Me.Panel3.SuspendLayout()
         CType(Me.DgvList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
         Me.PnlHeader.SuspendLayout()
         Me.PnlFilter.SuspendLayout()
         Me.SuspendLayout()
@@ -64,6 +65,25 @@ Partial Class FrmSalesQuantityReport
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(977, 413)
         Me.Panel2.TabIndex = 1
+        '
+        'DgvList
+        '
+        Me.DgvList.AllowUserToAddRows = False
+        Me.DgvList.AllowUserToDeleteRows = False
+        Me.DgvList.AllowUserToResizeRows = False
+        Me.DgvList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        Me.DgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.DgvList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DgvList.EnableHeadersVisualStyles = False
+        Me.DgvList.FilterAndSortEnabled = True
+        Me.DgvList.Location = New System.Drawing.Point(0, 0)
+        Me.DgvList.Name = "DgvList"
+        Me.DgvList.ReadOnly = True
+        Me.DgvList.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.DgvList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        Me.DgvList.RowHeadersVisible = False
+        Me.DgvList.Size = New System.Drawing.Size(977, 372)
+        Me.DgvList.TabIndex = 0
         '
         'Panel3
         '
@@ -138,25 +158,6 @@ Partial Class FrmSalesQuantityReport
         Me.SimpleLine4.TabIndex = 0
         Me.SimpleLine4.UseGradient = False
         '
-        'DgvList
-        '
-        Me.DgvList.AllowUserToAddRows = False
-        Me.DgvList.AllowUserToDeleteRows = False
-        Me.DgvList.AllowUserToResizeRows = False
-        Me.DgvList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        Me.DgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.DgvList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DgvList.EnableHeadersVisualStyles = False
-        Me.DgvList.FilterAndSortEnabled = True
-        Me.DgvList.Location = New System.Drawing.Point(0, 0)
-        Me.DgvList.Name = "DgvList"
-        Me.DgvList.ReadOnly = True
-        Me.DgvList.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.DgvList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        Me.DgvList.RowHeadersVisible = False
-        Me.DgvList.Size = New System.Drawing.Size(977, 372)
-        Me.DgvList.TabIndex = 0
-        '
         'PnlHeader
         '
         Me.PnlHeader.BackColor = System.Drawing.Color.Gainsboro
@@ -174,6 +175,7 @@ Partial Class FrmSalesQuantityReport
         'PnlFilter
         '
         Me.PnlFilter.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.PnlFilter.Controls.Add(Me.ChkSales)
         Me.PnlFilter.Controls.Add(Me.btnClose)
         Me.PnlFilter.Controls.Add(Me.chkReturn)
         Me.PnlFilter.Controls.Add(Me.BtnExport)
@@ -211,7 +213,7 @@ Partial Class FrmSalesQuantityReport
         Me.chkReturn.AutoSize = True
         Me.chkReturn.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkReturn.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.chkReturn.Location = New System.Drawing.Point(683, 6)
+        Me.chkReturn.Location = New System.Drawing.Point(593, 6)
         Me.chkReturn.Name = "chkReturn"
         Me.chkReturn.Size = New System.Drawing.Size(93, 17)
         Me.chkReturn.TabIndex = 10
@@ -372,6 +374,18 @@ Partial Class FrmSalesQuantityReport
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "DURATION"
         '
+        'ChkSales
+        '
+        Me.ChkSales.AutoSize = True
+        Me.ChkSales.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChkSales.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.ChkSales.Location = New System.Drawing.Point(692, 6)
+        Me.ChkSales.Name = "ChkSales"
+        Me.ChkSales.Size = New System.Drawing.Size(84, 17)
+        Me.ChkSales.TabIndex = 12
+        Me.ChkSales.Text = "Sales Only"
+        Me.ChkSales.UseVisualStyleBackColor = True
+        '
         'FrmSalesQuantityReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
@@ -385,9 +399,9 @@ Partial Class FrmSalesQuantityReport
         Me.Text = "Sales Quantity Report"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel2.ResumeLayout(False)
+        CType(Me.DgvList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
-        CType(Me.DgvList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PnlHeader.ResumeLayout(False)
         Me.PnlFilter.ResumeLayout(False)
         Me.PnlFilter.PerformLayout()
@@ -420,4 +434,5 @@ Partial Class FrmSalesQuantityReport
     Friend WithEvents lblQty As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents SimpleLine4 As simpleline.assemblies.simpleLine
+    Friend WithEvents ChkSales As CheckBox
 End Class
