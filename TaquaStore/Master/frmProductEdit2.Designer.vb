@@ -78,6 +78,7 @@ Partial Class frmProductEdit2
         Me.btnSave = New System.Windows.Forms.Button()
         Me.SimpleLine5 = New simpleline.assemblies.simpleLine()
         Me.Label25 = New System.Windows.Forms.Label()
+        Me.btnReset = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -631,12 +632,23 @@ Partial Class frmProductEdit2
         Me.Label25.TabIndex = 52
         Me.Label25.Text = "OPTIONS"
         '
+        'btnReset
+        '
+        Me.btnReset.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnReset.Location = New System.Drawing.Point(226, 346)
+        Me.btnReset.Name = "btnReset"
+        Me.btnReset.Size = New System.Drawing.Size(100, 30)
+        Me.btnReset.TabIndex = 53
+        Me.btnReset.Text = "Reset"
+        Me.btnReset.UseVisualStyleBackColor = True
+        '
         'frmProductEdit2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(1019, 661)
+        Me.Controls.Add(Me.btnReset)
         Me.Controls.Add(Me.Label25)
         Me.Controls.Add(Me.SimpleLine5)
         Me.Controls.Add(Me.btnSave)
@@ -761,4 +773,5 @@ Partial Class frmProductEdit2
     Friend WithEvents btnSave As Button
     Friend WithEvents SimpleLine5 As simpleline.assemblies.simpleLine
     Friend WithEvents Label25 As Label
+    Friend WithEvents btnReset As Button
 End Class

@@ -277,6 +277,12 @@
     <Compile Include="Dummy.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Extra\SettingsNew.Designer.vb">
+      <DependentUpon>SettingsNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Extra\SettingsNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Extra\xMessage.Designer.vb">
       <DependentUpon>xMessage.vb</DependentUpon>
     </Compile>
@@ -1280,6 +1286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dummy.resx">
       <DependentUpon>Dummy.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extra\SettingsNew.resx">
+      <DependentUpon>SettingsNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Extra\xMessage.resx">
       <DependentUpon>xMessage.vb</DependentUpon>

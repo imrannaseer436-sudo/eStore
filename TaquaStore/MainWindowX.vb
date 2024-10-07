@@ -321,7 +321,7 @@ Public Class MainWindowX
 
     Private Sub btnSettings_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSettings.Click
 
-        Settings.Show(Me)
+        SettingsNew.Show(Me)
 
     End Sub
 

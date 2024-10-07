@@ -368,14 +368,20 @@ Public Class Products3
         Try
 
             Dim TmpID = ESSA.GenerateID("select max(pluid) from productmaster")
-
+            Dim Prefix = "ES"
+            With ESSA.OpenReader("select param_value from settings where param_name = 'BarcodePrefix'")
+                If .Read Then
+                    Prefix = .GetString(0).Trim.ToUpper
+                End If
+            End With
+            Dim BarcodeNo = ESSA.GenerateID($"SELECT Count(PluID) FROM ProductMaster WHERE Plucode LIKE '{Prefix}%'")
             Dim EntryNo = ESSA.GenerateID("SELECT MAX(EntryNo) FROM ProductAttributes")
 
             For i As Short = 0 To TG.Rows.Count - 1
 
                 SQL = "insert into productmaster values (" _
                     & TmpID & ",'" _
-                    & IIf(IsAutomatic, "ER" + Format(TmpID, "000000"), TG.Item(0, i).Value) & "','" _
+                    & IIf(IsAutomatic, Prefix + Format(BarcodeNo, "000000"), TG.Item(0, i).Value) & "','" _
                     & TG.Item(1, i).Value & "',0,'" _
                     & TG.Item(2, i).Value & "'," _
                     & cmbVendor.SelectedValue & ",'" _
@@ -446,6 +452,7 @@ Public Class Products3
                 Cmd.ExecuteNonQuery()
 
                 TmpID += 1
+                BarcodeNo += 1
 
             Next
 

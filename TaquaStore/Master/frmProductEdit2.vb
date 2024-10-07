@@ -207,7 +207,7 @@ Public Class frmProductEdit2
                 entryNo = .Item(9)
                 serialNo = .Item(10)
             End If
-
+            txtCode.Enabled = False
             .Close()
         End With
 
@@ -327,6 +327,7 @@ Public Class frmProductEdit2
 
         ESSA.ClearTextBox(Me)
         resetAttributes()
+        txtCode.Enabled = True
         txtCode.Focus()
         productId = 0
 
@@ -374,4 +375,7 @@ Public Class frmProductEdit2
 
     End Sub
 
+    Private Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
+        resetForm()
+    End Sub
 End Class
