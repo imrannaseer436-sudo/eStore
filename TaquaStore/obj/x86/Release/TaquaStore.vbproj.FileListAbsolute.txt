@@ -919,3 +919,4 @@ D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Release\TaquaStore.Verifier.resourc
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Release\TaquaStore.ProductStatusReport2.resources
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Release\TaquaStore.DeliveryWiseSalesAndStockReport.resources
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Release\TaquaStore.SettingsNew.resources
+D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Release\TaquaStore.frmDebitReport.resources

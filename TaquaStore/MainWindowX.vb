@@ -491,4 +491,10 @@ Public Class MainWindowX
 
     End Sub
 
+    Private Sub MnuDebitReport_Click(sender As Object, e As EventArgs) Handles MnuDebitReport.Click
+
+        AddTab(frmDebitReport)
+        pnlReports.Hide()
+
+    End Sub
 End Class

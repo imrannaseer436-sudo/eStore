@@ -1280,3 +1280,4 @@ D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Debug\TaquaStore.Verifier.resources
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Debug\TaquaStore.ProductStatusReport2.resources
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Debug\TaquaStore.DeliveryWiseSalesAndStockReport.resources
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Debug\TaquaStore.SettingsNew.resources
+D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Debug\TaquaStore.frmDebitReport.resources

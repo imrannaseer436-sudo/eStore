@@ -422,6 +422,12 @@
     <Compile Include="NewReports\frmInvBasedStock.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="NewReports\frmDebitReport.Designer.vb">
+      <DependentUpon>frmDebitReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="NewReports\frmDebitReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="NewReports\frmPendingReport.Designer.vb">
       <DependentUpon>frmPendingReport.vb</DependentUpon>
     </Compile>
@@ -1358,6 +1364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewReports\frmInvBasedStock.resx">
       <DependentUpon>frmInvBasedStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewReports\frmDebitReport.resx">
+      <DependentUpon>frmDebitReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewReports\frmPendingReport.resx">
       <DependentUpon>frmPendingReport.vb</DependentUpon>

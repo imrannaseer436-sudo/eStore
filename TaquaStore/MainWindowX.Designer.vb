@@ -62,6 +62,7 @@ Partial Class MainWindowX
         Me.btnDayEnd2 = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.pnlReports = New System.Windows.Forms.Panel()
+        Me.MnuDebitReport = New System.Windows.Forms.Button()
         Me.MnuStockReportIW = New System.Windows.Forms.Button()
         Me.MnuVendorRpt = New System.Windows.Forms.Button()
         Me.mnuStockReport = New System.Windows.Forms.Button()
@@ -118,7 +119,7 @@ Partial Class MainWindowX
         Me.MenuList.RowTemplate.Height = 35
         Me.MenuList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.MenuList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.MenuList.Size = New System.Drawing.Size(239, 413)
+        Me.MenuList.Size = New System.Drawing.Size(239, 455)
         Me.MenuList.TabIndex = 0
         '
         'Column1
@@ -210,7 +211,7 @@ Partial Class MainWindowX
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.tabMain)
         Me.SplitContainer1.Panel2.Controls.Add(Me.TableLayoutPanel2)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1033, 469)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1033, 511)
         Me.SplitContainer1.SplitterDistance = 245
         Me.SplitContainer1.SplitterWidth = 1
         Me.SplitContainer1.TabIndex = 2
@@ -227,7 +228,7 @@ Partial Class MainWindowX
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(245, 469)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(245, 511)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'tabMain
@@ -240,7 +241,7 @@ Partial Class MainWindowX
         Me.tabMain.Location = New System.Drawing.Point(0, 36)
         Me.tabMain.Name = "tabMain"
         Me.tabMain.SelectedTabColor = System.Drawing.SystemColors.Control
-        Me.tabMain.Size = New System.Drawing.Size(787, 433)
+        Me.tabMain.Size = New System.Drawing.Size(787, 475)
         Me.tabMain.TabIndex = 1
         Me.tabMain.UseVisualStyles = False
         '
@@ -381,12 +382,12 @@ Partial Class MainWindowX
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportToolToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(136, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(137, 26)
         '
         'ImportToolToolStripMenuItem
         '
         Me.ImportToolToolStripMenuItem.Name = "ImportToolToolStripMenuItem"
-        Me.ImportToolToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.ImportToolToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
         Me.ImportToolToolStripMenuItem.Text = "Import Tool"
         '
         'btnSearch
@@ -556,6 +557,7 @@ Partial Class MainWindowX
         Me.pnlReports.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlReports.BackColor = System.Drawing.Color.WhiteSmoke
         Me.pnlReports.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlReports.Controls.Add(Me.MnuDebitReport)
         Me.pnlReports.Controls.Add(Me.MnuStockReportIW)
         Me.pnlReports.Controls.Add(Me.MnuVendorRpt)
         Me.pnlReports.Controls.Add(Me.mnuStockReport)
@@ -568,9 +570,21 @@ Partial Class MainWindowX
         Me.pnlReports.Controls.Add(Me.Label4)
         Me.pnlReports.Location = New System.Drawing.Point(523, 40)
         Me.pnlReports.Name = "pnlReports"
-        Me.pnlReports.Size = New System.Drawing.Size(230, 404)
+        Me.pnlReports.Size = New System.Drawing.Size(230, 440)
         Me.pnlReports.TabIndex = 5
         Me.pnlReports.Visible = False
+        '
+        'MnuDebitReport
+        '
+        Me.MnuDebitReport.BackColor = System.Drawing.Color.White
+        Me.MnuDebitReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.MnuDebitReport.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MnuDebitReport.Location = New System.Drawing.Point(10, 354)
+        Me.MnuDebitReport.Name = "MnuDebitReport"
+        Me.MnuDebitReport.Size = New System.Drawing.Size(209, 33)
+        Me.MnuDebitReport.TabIndex = 14
+        Me.MnuDebitReport.Text = "Debit Report"
+        Me.MnuDebitReport.UseVisualStyleBackColor = False
         '
         'MnuStockReportIW
         '
@@ -661,7 +675,7 @@ Partial Class MainWindowX
         Me.mnuHideReports.BackColor = System.Drawing.Color.White
         Me.mnuHideReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.mnuHideReports.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.mnuHideReports.Location = New System.Drawing.Point(10, 354)
+        Me.mnuHideReports.Location = New System.Drawing.Point(10, 393)
         Me.mnuHideReports.Name = "mnuHideReports"
         Me.mnuHideReports.Size = New System.Drawing.Size(209, 33)
         Me.mnuHideReports.TabIndex = 8
@@ -695,7 +709,7 @@ Partial Class MainWindowX
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1033, 469)
+        Me.ClientSize = New System.Drawing.Size(1033, 511)
         Me.Controls.Add(Me.pnlReports)
         Me.Controls.Add(Me.pnlQV)
         Me.Controls.Add(Me.SplitContainer1)
@@ -768,4 +782,5 @@ Partial Class MainWindowX
     Friend WithEvents mnuDueReport As Button
     Friend WithEvents MnuVendorRpt As Button
     Friend WithEvents MnuStockReportIW As Button
+    Friend WithEvents MnuDebitReport As Button
 End Class
