@@ -253,6 +253,12 @@
       <DependentUpon>rptGSTBill3.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Crystal\RptSalesSummary2.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptSalesSummary2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Crystal\RptUnused.vb">
       <DependentUpon>RptUnused.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1253,6 +1259,10 @@
     <EmbeddedResource Include="Crystal\RptDeliveryQuantityReportDW.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptDeliveryQuantityReportDW.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Crystal\RptSalesSummary2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptSalesSummary2.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Crystal\RptUnused.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

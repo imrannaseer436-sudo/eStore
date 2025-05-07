@@ -3,12 +3,13 @@ Imports System.Data.SqlClient
 Imports CrystalDecisions.Shared
 Public Class SalesSummaryReport
 
-    Private Rpt As New RptSalesSummary
+    Private Rpt1 As New RptSalesSummary
+    Private Rpt2 As New RptSalesSummary2
 
     Private Sub SalesSummaryReport_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         SQL = "select shopid,(shopname+' - '+shopcode) shopdesc from shops where shopid<>" & ShopID & " order by shopid"
-        ESSA.LoadCombo(cmbLocation, SQL, "shopdesc", "shopid")
+        ESSA.LoadCombo(cmbLocation, SQL, "shopdesc", "shopid", "All Locations")
 
         mebFrom.Text = "01-" & Now.Month & "-" & Now.Year
 
@@ -26,7 +27,12 @@ Public Class SalesSummaryReport
         '    & Format(mebTo.Value, "yyyy-MM-dd") & "' and shopid=" & cmbLocation.SelectedValue & " GROUP BY BILLDT) B ON " _
         '    & "A.BILLDT=B.BILLDT ORDER BY A.BILLDT"
 
-        SQL = "SELECT A.BILLDT,CH,CD,UPI,NETAMT,TERM1 TERM_1, TERM2 TERM_2 FROM" _
+        Dim Rpt As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+        Rpt = If(cmbLocation.SelectedIndex > 0, Rpt1, Rpt2)
+
+
+        If cmbLocation.SelectedIndex > 0 Then
+            SQL = "SELECT A.BILLDT,CH,CD,UPI,NETAMT,TERM1 TERM_1, TERM2 TERM_2 FROM" _
             & "(select billdt,sum(cash) ch,sum(card) cd,sum(upi) upi, sum(cash+card+upi) netamt from V_PaymentSummaryReportNew where " _
             & "billdt between '" & Format(mebFrom.Value, "yyyy-MM-dd") & "' and '" _
             & Format(mebTo.Value, "yyyy-MM-dd") & "' and shopid=" & cmbLocation.SelectedValue _
@@ -35,6 +41,21 @@ Public Class SalesSummaryReport
             & Format(mebFrom.Value, "yyyy-MM-dd") & "' and '" _
             & Format(mebTo.Value, "yyyy-MM-dd") & "' and shopid=" & cmbLocation.SelectedValue & " GROUP BY BILLDT) B ON " _
             & "A.BILLDT=B.BILLDT ORDER BY A.BILLDT"
+        Else
+            SQL = $"SELECT 
+            CASE WHEN (S.ShopName ='ESSA (PROZONE), COIMBATORE')
+            THEN SUBSTRING(S.SHOPNAME,17,100)
+            ELSE SUBSTRING(S.SHOPNAME,7,100) END AS [LOCATION], 
+            CONVERT(DATE,BP.BILLDT) [DATE], 
+            SUM(BP.PAID - BP.REFUND) [AMOUNT]
+            FROM BILLPAYMENTS BP
+            INNER JOIN SHOPS S ON S.SHOPID = BP.SHOPID
+            WHERE CONVERT(DATE, BP.BILLDT) BETWEEN '{Format(mebFrom.Value, "yyyy-MM-dd")}' 
+            AND '{Format(mebTo.Value, "yyyy-MM-dd")}'
+            GROUP BY S.SHOPNAME, BP.BILLDT
+            ORDER BY BP.BILLDT, S.SHOPNAME"
+        End If
+
 
         ESSA.OpenConnection()
 
@@ -44,7 +65,7 @@ Public Class SalesSummaryReport
                     Adp.Fill(Tbl)
                     Rpt.SetDataSource(Tbl)
                     Rpt.SetParameterValue("Duration", Format(mebFrom.Value, "dd-MM-yyyy") & " to " & Format(mebTo.Value, "dd-MM-yyyy"))
-                    Rpt.SetParameterValue("Location", cmbLocation.Text)
+                    Rpt.SetParameterValue("Location", cmbLocation.Text.ToUpper())
                     CRpt.ReportSource = Rpt
                 End Using
             End Using
