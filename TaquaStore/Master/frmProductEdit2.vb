@@ -224,7 +224,7 @@ Public Class frmProductEdit2
         If productId = 0 Then
             MsgBox("Product not loaded properly!", MsgBoxStyle.Critical)
             Exit Sub
-        ElseIf cmbHsn.Text.Length <> 8 Then
+        ElseIf cmbHsn.Text.Length < 4 Then
             MsgBox("HSN is not loaded..!", MsgBoxStyle.Critical)
             Exit Sub
         End If
