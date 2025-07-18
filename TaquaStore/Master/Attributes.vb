@@ -171,6 +171,8 @@ Public Class Attributes
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
 
+        If txtEdit.Text.Trim = "" Then txtEdit.Focus() : Exit Sub
+
         If Not UpdateAttribute() Then
             txtEdit.Focus()
             Exit Sub
