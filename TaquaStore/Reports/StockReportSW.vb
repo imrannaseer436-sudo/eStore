@@ -22,6 +22,8 @@ Public Class StockReportSW
         SQL = "SELECT DISTINCT MaterialId, Material FROM TSMaterial ORDER BY Material"
         ESSA.LoadCombo(cmbMat, SQL, "Material", "MaterialId", "All Materials")
 
+        ESSA.EnableContainsFilterForAll(Me)
+
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click

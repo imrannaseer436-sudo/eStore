@@ -30,6 +30,8 @@ Public Class StockReportLocationWise
         SQL = "SELECT DISTINCT CatalogId,Catalog FROM ProductAttributes ORDER BY Catalog"
         ESSA.LoadCombo(cmbMaterial, SQL, "Catalog", "CatalogId", "All Catalog(s)")
 
+        ESSA.EnableContainsFilterForAll(Me)
+
         'SQL = "select catid,catdesc from category order by catdesc"
         'ESSA.LoadCombo(cmbDept, SQL, "catdesc", "catid", "All Category(s)")
 

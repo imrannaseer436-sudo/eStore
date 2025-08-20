@@ -40,6 +40,8 @@ Public Class ReceivedChallanReport
         cmbOrderBy.DisplayMember = "OBNAME"
         cmbOrderBy.ValueMember = "OBID"
 
+        ESSA.EnableContainsFilterForAll(Me)
+
     End Sub
 
     Private Sub cmbDLoc_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbDLoc.SelectedIndexChanged

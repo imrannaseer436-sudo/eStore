@@ -21,6 +21,8 @@ Public Class DeliveryWiseSalesAndStockReport
         SQL = "SELECT DISTINCT StyleId, Style FROM TSStyle ORDER BY Style"
         Await ESSA.LoadComboAsync(CmbStyle, SQL, "Style", "StyleId", "All Styles")
 
+        ESSA.EnableContainsFilterForAll(Me)
+
     End Sub
 
     Private Async Sub btnDisplay_Click(sender As Object, e As EventArgs) Handles btnDisplay.Click

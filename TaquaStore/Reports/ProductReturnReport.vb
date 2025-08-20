@@ -54,6 +54,8 @@ Public Class ProductReturnReport
         cmbOrderBy.DisplayMember = "OBNAME"
         cmbOrderBy.ValueMember = "OBID"
 
+        ESSA.EnableContainsFilterForAll(Me)
+
     End Sub
 
     Private Sub ProductReturnReport_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize

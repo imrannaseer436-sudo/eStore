@@ -51,6 +51,8 @@ Public Class SalesQuantityReport
         cmbOrderBy.DisplayMember = "OBNAME"
         cmbOrderBy.ValueMember = "OBID"
 
+        ESSA.EnableContainsFilterForAll(Me)
+
     End Sub
 
     Private Sub btnDisplay_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDisplay.Click

@@ -21,6 +21,8 @@ Public Class CurrentStockReport
         SQL = "select vendorid,vendorname from vendors order by vendorname"
         ESSA.LoadCombo(cmbVendor, SQL, "vendorname", "vendorid", "All Vendor(s)")
 
+        ESSA.EnableContainsFilterForAll(Me)
+
     End Sub
 
     Private Sub tvCat_AfterSelect(ByVal sender As System.Object, ByVal e As System.Windows.Forms.TreeViewEventArgs) Handles tvCat.AfterSelect

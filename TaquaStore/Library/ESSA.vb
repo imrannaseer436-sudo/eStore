@@ -561,4 +561,99 @@ Public Class ESSA
 
     End Function
 
+    Public Shared Sub LoadComboWithFilterEnabled(cmb As ComboBox, qry As String, name As String, Optional id As String = "", Optional header As String = "")
+
+        ESSA.OpenConnection()
+        Using adapter As New SqlDataAdapter(qry, Con)
+            Using dataset As New DataSet
+                adapter.Fill(dataset)
+                If header <> "" Then
+                    Dim Tr As DataRow
+                    Tr = dataset.Tables(0).NewRow
+                    Tr(name) = header
+                    dataset.Tables(0).Rows.InsertAt(Tr, 0)
+                End If
+
+                cmb.DisplayMember = name
+                cmb.ValueMember = id
+                cmb.DataSource = dataset.Tables(0)
+
+                'Copy the data to tag
+                cmb.Tag = dataset.Tables(0).Copy()
+
+                'Add Manual Event Handler
+                RemoveHandler cmb.TextUpdate, AddressOf ComboBox_FilterTextUpdate
+                AddHandler cmb.TextUpdate, AddressOf ComboBox_FilterTextUpdate
+
+            End Using
+        End Using
+        Con.Close()
+
+    End Sub
+
+    Private Shared Sub ComboBox_FilterTextUpdate(sender As Object, e As EventArgs)
+        Dim cmb As ComboBox = DirectCast(sender, ComboBox)
+        Dim text As String = cmb.Text
+        Dim fullTable As DataTable = TryCast(cmb.Tag, DataTable)
+        If fullTable Is Nothing Then Return
+
+        Dim filtered As DataTable = fullTable.Clone()
+        ' 🔹 Preserve the "All ..." header row, so that selectedIndex > 0 works
+        If fullTable.Rows.Count > 0 Then
+            filtered.ImportRow(fullTable.Rows(0))
+        End If
+
+        For i As Integer = 1 To fullTable.Rows.Count - 1
+            Dim row As DataRow = fullTable.Rows(i)
+            If row(cmb.DisplayMember).ToString().IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0 Then
+                filtered.ImportRow(row)
+            End If
+        Next
+
+        If filtered.Rows.Count > 0 Then
+            cmb.DataSource = filtered
+            cmb.DisplayMember = cmb.DisplayMember
+            If cmb.ValueMember <> "" Then cmb.ValueMember = cmb.ValueMember
+
+            ' 🚀 to obtain what user typed
+            cmb.BeginInvoke(New Action(Sub()
+                                           cmb.SelectedIndex = -1
+                                           cmb.Text = text
+                                           cmb.SelectionStart = text.Length
+                                       End Sub))
+
+            cmb.DroppedDown = True
+            Cursor.Current = Cursors.Default
+        End If
+    End Sub
+
+
+
+    Public Shared Sub EnableContainsFilter(ByVal Cmb As ComboBox)
+        ' Ensure we keep the current data
+        Dim currentTable As DataTable = TryCast(Cmb.DataSource, DataTable)
+        If currentTable IsNot Nothing Then
+            ' Store a copy of the full data for filtering
+            Cmb.Tag = currentTable.Copy()
+
+            ' Attach shared handler (avoid duplicate handlers)
+            RemoveHandler Cmb.TextUpdate, AddressOf ComboBox_FilterTextUpdate
+            AddHandler Cmb.TextUpdate, AddressOf ComboBox_FilterTextUpdate
+        End If
+    End Sub
+
+    Private Shared Sub EnableContainsFilterForAllControls(parent As Control)
+        For Each ctrl As Control In parent.Controls
+            If TypeOf ctrl Is ComboBox Then
+                EnableContainsFilter(DirectCast(ctrl, ComboBox))
+            ElseIf ctrl.HasChildren Then
+                EnableContainsFilterForAllControls(ctrl)
+            End If
+        Next
+    End Sub
+
+    Public Shared Sub EnableContainsFilterForAll(frm As Form)
+        EnableContainsFilterForAllControls(frm)
+    End Sub
+
 End Class

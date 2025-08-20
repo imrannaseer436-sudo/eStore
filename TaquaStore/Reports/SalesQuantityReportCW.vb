@@ -18,6 +18,7 @@ Public Class SalesQuantityReportCW
         SQL = "select CatId,Category from TSCategory order by Category"
         ESSA.LoadCombo(cmbCategory, SQL, "Category", "CatId", "All Category(s)")
 
+        ESSA.EnableContainsFilterForAll(Me)
     End Sub
 
     Private Sub btnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClose.Click

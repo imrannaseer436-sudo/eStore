@@ -11,11 +11,11 @@ Public Class ProductSearch2
             & "WHERE P.VendorID = V.VendorID AND P.PluID = A.PluId AND S.Pluid = P.Pluid AND S.Location_Id = " & ShopID & ""
 
         If txtCode.Text.Trim.Length > 0 Then
-            SQL &= " AND P.Plucode LIKE '" & txtCode.Text.Trim & "%'"
+            SQL &= " AND P.Plucode LIKE '%" & txtCode.Text.Trim & "%'"
         End If
 
         If txtName.Text.Trim.Length > 0 Then
-            SQL &= " AND P.Pluname LIKE '" & txtName.Text.Trim & "%'"
+            SQL &= " AND P.Pluname LIKE '%" & txtName.Text.Trim & "%'"
         End If
 
         SQL &= " ORDER BY P.Plucode"

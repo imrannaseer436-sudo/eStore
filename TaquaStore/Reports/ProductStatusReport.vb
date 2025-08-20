@@ -98,6 +98,8 @@ Public Class ProductStatusReport
         'TG.Columns(CIA).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
         'TG.Columns(CIA).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
+        ESSA.EnableContainsFilterForAll(Me)
+
     End Sub
 
     Private Async Sub btnDisplay_Click(sender As Object, e As EventArgs) Handles btnDisplay.Click

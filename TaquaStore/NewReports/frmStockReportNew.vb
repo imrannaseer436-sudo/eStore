@@ -141,6 +141,7 @@ Public Class frmStockReportNew
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         LoadAttributes()
+        ESSA.EnableContainsFilterForAll(Me)
 
     End Sub
 
