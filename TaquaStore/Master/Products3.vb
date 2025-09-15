@@ -1473,10 +1473,13 @@ Public Class Products3
 
         cmbHSN.Text = ""
 
+        'Using IsUpdated column for tax revisions
+
         SQL = "SELECT DISTINCT HSN FROM ProductTax WHERE DeptId = " _
              & cmbTSDept.SelectedValue & " AND CatId = " _
              & cmbTSCat.SelectedValue & "AND MatId = " _
-             & cmbMts.SelectedValue
+             & cmbMts.SelectedValue & " AND IsUpdated = " _
+             & TaxVersion & ""
 
         With ESSA.OpenReader(SQL)
             If .Read Then

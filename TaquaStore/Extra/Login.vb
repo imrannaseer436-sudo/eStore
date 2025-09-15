@@ -54,6 +54,9 @@ Public Class Login
                     SDate = CDate(.GetString(1)).Date
                 ElseIf .GetString(0) = "EndDate" Then
                     EDate = CDate(.GetString(1)).Date
+                ElseIf .GetString(0) = "TaxVersion" Then
+                    TaxVersion = CShort(.GetString(1))
+                    'Using IsUpdated column for tax revisions
                 End If
             End While
             .Close()

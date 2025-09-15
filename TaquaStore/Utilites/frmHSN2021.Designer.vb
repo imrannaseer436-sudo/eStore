@@ -107,7 +107,7 @@ Partial Class frmHSN2021
         Me.Label2.ForeColor = System.Drawing.Color.DimGray
         Me.Label2.Location = New System.Drawing.Point(15, 40)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(79, 15)
+        Me.Label2.Size = New System.Drawing.Size(81, 15)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "DEPARTMENT"
         '
@@ -117,7 +117,7 @@ Partial Class frmHSN2021
         Me.Label3.ForeColor = System.Drawing.Color.DimGray
         Me.Label3.Location = New System.Drawing.Point(212, 40)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(65, 15)
+        Me.Label3.Size = New System.Drawing.Size(66, 15)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "CATEGORY"
         '
@@ -143,7 +143,7 @@ Partial Class frmHSN2021
         Me.Label4.ForeColor = System.Drawing.Color.DimGray
         Me.Label4.Location = New System.Drawing.Point(415, 40)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(61, 15)
+        Me.Label4.Size = New System.Drawing.Size(62, 15)
         Me.Label4.TabIndex = 1
         Me.Label4.Text = "MATERIAL"
         '
@@ -305,7 +305,7 @@ Partial Class frmHSN2021
         Me.Label6.ForeColor = System.Drawing.Color.DimGray
         Me.Label6.Location = New System.Drawing.Point(212, 90)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(53, 15)
+        Me.Label6.Size = New System.Drawing.Size(54, 15)
         Me.Label6.TabIndex = 1
         Me.Label6.Text = "MIN TAX"
         '
@@ -315,7 +315,7 @@ Partial Class frmHSN2021
         Me.Label7.ForeColor = System.Drawing.Color.DimGray
         Me.Label7.Location = New System.Drawing.Point(314, 90)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(56, 15)
+        Me.Label7.Size = New System.Drawing.Size(57, 15)
         Me.Label7.TabIndex = 1
         Me.Label7.Text = "MAX TAX"
         '

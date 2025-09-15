@@ -25,6 +25,7 @@ Module Common
     Public ExportFileLocation As String = ""
     Public wSpaceWidth As Short = 0
     Public wSpaceHeight As Short = 0
+    Public TaxVersion As Short = 0
 
 
     Dim One(19) As String

@@ -67,6 +67,7 @@ Public Class SalesReportHSNwise
             & "INNER JOIN ProductMaster PM ON PM.PluID = BD.PluID " _
             & "INNER JOIN ProductAttributes PA ON PA.PluId = PM.PluID " _
             & "INNER JOIN ProductTax PT ON PT.DeptId = PA.DeptId And PT.CatId = PA.CatId And PT.MatId = PA.MaterialId " _
+            & "AND PT.IsUpdated = " & TaxVersion & "" _ 'to work based on tax version
             & "ORDER BY BM.BillNo "
 
         ElseIf rbGST.Checked Then
@@ -90,6 +91,7 @@ Public Class SalesReportHSNwise
             & "INNER JOIN ProductMaster PM ON PM.PluID = BD.PluID " _
             & "INNER JOIN ProductAttributes PA ON PA.PluId = PM.PluID " _
             & "INNER JOIN ProductTax PT ON PT.DeptId = PA.DeptId And PT.CatId = PA.CatId And PT.MatId = PA.MaterialId " _
+            & "AND PT.IsUpdated = " & TaxVersion & "" _ 'to work based on tax version
             & "ORDER BY BM.BillNo "
 
         ElseIf rbReturn.Checked Then
@@ -113,6 +115,7 @@ Public Class SalesReportHSNwise
            & "INNER JOIN ProductMaster PM ON PM.PluID = BD.PluID " _
            & "INNER JOIN ProductAttributes PA ON PA.PluId = PM.PluID " _
            & "INNER JOIN ProductTax PT ON PT.DeptId = PA.DeptId And PT.CatId = PA.CatId And PT.MatId = PA.MaterialId " _
+           & "AND PT.IsUpdated = " & TaxVersion & "" _ 'to work based on tax version
            & "ORDER BY BM.BillNo "
 
         ElseIf rbTotal.Checked Then
@@ -123,6 +126,7 @@ Public Class SalesReportHSNwise
             & "INNER JOIN ProductMaster PM ON PM.PluID = BD.PluID " _
             & "INNER JOIN ProductAttributes PA ON PA.PluId = PM.PluID " _
             & "INNER JOIN ProductTax PT ON PT.DeptId = PA.DeptId And PT.CatId = PA.CatId And PT.MatId = PA.MaterialId " _
+            & "AND PT.IsUpdated = " & TaxVersion & "" _ 'to work based on tax version
             & "ORDER BY BM.BillNo "
 
         End If
@@ -236,7 +240,9 @@ Public Class SalesReportHSNwise
             & "FROM BillMaster BM " _
             & "INNER JOIN BillDetails BD ON BD.BillId = BM.BillID AND BM.BillDt BETWEEN '" & Format(dtpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dtpTo.Value, "yyyy-MM-dd") & "' AND BM.ShopID = " & cmbLocation.SelectedValue & "" _
             & "INNER JOIN ProductAttributes PA On PA.PluId = BD.PluID " _
-            & "INNER JOIN ProductTax PT ON PT.DeptId = PA.DeptId AND PT.CatId = PA.CatId AND PT.MatId = PA.MaterialId  "
+            & "INNER JOIN ProductTax PT ON PT.DeptId = PA.DeptId AND PT.CatId = PA.CatId AND PT.MatId = PA.MaterialId  " _
+            & "AND PT.IsUpdated = " & TaxVersion & ""  'to work based on tax version
+
 
         dgvSummary.Rows.Clear()
         With ESSA.OpenReader(SQL)
@@ -509,11 +515,11 @@ Public Class SalesReportHSNwise
             & "(convert(varchar,bm.termid) + '-' + convert(varchar,bm.billno)) billno,bm.billdt," _
             & "p.pluname as plucode,p.hsncode,p.utax,bd.Qty,bd.Amount,bd.rate,bd.pluid,t.mn,t.mx,t.val,bd.sno,c.state cstate " _
             & "from shops s,Customers c,BillMaster bm,BillDetails bd,productmaster p,productattributes a,producttax t " _
-            & "where bm.billid=bd.billid and bd.pluid=p.pluid and p.pluid = a.pluid and a.deptid = t.deptid and a.catid = t.catid and a.materialid= t.matid and bm.billid={0} " _
+            & "where bm.billid=bd.billid and bd.pluid=p.pluid and p.pluid = a.pluid and a.deptid = t.deptid and a.catid = t.catid and a.materialid= t.matid and t.isupdated = {1} and bm.billid={0} " _
             & "and bm.shopid=s.shopid and bm.customerid=c.customerid " _
             & "order by bd.sno"
 
-        SQL = String.Format(SQL, iBillID)
+        SQL = String.Format(SQL, iBillID, TaxVersion)
 
         Try
             ESSA.OpenConnection()

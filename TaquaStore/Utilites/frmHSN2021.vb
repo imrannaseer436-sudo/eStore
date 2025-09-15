@@ -70,6 +70,8 @@ Public Class frmHSN2021
             ESSA.Execute(SQL)
         End If
 
+        'Using IsUpdated column for tax revisions
+
         SQL = "INSERT INTO ProductTax VALUES (" _
             & EntryNo & "," _
             & cmbDept.SelectedValue & "," _
@@ -79,7 +81,8 @@ Public Class frmHSN2021
             & Val(cmbMax.Text) & "," _
             & Val(txtMax.Text) & "," _
             & Val(txtHSN.Text) & ",'" _
-            & Format(Now, "yyyy-MM-dd HH:mm:ss") & "', 0 ," _
+            & Format(Now, "yyyy-MM-dd HH:mm:ss") & "'," _
+            & TaxVersion & "," _
             & UserID & ")"
 
         ESSA.Execute(SQL)
@@ -131,11 +134,14 @@ Public Class frmHSN2021
 
     Private Sub LoadProductTax()
 
+        'Using IsUpdated column for tax revisions
+
         SQL = "SELECT P.EntryNo,D.Department,C.Category,M.Material," _
             & " P.Mn,P.Mx,P.Val,P.HSN FROM " _
             & " ProductTax P,TSDepartment D, TSCategory C, TSMaterial M" _
             & " WHERE P.DeptId = D.DeptId AND P.CatId = C.CatId AND " _
-            & " P.MatId = M.MaterialId"
+            & " P.MatId = M.MaterialId" _
+            & " AND P.IsUpdated = " & TaxVersion
 
         With ESSA.OpenReader(SQL)
 
@@ -164,10 +170,13 @@ Public Class frmHSN2021
 
         ifExist = False
 
+        'Using IsUpdated column for tax revisions
+
         SQL = "SELECT DISTINCT HSN FROM ProductTax WHERE DeptId = " _
           & cmbDept.SelectedValue & " AND CatId = " _
-          & cmbCategory.SelectedValue & "AND MatId = " _
-          & cmbMaterial.SelectedValue & ""
+          & cmbCategory.SelectedValue & " AND MatId = " _
+          & cmbMaterial.SelectedValue & " AND IsUpdated = " _
+          & TaxVersion & ""
 
         With ESSA.OpenReader(SQL)
 
