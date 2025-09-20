@@ -361,6 +361,8 @@ Public Class frmProductEdit2
 
     Private Sub LoadHsn()
 
+        cmbHsn.Text = ""
+
         SQL = "SELECT HSN FROM ProductTax WHERE DeptId = " _
             & cmbDept.SelectedValue & " AND CatId = " _
             & cmbCat.SelectedValue & " AND MatId = " _
