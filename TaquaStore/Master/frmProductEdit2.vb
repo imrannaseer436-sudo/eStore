@@ -366,7 +366,8 @@ Public Class frmProductEdit2
         SQL = "SELECT HSN FROM ProductTax WHERE DeptId = " _
             & cmbDept.SelectedValue & " AND CatId = " _
             & cmbCat.SelectedValue & " AND MatId = " _
-            & cmbMts.SelectedValue & ""
+            & cmbMts.SelectedValue & " AND IsUpdated = " _
+            & TaxVersion & ""
 
         With ESSA.OpenReader(SQL)
             If .Read Then

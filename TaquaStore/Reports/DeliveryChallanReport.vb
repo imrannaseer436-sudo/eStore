@@ -1,5 +1,6 @@
 ﻿'****************************************** Bismillah *************************************************
 Imports System.Data.SqlClient
+Imports System.Threading.Tasks
 Imports CrystalDecisions.Shared
 Public Class DeliveryChallanReport
 
@@ -60,11 +61,20 @@ Public Class DeliveryChallanReport
 
     Private Sub LoadDeliveryReportVendorWise()
 
-        SQL = "select m.deliverycode,m.deliverydate,p.plucode,d.quantity,a.category from deliverymaster m,deliverydetails d,productmaster p,productattributes a where " _
+        If cmbDLoc.SelectedIndex <= 0 Then
+            MsgBox("Please select a delivery location..!", MsgBoxStyle.Information)
+            Exit Sub
+        End If
+
+        SQL = "select m.deliverycode,m.deliverydate,p.plucode,d.quantity,a.category as scatdesc1 from deliverymaster m,deliverydetails d,productmaster p,productattributes a where " _
             & "m.id=d.id and d.pluid=p.pluid and p.pluid=a.pluid and m.deliveryfrom=" & ShopID & " and m.deliveryto=" & cmbDLoc.SelectedValue
 
         If cmbVendor.SelectedIndex > 0 Then
             SQL &= " and p.vendorid=" & cmbVendor.SelectedValue
+        End If
+
+        If cmbDCode.SelectedIndex > 0 Then
+            SQL &= " and m.deliverycode='" & cmbDCode.Text.Trim & "'"
         End If
 
         If txtCode.Text.Trim.Length > 0 Then
@@ -97,6 +107,16 @@ Public Class DeliveryChallanReport
         If chkVBR.Checked = True Then
 
             LoadDeliveryReportVendorWise()
+
+        ElseIf chkBranchTransfer.Checked Then
+
+            If cmbDCode.SelectedIndex = -1 Then
+                MsgBox("Delivery code not found..!", MsgBoxStyle.Information)
+                Exit Sub
+            End If
+
+            'GenerateInvoice(cmbDCode.Text.Trim)
+            GenerateTransferReceipt(cmbDCode.Text.Trim)
 
         Else
 
@@ -145,6 +165,337 @@ Public Class DeliveryChallanReport
 
         End Using
 
+    End Sub
+
+    Private Sub GenerateInvoice(DeliveryCode As String)
+
+        Dim InvoiceRpt As New Invoice
+
+        Using nCon As New SqlConnection(ConStr)
+            Try
+                nCon.Open()
+
+                Dim fromShopName, fromShopAddress, fromShopGst, fromShopMobile As String
+                Dim toShopName, toShopAddress, toShopGst, toShopMobile As String
+                Dim invNo, invDt As String
+
+                ' Fetch header details
+                SQL = "SELECT DM.DeliveryCode, DM.DeliveryDate, 
+                   S1.Alias [FCName], S1.Address1 + ' ' + S1.Address2 + ' ' + S1.City + ', ' + S1.State [FCAddress], S1.Phone [FCPhone], S1.CST [FCGst],
+                   S2.Alias [TCName], S2.Address1 + S2.Address2 + S2.City + ',' + S2.State [TCAddress],S2.Phone [TCPhone], S2.CST [TCGst]
+                   FROM DeliveryMaster DM
+                   INNER JOIN Shops S1 ON DM.DeliveryFrom = S1.ShopID
+                   INNER JOIN Shops S2 ON DM.DeliveryTo = S2.ShopID
+                   WHERE DM.DeliveryCode = @DeliveryCode"
+
+                Using cmd As New SqlCommand(SQL, nCon)
+                    cmd.Parameters.AddWithValue("@DeliveryCode", DeliveryCode)
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            fromShopName = reader("FCName").ToString()
+                            fromShopAddress = reader("FCAddress").ToString()
+                            fromShopGst = reader("FCGst").ToString()
+                            fromShopMobile = reader("FCPhone").ToString()
+                            toShopName = reader("TCName").ToString()
+                            toShopAddress = reader("TCAddress").ToString()
+                            toShopGst = reader("TCGst").ToString()
+                            toShopMobile = reader("TCPhone").ToString()
+                            invNo = reader("DeliveryCode").ToString()
+                            invDt = Format(reader("DeliveryDate"), "dd-MM-yyyy")
+                        End If
+                    End Using
+                End Using
+
+                ' Fetch tax data for subreport
+                SQL = "SELECT 
+                    TaxType,
+                    SUM(Taxable) AS Taxable,
+                    TaxPerc
+                FROM
+                (
+                    -- Intra-state: CGST
+                    SELECT 
+                        'CGST' AS TaxType,
+                        SUM(DD.Quantity * DD.CostPrice) AS Taxable,
+                        (CASE WHEN DD.CostPrice > PT.Val THEN PT.Mx ELSE PT.Mn END) / 2 AS TaxPerc
+                    FROM DeliveryMaster DM
+                    JOIN DeliveryDetails DD ON DM.Id = DD.Id 
+                        AND DM.DeliveryCode = @DeliveryCode
+                    JOIN ProductAttributes PA ON PA.PluId = DD.PluID
+                    JOIN ProductTax PT ON PT.DeptId = PA.DeptId AND PT.CatId = PA.CatId AND PT.MatId = PA.MaterialId
+                    AND PT.IsUpdated = @TaxVersion
+                    JOIN Shops S1 ON S1.ShopID = DM.DeliveryFrom
+                    JOIN Shops S2 ON S2.ShopID = DM.DeliveryTo
+                    WHERE S1.State = S2.State
+                    GROUP BY S1.State, S2.State, DD.CostPrice, PT.Val, PT.Mx, PT.Mn
+
+                    UNION ALL
+
+                    -- Intra-state: SGST
+                    SELECT 
+                        'SGST' AS TaxType,
+                        SUM(DD.Quantity * DD.CostPrice) AS Taxable,
+                        (CASE WHEN DD.CostPrice > PT.Val THEN PT.Mx ELSE PT.Mn END) / 2 AS TaxPerc
+                    FROM DeliveryMaster DM
+                    JOIN DeliveryDetails DD ON DM.Id = DD.Id 
+                        AND DM.DeliveryCode = @DeliveryCode
+                    JOIN ProductAttributes PA ON PA.PluId = DD.PluID
+                    JOIN ProductTax PT ON PT.DeptId = PA.DeptId AND PT.CatId = PA.CatId AND PT.MatId = PA.MaterialId
+                    AND PT.IsUpdated = @TaxVersion
+                    JOIN Shops S1 ON S1.ShopID = DM.DeliveryFrom
+                    JOIN Shops S2 ON S2.ShopID = DM.DeliveryTo
+                    WHERE S1.State = S2.State
+                    GROUP BY S1.State, S2.State, DD.CostPrice, PT.Val, PT.Mx, PT.Mn
+
+                    UNION ALL
+
+                    -- Inter-state: IGST
+                    SELECT 
+                        'IGST' AS TaxType,
+                        SUM(DD.Quantity * DD.CostPrice) AS Taxable,
+                        (CASE WHEN DD.CostPrice > PT.Val THEN PT.Mx ELSE PT.Mn END) AS TaxPerc
+                    FROM DeliveryMaster DM
+                    JOIN DeliveryDetails DD ON DM.Id = DD.Id 
+                        AND DM.DeliveryCode = @DeliveryCode
+                    JOIN ProductAttributes PA ON PA.PluId = DD.PluID
+                    JOIN ProductTax PT ON PT.DeptId = PA.DeptId AND PT.CatId = PA.CatId AND PT.MatId = PA.MaterialId
+                    AND PT.IsUpdated = @TaxVersion
+                    JOIN Shops S1 ON S1.ShopID = DM.DeliveryFrom
+                    JOIN Shops S2 ON S2.ShopID = DM.DeliveryTo
+                    WHERE S1.State <> S2.State
+                    GROUP BY S1.State, S2.State, DD.CostPrice, PT.Val, PT.Mx, PT.Mn
+                ) AS SUB
+                GROUP BY TaxType, TaxPerc"
+
+                Using cmd As New SqlCommand(SQL, nCon)
+                    cmd.Parameters.AddWithValue("@TaxVersion", TaxVersion)
+                    cmd.Parameters.AddWithValue("@DeliveryCode", DeliveryCode)
+                    Using Adp As New SqlDataAdapter(cmd)
+                        Dim Tbl As New DataTable()
+                        Adp.Fill(Tbl)
+                        ' Verify if subreports exist
+                        If InvoiceRpt.Subreports.Count > 0 Then
+                            Dim subRpt = InvoiceRpt.Subreports("TaxBreakup")
+                            If subRpt IsNot Nothing Then
+                                subRpt.SetDataSource(Tbl)
+                            Else
+                                MsgBox("Subreport 'TaxBreakup' not found.")
+                            End If
+                        Else
+                            MsgBox("No subreports found in the main report.")
+                        End If
+                    End Using
+                End Using
+
+                ' Fetch main invoice data
+                SQL = "SELECT Description, HSN, Pcs, Rate, [Dis%], [GST%] FROM (SELECT DM.DeliveryCode,A.Category [Description],    
+                    T.HSN, SUM(DD.Quantity) Pcs, DD.CostPrice [Rate], 0 [Dis%],        
+                    CASE WHEN DD.CostPrice > T.Val    
+                    THEN T.Mx    
+                    ELSE T.Mn    
+                    END AS [GST%]   
+                    FROM DeliveryMaster DM    
+                    INNER JOIN DeliveryDetails DD ON DM.Id = DD.Id       
+                    INNER JOIN ProductAttributes A ON A.PluId = DD.PluID    
+                    INNER JOIN ProductTax T ON T.DeptId = A.DeptId AND T.CatId = A.CatId AND     
+                    T.MatId = A.MaterialId AND T.IsUpdated = @TaxVersion   
+                    WHERE DM.DeliveryCode = @DeliveryCode
+                    GROUP BY DM.DeliveryCode, A.Category, T.HSN, DD.CostPrice, T.Val, T.Mx, T.Mn) A"
+                Using cmd As New SqlCommand(SQL, nCon)
+                    cmd.Parameters.AddWithValue("@TaxVersion", TaxVersion)
+                    cmd.Parameters.AddWithValue("@DeliveryCode", DeliveryCode)
+                    Using Adp As New SqlDataAdapter(cmd)
+                        Dim Tbl As New DataTable()
+                        Adp.Fill(Tbl)
+                        InvoiceRpt.SetDataSource(Tbl)
+                        InvoiceRpt.SetParameterValue("FromCompanyName", fromShopName)
+                        InvoiceRpt.SetParameterValue("FromCompanyAddress", fromShopAddress)
+                        InvoiceRpt.SetParameterValue("FromCompanyGST", "GSTIN : " + fromShopGst)
+                        InvoiceRpt.SetParameterValue("FromCompanyMobile", "Mobile : " + fromShopMobile)
+                        InvoiceRpt.SetParameterValue("ToCompanyName", toShopName)
+                        InvoiceRpt.SetParameterValue("ToCompanyAddress", toShopAddress)
+                        InvoiceRpt.SetParameterValue("ToCompanyGST", "GSTIN : " + toShopGst)
+                        InvoiceRpt.SetParameterValue("ToCompanyMobile", "Mobile : " + toShopMobile)
+                        InvoiceRpt.SetParameterValue("InvNo", invNo)
+                        InvoiceRpt.SetParameterValue("InvDate", invDt)
+                        CRpt.ReportSource = InvoiceRpt
+                    End Using
+                End Using
+
+            Catch ex As SqlException
+                MsgBox($"SQL Error: {ex.Message}", MsgBoxStyle.Critical)
+            Catch ex As Exception
+                MsgBox($"Unexpected Error: {ex.Message}", MsgBoxStyle.Critical)
+            Finally
+                If nCon.State = ConnectionState.Open Then nCon.Close()
+            End Try
+        End Using
+    End Sub
+
+
+    Private Sub GenerateTransferReceipt(DeliveryCode As String)
+
+        Dim TransferRpt As New BranchTransfer
+
+        Using nCon As New SqlConnection(ConStr)
+            Try
+                nCon.Open()
+
+                Dim fromShopName, fromShopAddress, fromShopGst, fromShopMobile As String
+                Dim toShopName, toShopAddress, toShopGst, toShopMobile As String
+                Dim invNo, invDt As String
+
+                ' Fetch header details
+                SQL = "SELECT DM.DeliveryCode, DM.DeliveryDate, 
+                   S1.Alias [FCName], S1.Address1 + ' ' + S1.Address2 + ' ' + S1.City + ', ' + S1.State [FCAddress], S1.Phone [FCPhone], S1.CST [FCGst],
+                   S2.Alias [TCName], S2.Address1 + S2.Address2 + S2.City + ',' + S2.State [TCAddress],S2.Phone [TCPhone], S2.CST [TCGst]
+                   FROM DeliveryMaster DM
+                   INNER JOIN Shops S1 ON DM.DeliveryFrom = S1.ShopID
+                   INNER JOIN Shops S2 ON DM.DeliveryTo = S2.ShopID
+                   WHERE DM.DeliveryCode = @DeliveryCode"
+
+                Using cmd As New SqlCommand(SQL, nCon)
+                    cmd.Parameters.AddWithValue("@DeliveryCode", DeliveryCode)
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            fromShopName = reader("FCName").ToString()
+                            fromShopAddress = reader("FCAddress").ToString()
+                            fromShopGst = reader("FCGst").ToString()
+                            fromShopMobile = reader("FCPhone").ToString()
+                            toShopName = reader("TCName").ToString()
+                            toShopAddress = reader("TCAddress").ToString()
+                            toShopGst = reader("TCGst").ToString()
+                            toShopMobile = reader("TCPhone").ToString()
+                            invNo = reader("DeliveryCode").ToString()
+                            invDt = Format(reader("DeliveryDate"), "dd-MM-yyyy")
+                        End If
+                    End Using
+                End Using
+
+                ' Fetch tax data for subreport
+                SQL = "SELECT 
+                    TaxType,
+                    SUM(Taxable) AS Taxable,
+                    TaxPerc
+                FROM
+                (
+                    -- Intra-state: CGST
+                    SELECT 
+                        'CGST' AS TaxType,
+                        SUM(DD.Quantity * DD.CostPrice) AS Taxable,
+                        (CASE WHEN DD.CostPrice > PT.Val THEN PT.Mx ELSE PT.Mn END) / 2 AS TaxPerc
+                    FROM DeliveryMaster DM
+                    JOIN DeliveryDetails DD ON DM.Id = DD.Id 
+                        AND DM.DeliveryCode = @DeliveryCode
+                    JOIN ProductAttributes PA ON PA.PluId = DD.PluID
+                    JOIN ProductTax PT ON PT.DeptId = PA.DeptId AND PT.CatId = PA.CatId AND PT.MatId = PA.MaterialId
+                    AND PT.IsUpdated = @TaxVersion
+                    JOIN Shops S1 ON S1.ShopID = DM.DeliveryFrom
+                    JOIN Shops S2 ON S2.ShopID = DM.DeliveryTo
+                    WHERE S1.State = S2.State
+                    GROUP BY S1.State, S2.State, DD.CostPrice, PT.Val, PT.Mx, PT.Mn
+
+                    UNION ALL
+
+                    -- Intra-state: SGST
+                    SELECT 
+                        'SGST' AS TaxType,
+                        SUM(DD.Quantity * DD.CostPrice) AS Taxable,
+                        (CASE WHEN DD.CostPrice > PT.Val THEN PT.Mx ELSE PT.Mn END) / 2 AS TaxPerc
+                    FROM DeliveryMaster DM
+                    JOIN DeliveryDetails DD ON DM.Id = DD.Id 
+                        AND DM.DeliveryCode = @DeliveryCode
+                    JOIN ProductAttributes PA ON PA.PluId = DD.PluID
+                    JOIN ProductTax PT ON PT.DeptId = PA.DeptId AND PT.CatId = PA.CatId AND PT.MatId = PA.MaterialId
+                    AND PT.IsUpdated = @TaxVersion
+                    JOIN Shops S1 ON S1.ShopID = DM.DeliveryFrom
+                    JOIN Shops S2 ON S2.ShopID = DM.DeliveryTo
+                    WHERE S1.State = S2.State
+                    GROUP BY S1.State, S2.State, DD.CostPrice, PT.Val, PT.Mx, PT.Mn
+
+                    UNION ALL
+
+                    -- Inter-state: IGST
+                    SELECT 
+                        'IGST' AS TaxType,
+                        SUM(DD.Quantity * DD.CostPrice) AS Taxable,
+                        (CASE WHEN DD.CostPrice > PT.Val THEN PT.Mx ELSE PT.Mn END) AS TaxPerc
+                    FROM DeliveryMaster DM
+                    JOIN DeliveryDetails DD ON DM.Id = DD.Id 
+                        AND DM.DeliveryCode = @DeliveryCode
+                    JOIN ProductAttributes PA ON PA.PluId = DD.PluID
+                    JOIN ProductTax PT ON PT.DeptId = PA.DeptId AND PT.CatId = PA.CatId AND PT.MatId = PA.MaterialId
+                    AND PT.IsUpdated = @TaxVersion
+                    JOIN Shops S1 ON S1.ShopID = DM.DeliveryFrom
+                    JOIN Shops S2 ON S2.ShopID = DM.DeliveryTo
+                    WHERE S1.State <> S2.State
+                    GROUP BY S1.State, S2.State, DD.CostPrice, PT.Val, PT.Mx, PT.Mn
+                ) AS SUB
+                GROUP BY TaxType, TaxPerc"
+
+                Using cmd As New SqlCommand(SQL, nCon)
+                    cmd.Parameters.AddWithValue("@TaxVersion", TaxVersion)
+                    cmd.Parameters.AddWithValue("@DeliveryCode", DeliveryCode)
+                    Using Adp As New SqlDataAdapter(cmd)
+                        Dim Tbl As New DataTable()
+                        Adp.Fill(Tbl)
+                        ' Verify if subreports exist
+                        If TransferRpt.Subreports.Count > 0 Then
+                            Dim subRpt = TransferRpt.Subreports("TaxBreakup")
+                            If subRpt IsNot Nothing Then
+                                subRpt.SetDataSource(Tbl)
+                            Else
+                                MsgBox("Subreport 'TaxBreakup' not found.")
+                            End If
+                        Else
+                            MsgBox("No subreports found in the main report.")
+                        End If
+                    End Using
+                End Using
+
+                ' Fetch main invoice data
+                SQL = "SELECT Description, HSN, Pcs, Rate, [Dis%], [GST%] FROM (SELECT DM.DeliveryCode,A.Category [Description],    
+                    T.HSN, SUM(DD.Quantity) Pcs, DD.CostPrice [Rate], 0 [Dis%],        
+                    CASE WHEN DD.CostPrice > T.Val    
+                    THEN T.Mx    
+                    ELSE T.Mn    
+                    END AS [GST%]   
+                    FROM DeliveryMaster DM    
+                    INNER JOIN DeliveryDetails DD ON DM.Id = DD.Id       
+                    INNER JOIN ProductAttributes A ON A.PluId = DD.PluID    
+                    INNER JOIN ProductTax T ON T.DeptId = A.DeptId AND T.CatId = A.CatId AND     
+                    T.MatId = A.MaterialId AND T.IsUpdated = @TaxVersion   
+                    WHERE DM.DeliveryCode = @DeliveryCode
+                    GROUP BY DM.DeliveryCode, A.Category, T.HSN, DD.CostPrice, T.Val, T.Mx, T.Mn) A"
+                Using cmd As New SqlCommand(SQL, nCon)
+                    cmd.Parameters.AddWithValue("@TaxVersion", TaxVersion)
+                    cmd.Parameters.AddWithValue("@DeliveryCode", DeliveryCode)
+                    Using Adp As New SqlDataAdapter(cmd)
+                        Dim Tbl As New DataTable()
+                        Adp.Fill(Tbl)
+                        TransferRpt.SetDataSource(Tbl)
+                        TransferRpt.SetParameterValue("FromCompanyName", fromShopName)
+                        TransferRpt.SetParameterValue("FromCompanyAddress", fromShopAddress)
+                        TransferRpt.SetParameterValue("FromCompanyGST", "GSTIN : " + fromShopGst)
+                        TransferRpt.SetParameterValue("FromCompanyMobile", "Mobile : " + fromShopMobile)
+                        TransferRpt.SetParameterValue("ToCompanyName", toShopName)
+                        TransferRpt.SetParameterValue("ToCompanyAddress", toShopAddress)
+                        TransferRpt.SetParameterValue("ToCompanyGST", "GSTIN : " + toShopGst)
+                        TransferRpt.SetParameterValue("ToCompanyMobile", "Mobile : " + toShopMobile)
+                        TransferRpt.SetParameterValue("InvNo", invNo)
+                        TransferRpt.SetParameterValue("InvDate", invDt)
+                        CRpt.ReportSource = TransferRpt
+                    End Using
+                End Using
+
+            Catch ex As SqlException
+                MsgBox($"SQL Error: {ex.Message}", MsgBoxStyle.Critical)
+            Catch ex As Exception
+                MsgBox($"Unexpected Error: {ex.Message}", MsgBoxStyle.Critical)
+            Finally
+                If nCon.State = ConnectionState.Open Then nCon.Close()
+            End Try
+        End Using
     End Sub
 
 End Class

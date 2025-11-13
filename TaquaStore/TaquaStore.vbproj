@@ -205,6 +205,24 @@
     <Compile Include="cListBox.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Crystal\DeliveryValueReport.vb">
+      <DependentUpon>DeliveryValueReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Crystal\BranchTransfer.vb">
+      <DependentUpon>BranchTransfer.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Crystal\Invoice.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Invoice.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Crystal\PaymentSummaryNew.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -624,6 +642,12 @@
       <DependentUpon>frmHSNUpdater.vb</DependentUpon>
     </Compile>
     <Compile Include="Utilites\frmHSNUpdater.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilites\SalesCommission.Designer.vb">
+      <DependentUpon>SalesCommission.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilites\SalesCommission.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Utilites\VendorViewer.Designer.vb">
@@ -1219,6 +1243,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="cListBox.resx">
       <DependentUpon>cListBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Crystal\DeliveryValueReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DeliveryValueReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Crystal\BranchTransfer.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BranchTransfer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Crystal\Invoice.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Invoice.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Crystal\PaymentSummaryNew.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

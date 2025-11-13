@@ -1,10 +1,12 @@
 ﻿'******************************** In the name of Allah, Most Merciful, Most Compassionate **************************
 Imports System.Data.SqlClient
+Imports System.Windows
 Imports CrystalDecisions.Shared
 Public Class DeliveryValueReportT
 
     Private Rpt1 As New RptDeliveryValueReport
     Private Rpt2 As New RptDeliveryValueReportNew
+    Private RptNew As New DeliveryValueReport
     Private Rpt As New CrystalDecisions.CrystalReports.Engine.ReportDocument
 
     Private Sub btnDisplay_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDisplay.Click
@@ -14,13 +16,16 @@ Public Class DeliveryValueReportT
             Exit Sub
         End If
 
+        Dim fromShopName, fromShopAddress, fromShopGst, fromShopMobile As String
+        Dim toShopName, toShopAddress, toShopGst, toShopMobile As String
+
         Using nCon As New SqlConnection(ConStr)
 
             nCon.Open()
 
             Try
 
-                Rpt = IIf(chkOmitCP.Checked, Rpt2, Rpt1)
+                Rpt = IIf(chkOmitCP.Checked, Rpt2, RptNew)
 
                 If chkOmitCP.Checked Then
 
@@ -38,6 +43,28 @@ Public Class DeliveryValueReportT
 
                 Else
 
+                    SQL = $"SELECT  
+                   S1.Alias [FCName], S1.Address1 + ' ' + S1.Address2 + ' ' + S1.City + ', ' + S1.State [FCAddress], S1.Phone [FCPhone], S1.CST [FCGst],
+                   S2.Alias [TCName], S2.Address1 + S2.Address2 + S2.City + ',' + S2.State [TCAddress],S2.Phone [TCPhone], S2.CST [TCGst]
+                   FROM Shops S1  
+                   INNER JOIN Shops S2 ON S1.ShopId = {ShopID} AND S2.ShopId = {cmbLocation.SelectedValue}"
+
+                    Using cmd As New SqlCommand(SQL, nCon)
+                        Using reader As SqlDataReader = cmd.ExecuteReader()
+                            If reader.Read() Then
+                                fromShopName = reader("FCName").ToString()
+                                fromShopAddress = reader("FCAddress").ToString()
+                                fromShopGst = reader("FCGst").ToString()
+                                fromShopMobile = reader("FCPhone").ToString()
+                                toShopName = reader("TCName").ToString()
+                                toShopAddress = reader("TCAddress").ToString()
+                                toShopGst = reader("TCGst").ToString()
+                                toShopMobile = reader("TCPhone").ToString()
+                            End If
+                        End Using
+                    End Using
+
+
                     SQL = "select deliverycode,deliverydate,Totalqty,totcp TotalCP,totrp TotalRP,U.UserName from deliverymaster,Users U where DeliveryMaster.UserID = U.UserID AND deliveryto=" _
                     & cmbLocation.SelectedValue & " and deliverydate " _
                     & "between '" & Format(mebFrom.Value, "yyyy-MM-dd") & "' and '" & Format(mebTo.Value, "yyyy-MM-dd") & "'" _
@@ -51,8 +78,22 @@ Public Class DeliveryValueReportT
                     Using Tbl As New DataTable
                         Adp.Fill(Tbl)
                         Rpt.SetDataSource(Tbl)
-                        Rpt.SetParameterValue("Location", cmbLocation.Text.Trim)
-                        Rpt.SetParameterValue("Duration", Format(mebFrom.Value, "dd-MM-yyyy") & " to " & Format(mebTo.Value, " dd-MM-yyyy"))
+
+                        If chkOmitCP.Checked Then
+                            Rpt.SetParameterValue("Location", cmbLocation.Text.Trim)
+                            Rpt.SetParameterValue("Duration", Format(mebFrom.Value, "dd-MM-yyyy") & " to " & Format(mebTo.Value, " dd-MM-yyyy"))
+                        Else
+                            Rpt.SetParameterValue("FromDate", Format(mebFrom.Value, "dd-MM-yyyy"))
+                            Rpt.SetParameterValue("ToDate", Format(mebTo.Value, "dd-MM-yyyy"))
+                            Rpt.SetParameterValue("FromCompanyName", fromShopName)
+                            Rpt.SetParameterValue("FromCompanyAddress", fromShopAddress)
+                            Rpt.SetParameterValue("FromCompanyGST", "GSTIN : " + fromShopGst)
+                            Rpt.SetParameterValue("FromCompanyMobile", "Mobile : " + fromShopMobile)
+                            Rpt.SetParameterValue("ToCompanyName", toShopName)
+                            Rpt.SetParameterValue("ToCompanyAddress", toShopAddress)
+                            Rpt.SetParameterValue("ToCompanyGST", "GSTIN : " + toShopGst)
+                            Rpt.SetParameterValue("ToCompanyMobile", "Mobile : " + toShopMobile)
+                        End If
                         'Rpt.SetParameterValue("Duration", Format(mebFrom.Value, "dd-MM-yyyy HH:mm") & " to " & Format(mebTo.Value, " dd-MM-yyyy HH:mm"))
                         CRpt.ReportSource = Rpt
                     End Using

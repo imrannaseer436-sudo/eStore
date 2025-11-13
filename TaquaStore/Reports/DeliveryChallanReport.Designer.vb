@@ -26,6 +26,7 @@ Partial Class DeliveryChallanReport
         Me.Label22 = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.chkBranchTransfer = New System.Windows.Forms.CheckBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtCode = New System.Windows.Forms.TextBox()
         Me.chkVBR = New System.Windows.Forms.CheckBox()
@@ -85,6 +86,7 @@ Partial Class DeliveryChallanReport
         '
         'Panel4
         '
+        Me.Panel4.Controls.Add(Me.chkBranchTransfer)
         Me.Panel4.Controls.Add(Me.Label6)
         Me.Panel4.Controls.Add(Me.txtCode)
         Me.Panel4.Controls.Add(Me.chkVBR)
@@ -104,6 +106,16 @@ Partial Class DeliveryChallanReport
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(1026, 93)
         Me.Panel4.TabIndex = 21
+        '
+        'chkBranchTransfer
+        '
+        Me.chkBranchTransfer.AutoSize = True
+        Me.chkBranchTransfer.Location = New System.Drawing.Point(502, 38)
+        Me.chkBranchTransfer.Name = "chkBranchTransfer"
+        Me.chkBranchTransfer.Size = New System.Drawing.Size(105, 17)
+        Me.chkBranchTransfer.TabIndex = 16
+        Me.chkBranchTransfer.Text = "Branch Transfer"
+        Me.chkBranchTransfer.UseVisualStyleBackColor = True
         '
         'Label6
         '
@@ -125,12 +137,13 @@ Partial Class DeliveryChallanReport
         'chkVBR
         '
         Me.chkVBR.AutoSize = True
-        Me.chkVBR.Location = New System.Drawing.Point(456, 36)
+        Me.chkVBR.Location = New System.Drawing.Point(456, 10)
         Me.chkVBR.Name = "chkVBR"
         Me.chkVBR.Size = New System.Drawing.Size(151, 17)
         Me.chkVBR.TabIndex = 13
         Me.chkVBR.Text = "VENDOR BASED REPORT"
         Me.chkVBR.UseVisualStyleBackColor = True
+        Me.chkVBR.Visible = False
         '
         'cmbOrderBy
         '
@@ -217,7 +230,7 @@ Partial Class DeliveryChallanReport
         Me.Label25.ForeColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(121, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.Label25.Location = New System.Drawing.Point(9, 8)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(119, 17)
+        Me.Label25.Size = New System.Drawing.Size(117, 17)
         Me.Label25.TabIndex = 9
         Me.Label25.Text = "LOCATION FILTER"
         '
@@ -237,7 +250,7 @@ Partial Class DeliveryChallanReport
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(9, 38)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(119, 15)
+        Me.Label3.Size = New System.Drawing.Size(118, 15)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "DELIVERY LOCATION"
         '
@@ -302,4 +315,5 @@ Partial Class DeliveryChallanReport
     Friend WithEvents chkVBR As System.Windows.Forms.CheckBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents txtCode As System.Windows.Forms.TextBox
+    Friend WithEvents chkBranchTransfer As CheckBox
 End Class

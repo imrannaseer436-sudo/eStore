@@ -1,0 +1,421 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TaquaStore
+</name>
+</assembly>
+<members>
+<member name="T:TaquaStore.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:TaquaStore.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:TaquaStore.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.DeliveryChallanDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.StockReportDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.SalesReportDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PurchaseOrderDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.StockReportLWDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.SalesQuantityReportCWDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.SalesQuantityReportDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.DeliveryValueReportDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PaymentBillSummaryDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.GeneralDeliveryDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.BillSummaryDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PONEWDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.ManualReturnReportDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PaymentTaxDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.ProductReturnDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PaymentBillSizeWiseDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.MT_PSRDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.GRNStatusDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PSRDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.AdvancePaymentDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.DeliveryReportCWDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.GSTBill2DataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.DeliveryQuantityReportDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.SalesSummary2DataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.InvoiceDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.TaxBreakupDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.DeliveryChallanRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.StockReportRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.SalesReportRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PurchaseOrderRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.StockReportLWRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.SalesQuantityReportCWRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.SalesQuantityReportRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.DeliveryValueReportRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PaymentBillSummaryRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.GeneralDeliveryRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.BillSummaryRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PONEWRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.ManualReturnReportRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PaymentTaxRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.ProductReturnRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PaymentBillSizeWiseRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.MT_PSRRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.GRNStatusRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PSRRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.AdvancePaymentRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.DeliveryReportCWRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.GSTBill2Row">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.DeliveryQuantityReportRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.SalesSummary2Row">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.InvoiceRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.TaxBreakupRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.DeliveryChallanRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.StockReportRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.SalesReportRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PurchaseOrderRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.StockReportLWRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.SalesQuantityReportCWRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.SalesQuantityReportRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.DeliveryValueReportRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PaymentBillSummaryRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.GeneralDeliveryRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.BillSummaryRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PONEWRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.ManualReturnReportRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PaymentTaxRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.ProductReturnRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PaymentBillSizeWiseRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.MT_PSRRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.GRNStatusRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.PSRRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.AdvancePaymentRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.DeliveryReportCWRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.GSTBill2RowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.DeliveryQuantityReportRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.SalesSummary2RowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.InvoiceRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:TaquaStore.Reports.TaxBreakupRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+</members>
+</doc>
