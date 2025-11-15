@@ -644,6 +644,12 @@
     <Compile Include="Utilites\frmHSNUpdater.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilites\frmSalesCommission.Designer.vb">
+      <DependentUpon>frmSalesCommission.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilites\frmSalesCommission.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilites\SalesCommission.Designer.vb">
       <DependentUpon>SalesCommission.vb</DependentUpon>
     </Compile>
@@ -1537,6 +1543,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilites\frmHSNUpdater.resx">
       <DependentUpon>frmHSNUpdater.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilites\frmSalesCommission.resx">
+      <DependentUpon>frmSalesCommission.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilites\UnusedProductReport.resx">
       <DependentUpon>UnusedProductReport.vb</DependentUpon>

@@ -73,6 +73,7 @@ Partial Class MainWindowX
         Me.mnuHideReports = New System.Windows.Forms.Button()
         Me.mnuSalesReport = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.btnCommission = New System.Windows.Forms.Button()
         CType(Me.MenuList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -408,6 +409,7 @@ Partial Class MainWindowX
         Me.pnlQV.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlQV.BackColor = System.Drawing.Color.WhiteSmoke
         Me.pnlQV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlQV.Controls.Add(Me.btnCommission)
         Me.pnlQV.Controls.Add(Me.btnColorUpdater)
         Me.pnlQV.Controls.Add(Me.btnColorRegister)
         Me.pnlQV.Controls.Add(Me.btnCodeConvertor)
@@ -420,7 +422,7 @@ Partial Class MainWindowX
         Me.pnlQV.Controls.Add(Me.Label3)
         Me.pnlQV.Location = New System.Drawing.Point(800, 40)
         Me.pnlQV.Name = "pnlQV"
-        Me.pnlQV.Size = New System.Drawing.Size(230, 404)
+        Me.pnlQV.Size = New System.Drawing.Size(230, 440)
         Me.pnlQV.TabIndex = 3
         Me.pnlQV.Visible = False
         '
@@ -431,7 +433,7 @@ Partial Class MainWindowX
         Me.btnColorUpdater.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnColorUpdater.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.btnColorUpdater.ForeColor = System.Drawing.Color.Black
-        Me.btnColorUpdater.Location = New System.Drawing.Point(10, 320)
+        Me.btnColorUpdater.Location = New System.Drawing.Point(10, 313)
         Me.btnColorUpdater.Name = "btnColorUpdater"
         Me.btnColorUpdater.Size = New System.Drawing.Size(209, 33)
         Me.btnColorUpdater.TabIndex = 7
@@ -445,7 +447,7 @@ Partial Class MainWindowX
         Me.btnColorRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnColorRegister.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.btnColorRegister.ForeColor = System.Drawing.Color.Black
-        Me.btnColorRegister.Location = New System.Drawing.Point(10, 281)
+        Me.btnColorRegister.Location = New System.Drawing.Point(10, 275)
         Me.btnColorRegister.Name = "btnColorRegister"
         Me.btnColorRegister.Size = New System.Drawing.Size(209, 33)
         Me.btnColorRegister.TabIndex = 6
@@ -459,7 +461,7 @@ Partial Class MainWindowX
         Me.btnCodeConvertor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCodeConvertor.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.btnCodeConvertor.ForeColor = System.Drawing.Color.Black
-        Me.btnCodeConvertor.Location = New System.Drawing.Point(10, 242)
+        Me.btnCodeConvertor.Location = New System.Drawing.Point(10, 237)
         Me.btnCodeConvertor.Name = "btnCodeConvertor"
         Me.btnCodeConvertor.Size = New System.Drawing.Size(209, 33)
         Me.btnCodeConvertor.TabIndex = 5
@@ -472,7 +474,7 @@ Partial Class MainWindowX
         Me.btnAttributes.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAttributes.Font = New System.Drawing.Font("Tahoma", 9.75!)
         Me.btnAttributes.ForeColor = System.Drawing.Color.Black
-        Me.btnAttributes.Location = New System.Drawing.Point(10, 203)
+        Me.btnAttributes.Location = New System.Drawing.Point(10, 199)
         Me.btnAttributes.Name = "btnAttributes"
         Me.btnAttributes.Size = New System.Drawing.Size(209, 33)
         Me.btnAttributes.TabIndex = 4
@@ -486,7 +488,7 @@ Partial Class MainWindowX
         Me.btnCodeFinder.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCodeFinder.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCodeFinder.ForeColor = System.Drawing.Color.Black
-        Me.btnCodeFinder.Location = New System.Drawing.Point(10, 164)
+        Me.btnCodeFinder.Location = New System.Drawing.Point(10, 161)
         Me.btnCodeFinder.Name = "btnCodeFinder"
         Me.btnCodeFinder.Size = New System.Drawing.Size(209, 33)
         Me.btnCodeFinder.TabIndex = 3
@@ -499,7 +501,7 @@ Partial Class MainWindowX
         Me.btnCodeReader.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCodeReader.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCodeReader.ForeColor = System.Drawing.Color.Black
-        Me.btnCodeReader.Location = New System.Drawing.Point(10, 125)
+        Me.btnCodeReader.Location = New System.Drawing.Point(10, 123)
         Me.btnCodeReader.Name = "btnCodeReader"
         Me.btnCodeReader.Size = New System.Drawing.Size(209, 33)
         Me.btnCodeReader.TabIndex = 2
@@ -511,7 +513,7 @@ Partial Class MainWindowX
         Me.btnHideMe.BackColor = System.Drawing.Color.White
         Me.btnHideMe.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnHideMe.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnHideMe.Location = New System.Drawing.Point(10, 359)
+        Me.btnHideMe.Location = New System.Drawing.Point(10, 389)
         Me.btnHideMe.Name = "btnHideMe"
         Me.btnHideMe.Size = New System.Drawing.Size(209, 33)
         Me.btnHideMe.TabIndex = 8
@@ -523,7 +525,7 @@ Partial Class MainWindowX
         Me.btnVendor.BackColor = System.Drawing.Color.White
         Me.btnVendor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnVendor.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnVendor.Location = New System.Drawing.Point(10, 86)
+        Me.btnVendor.Location = New System.Drawing.Point(10, 85)
         Me.btnVendor.Name = "btnVendor"
         Me.btnVendor.Size = New System.Drawing.Size(209, 33)
         Me.btnVendor.TabIndex = 1
@@ -704,6 +706,20 @@ Partial Class MainWindowX
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Quick Viewer"
         '
+        'btnCommission
+        '
+        Me.btnCommission.BackColor = System.Drawing.Color.White
+        Me.btnCommission.FlatAppearance.BorderColor = System.Drawing.Color.Green
+        Me.btnCommission.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCommission.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.btnCommission.ForeColor = System.Drawing.Color.Black
+        Me.btnCommission.Location = New System.Drawing.Point(10, 351)
+        Me.btnCommission.Name = "btnCommission"
+        Me.btnCommission.Size = New System.Drawing.Size(209, 33)
+        Me.btnCommission.TabIndex = 9
+        Me.btnCommission.Text = "Commission Assigner"
+        Me.btnCommission.UseVisualStyleBackColor = False
+        '
         'MainWindowX
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -783,4 +799,5 @@ Partial Class MainWindowX
     Friend WithEvents MnuVendorRpt As Button
     Friend WithEvents MnuStockReportIW As Button
     Friend WithEvents MnuDebitReport As Button
+    Friend WithEvents btnCommission As Button
 End Class

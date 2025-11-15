@@ -497,4 +497,13 @@ Public Class MainWindowX
         pnlReports.Hide()
 
     End Sub
+
+    Private Sub btnCommission_Click(sender As Object, e As EventArgs) Handles btnCommission.Click
+
+        frmSalesCommission.Visible = False
+        frmSalesCommission.Show(Me)
+
+        pnlQV.Hide()
+
+    End Sub
 End Class
