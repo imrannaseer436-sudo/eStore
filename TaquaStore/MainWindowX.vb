@@ -255,6 +255,8 @@ Public Class MainWindowX
                 AddTab(DeliveryWiseSalesAndStockReport)
             Case "67"
                 AddTab(ProductStatusReport)
+            Case "68"
+                AddTab(GroupedDeliveryReport)
         End Select
 
     End Sub

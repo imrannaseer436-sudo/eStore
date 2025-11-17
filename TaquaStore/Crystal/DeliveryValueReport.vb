@@ -158,7 +158,7 @@ Public Class DeliveryValueReport
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Parameter_FromDate() As CrystalDecisions.[Shared].IParameterField
+    Public ReadOnly Property Parameter_TNo() As CrystalDecisions.[Shared].IParameterField
         Get
             Return Me.DataDefinition.ParameterFields(8)
         End Get
@@ -166,7 +166,7 @@ Public Class DeliveryValueReport
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Parameter_ToDate() As CrystalDecisions.[Shared].IParameterField
+    Public ReadOnly Property Parameter_TDate() As CrystalDecisions.[Shared].IParameterField
         Get
             Return Me.DataDefinition.ParameterFields(9)
         End Get

@@ -1281,3 +1281,4 @@ D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Debug\TaquaStore.vbproj.CopyComplet
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Debug\TaquaStore.exe
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Debug\TaquaStore.xml
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Debug\TaquaStore.pdb
+D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Debug\TaquaStore.GroupedDeliveryReport.resources

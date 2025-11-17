@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class DeliveryValueReportT
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,12 +20,13 @@ Partial Class DeliveryValueReportT
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.btnTransferReceipt = New System.Windows.Forms.Button()
         Me.chkOmitCP = New System.Windows.Forms.CheckBox()
         Me.SimpleLine1 = New simpleline.assemblies.simpleLine()
         Me.mebTo = New System.Windows.Forms.DateTimePicker()
@@ -82,6 +83,7 @@ Partial Class DeliveryValueReportT
         '
         'Panel4
         '
+        Me.Panel4.Controls.Add(Me.btnTransferReceipt)
         Me.Panel4.Controls.Add(Me.chkOmitCP)
         Me.Panel4.Controls.Add(Me.SimpleLine1)
         Me.Panel4.Controls.Add(Me.mebTo)
@@ -98,6 +100,20 @@ Partial Class DeliveryValueReportT
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(705, 93)
         Me.Panel4.TabIndex = 23
+        '
+        'btnTransferReceipt
+        '
+        Me.btnTransferReceipt.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(121, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.btnTransferReceipt.FlatAppearance.BorderSize = 0
+        Me.btnTransferReceipt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnTransferReceipt.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnTransferReceipt.ForeColor = System.Drawing.Color.White
+        Me.btnTransferReceipt.Location = New System.Drawing.Point(541, 55)
+        Me.btnTransferReceipt.Name = "btnTransferReceipt"
+        Me.btnTransferReceipt.Size = New System.Drawing.Size(135, 23)
+        Me.btnTransferReceipt.TabIndex = 36
+        Me.btnTransferReceipt.Text = "GENERATE TRANSFER"
+        Me.btnTransferReceipt.UseVisualStyleBackColor = False
         '
         'chkOmitCP
         '
@@ -142,7 +158,7 @@ Partial Class DeliveryValueReportT
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(115, 38)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(21, 13)
+        Me.Label1.Size = New System.Drawing.Size(20, 13)
         Me.Label1.TabIndex = 33
         Me.Label1.Text = "TO"
         '
@@ -207,7 +223,7 @@ Partial Class DeliveryValueReportT
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(445, 36)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(56, 15)
+        Me.Label2.Size = New System.Drawing.Size(57, 15)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "OPTIONS"
         '
@@ -217,7 +233,7 @@ Partial Class DeliveryValueReportT
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(221, 36)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(117, 15)
+        Me.Label3.Size = New System.Drawing.Size(118, 15)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "DELIVERY LOCATION"
         '
@@ -269,4 +285,5 @@ Partial Class DeliveryValueReportT
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents CRpt As CrystalDecisions.Windows.Forms.CrystalReportViewer
     Friend WithEvents chkOmitCP As CheckBox
+    Friend WithEvents btnTransferReceipt As Button
 End Class

@@ -194,6 +194,11 @@ Public Class frmSalesCommission
             da.Fill(dt)
         End Using
 
+        ' === Validate required columns ===
+        If Not dt.Columns.Contains("barcode") Then
+            Throw New Exception("Excel must contain a 'barcode' column.")
+        End If
+
         Dim uniqueSet As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase)
         Dim result As New List(Of (Barcode As String, Value As Decimal))
 
@@ -219,6 +224,11 @@ Public Class frmSalesCommission
 
         If dgvDetails.Rows.Count = 0 Then
             MessageBox.Show("No commission details to save.")
+            Return
+        End If
+
+        If CommissionId > 0 And Not IsAdmin Then
+            TTip.Show("Please contact admin.", btnSave, btnSave.Location, 2000)
             Return
         End If
 
@@ -448,6 +458,8 @@ Public Class frmSalesCommission
         If e.RowIndex = -1 Then Return
 
         If e.ColumnIndex = 6 Then
+            ' Edit Button Clicked
+
             CommissionId = Integer.Parse(dgvList.Rows(e.RowIndex).Cells("ColumnId").Value.ToString())
             dgvDetails.Rows.Clear()
 
@@ -479,6 +491,11 @@ Public Class frmSalesCommission
 
         If e.ColumnIndex = 7 Then
             ' Delete Button Clicked
+            If Not IsAdmin Then
+                MessageBox.Show("Please contact admin.")
+                Return
+            End If
+
             If MessageBox.Show("Are you sure you want to delete this commission?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                 Dim delCommissionId As Integer = Integer.Parse(dgvList.Rows(e.RowIndex).Cells("ColumnId").Value.ToString())
                 SQL = "DELETE FROM CommissionMaster WHERE CommissionId=" & delCommissionId
