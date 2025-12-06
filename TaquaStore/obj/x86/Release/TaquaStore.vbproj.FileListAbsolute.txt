@@ -921,3 +921,4 @@ D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Release\TaquaStore.DeliveryWiseSale
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Release\TaquaStore.SettingsNew.resources
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Release\TaquaStore.frmDebitReport.resources
 D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Release\TaquaStore.frmSalesCommission.resources
+D:\Work Folder\TaquaStore\TaquaStore\obj\x86\Release\TaquaStore.GroupedDeliveryReport.resources

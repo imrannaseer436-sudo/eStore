@@ -74,6 +74,7 @@ Public Class frmProductEdit2
         cmbPattern.SelectedValue = 1
         cmbSleeve.SelectedValue = 1
         cmbStyle.SelectedValue = 1
+        cmbType.SelectedValue = 1
 
     End Sub
 
@@ -105,6 +106,10 @@ Public Class frmProductEdit2
 
         SQL = "SELECT  StyleId,Style  FROM   TSStyle  ORDER BY Style "
         ESSA.LoadCombo(cmbStyle, SQL, "Style", "StyleId")
+
+        'For type combo box
+        SQL = "SELECT TypeId, Type FROM TSType ORDER BY Type"
+        ESSA.LoadCombo(cmbType, SQL, "Type", "TypeId")
 
     End Sub
 
@@ -167,7 +172,8 @@ Public Class frmProductEdit2
                 & "A.BrandId," _
                 & "A.CatalogId, " _
                 & "A.EntryNo, " _
-                & "A.Sno " _
+                & "A.Sno , " _
+                & "A.TypeId " _
                 & "FROM ProductAttributes A " _
                 & "WHERE A.PluId = {0}"
 
@@ -206,6 +212,7 @@ Public Class frmProductEdit2
                 cmbCatalog.SelectedValue = .Item(8)
                 entryNo = .Item(9)
                 serialNo = .Item(10)
+                cmbType.SelectedValue = .Item(11)
             End If
             txtCode.Enabled = False
             .Close()
@@ -300,6 +307,8 @@ Public Class frmProductEdit2
                 & cmbBrand.Text.Trim & "'," _
                 & cmbCatalog.SelectedValue & ",'" _
                 & cmbCatalog.Text.Trim & "'," _
+                & cmbType.SelectedValue & ", '" _
+                & cmbType.Text.Trim & "'," _
                 & entryNo & "," _
                 & serialNo & "," _
                 & 0 & ")"

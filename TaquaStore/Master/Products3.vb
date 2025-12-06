@@ -68,6 +68,11 @@ Public Class Products3
         SQL = "SELECT  StyleId,Style  FROM   TSStyle  ORDER BY Style "
         ESSA.LoadCombo(cmbStyle, SQL, "Style", "StyleId")
 
+        'For type combo box
+        SQL = "SELECT TypeId, Type FROM TSType ORDER BY Type"
+        ESSA.LoadCombo(cmbType, SQL, "Type", "TypeId")
+
+
     End Sub
 
 
@@ -170,6 +175,7 @@ Public Class Products3
         cmbPattern.SelectedValue = 1
         cmbSleeve.SelectedValue = 1
         cmbStyle.SelectedValue = 1
+        cmbType.SelectedValue = 1
 
     End Sub
 
@@ -451,6 +457,8 @@ Public Class Products3
                     & TG.Item(45, i).Value & "'," _
                     & TG.Item(46, i).Value & ",'" _
                     & TG.Item(47, i).Value & "'," _
+                    & TG.Item(49, i).Value & ", '" _
+                    & TG.Item(50, i).Value & "', " _
                     & EntryNo & "," _
                     & i + 1 & ", 0)"
 
@@ -1252,6 +1260,10 @@ Public Class Products3
             TTip.Show("Please Select Valid Catalog..!", cmbCatalog, 0, 25, 2000)
             cmbCatalog.Focus()
             Exit Sub
+        ElseIf cmbtype.SelectedValue < 1 Then
+            TTip.Show("Please Select Valid Type..!", cmbType, 0, 25, 2000)
+            cmbType.Focus()
+            Exit Sub
         ElseIf cmbColor.SelectedValue < 1 Then
             TTip.Show("Please Select Valid Color..!", cmbColor, 0, 25, 2000)
             cmbColor.Focus()
@@ -1408,6 +1420,9 @@ Public Class Products3
 
                     TG.Item(48, NRI).Value = txtPludesc.Text.Trim
 
+                    TG.Item(49, NRI).Value = cmbType.SelectedValue
+                    TG.Item(50, NRI).Value = cmbType.Text
+
                     Siz += 2
 
                 Next
@@ -1546,6 +1561,5 @@ Public Class Products3
         txtMRP.Text = Format(Val(txtRetail.Text), "0.00")
 
     End Sub
-
 
 End Class

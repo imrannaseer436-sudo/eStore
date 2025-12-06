@@ -106,7 +106,7 @@ Public Class FrmSalesQuantityReport
     Private Async Function LoadDataAsync(progress As IProgress(Of Integer), token As CancellationToken) As Task
         progress.Report(20)
         Dim sql As String = "SELECT A.Code, A.Description, A.Size, A.Quantity, A.CostPrice, A.MRP, A.Amount, A.VendorName," &
-                            "B.Department, B.Category, B.Style, B.Pattern, B.Material, B.Color, B.Sleeve, B.Brand, B.Catalog, ISNULL(C.Qty,0) [Delivery], ISNULL(D.stock,0) [Stock], A.ShopName [Shop] FROM " &
+                            "B.Department, B.Category, B.Style, B.Pattern, B.Material, B.Color, B.Sleeve, B.Brand, B.Catalog, B.Type, ISNULL(C.Qty,0) [Delivery], ISNULL(D.stock,0) [Stock], A.ShopName [Shop] FROM " &
                             "(SELECT " &
                             "P.PluId," &
                             "P.Plucode [Code]," &

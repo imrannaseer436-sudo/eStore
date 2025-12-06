@@ -32,6 +32,7 @@ Public Class Attributes
             .Rows.Add({5, "Pattern", "PatternId", "TSPattern", "Pattern"})
             .Rows.Add({6, "Sleeve", "SleeveId", "TSSleeve", "Sleeve"})
             .Rows.Add({7, "Style", "StyleId", "TSStyle", "Style"})
+            .Rows.Add({8, "Type", "TypeId", "TSType", "Type"})
         End With
 
     End Sub

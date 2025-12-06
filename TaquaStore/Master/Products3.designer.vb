@@ -23,12 +23,12 @@ Partial Class Products3
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btnAddColors = New System.Windows.Forms.Button()
         Me.btnReset = New System.Windows.Forms.Button()
         Me.btnClose = New System.Windows.Forms.Button()
@@ -74,6 +74,8 @@ Partial Class Products3
         Me.UpdateColorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.cmbType = New System.Windows.Forms.ComboBox()
+        Me.Label54 = New System.Windows.Forms.Label()
         Me.lblTotCP = New System.Windows.Forms.Label()
         Me.Label55 = New System.Windows.Forms.Label()
         Me.ChkDis = New System.Windows.Forms.CheckBox()
@@ -132,6 +134,10 @@ Partial Class Products3
         Me.TVCat = New System.Windows.Forms.TreeView()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.pnlColors = New System.Windows.Forms.Panel()
+        Me.TGColor = New System.Windows.Forms.DataGridView()
+        Me.Column26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnReLoad = New System.Windows.Forms.Button()
         Me.btnRemove = New System.Windows.Forms.Button()
         Me.btnDone = New System.Windows.Forms.Button()
@@ -145,10 +151,6 @@ Partial Class Products3
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label28 = New System.Windows.Forms.Label()
-        Me.TGColor = New System.Windows.Forms.DataGridView()
-        Me.Column26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.txtColor = New System.Windows.Forms.TextBox()
@@ -237,6 +239,8 @@ Partial Class Products3
         Me.Column41 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column51 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column52 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column53 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column54 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.TG, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -244,8 +248,8 @@ Partial Class Products3
         Me.Panel1.SuspendLayout()
         Me.pnlCategoryList.SuspendLayout()
         Me.pnlColors.SuspendLayout()
-        CType(Me.TGPick, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TGColor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TGPick, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlMultiOptions.SuspendLayout()
         Me.pnlHSNUpdater.SuspendLayout()
         Me.pnlOldCategory.SuspendLayout()
@@ -673,25 +677,25 @@ Partial Class Products3
         Me.TG.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TG.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.TG.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle27.BackColor = System.Drawing.Color.Navy
-        DataGridViewCellStyle27.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle27.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.TG.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Navy
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.TG.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.TG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.TG.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column22, Me.Column10, Me.Column11, Me.Column12, Me.Column13, Me.Column14, Me.Column15, Me.Column16, Me.Column17, Me.Column18, Me.Column19, Me.Column20, Me.Column21, Me.Column23, Me.Column24, Me.Column25, Me.Column29, Me.Column30, Me.Column31, Me.Column32, Me.Column42, Me.Column33, Me.Column43, Me.Column34, Me.Column44, Me.Column35, Me.Column45, Me.Column36, Me.Column46, Me.Column37, Me.Column47, Me.Column38, Me.Column48, Me.Column39, Me.Column49, Me.Column40, Me.Column50, Me.Column41, Me.Column51, Me.Column52})
+        Me.TG.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column22, Me.Column10, Me.Column11, Me.Column12, Me.Column13, Me.Column14, Me.Column15, Me.Column16, Me.Column17, Me.Column18, Me.Column19, Me.Column20, Me.Column21, Me.Column23, Me.Column24, Me.Column25, Me.Column29, Me.Column30, Me.Column31, Me.Column32, Me.Column42, Me.Column33, Me.Column43, Me.Column34, Me.Column44, Me.Column35, Me.Column45, Me.Column36, Me.Column46, Me.Column37, Me.Column47, Me.Column38, Me.Column48, Me.Column39, Me.Column49, Me.Column40, Me.Column50, Me.Column41, Me.Column51, Me.Column52, Me.Column53, Me.Column54})
         Me.TG.ContextMenuStrip = Me.ContextMenuStrip1
-        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle28.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        DataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.TG.DefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.TG.DefaultCellStyle = DataGridViewCellStyle2
         Me.TG.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TG.EnableHeadersVisualStyles = False
         Me.TG.GridColor = System.Drawing.Color.DimGray
@@ -726,6 +730,8 @@ Partial Class Products3
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.cmbType)
+        Me.Panel2.Controls.Add(Me.Label54)
         Me.Panel2.Controls.Add(Me.lblTotCP)
         Me.Panel2.Controls.Add(Me.Label55)
         Me.Panel2.Controls.Add(Me.ChkDis)
@@ -809,13 +815,34 @@ Partial Class Products3
         Me.Panel2.Size = New System.Drawing.Size(1208, 323)
         Me.Panel2.TabIndex = 0
         '
+        'cmbType
+        '
+        Me.cmbType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbType.BackColor = System.Drawing.Color.PaleGoldenrod
+        Me.cmbType.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbType.FormattingEnabled = True
+        Me.cmbType.Location = New System.Drawing.Point(539, 270)
+        Me.cmbType.Name = "cmbType"
+        Me.cmbType.Size = New System.Drawing.Size(270, 22)
+        Me.cmbType.TabIndex = 19
+        '
+        'Label54
+        '
+        Me.Label54.AutoSize = True
+        Me.Label54.Location = New System.Drawing.Point(536, 252)
+        Me.Label54.Name = "Label54"
+        Me.Label54.Size = New System.Drawing.Size(31, 13)
+        Me.Label54.TabIndex = 155
+        Me.Label54.Text = "Type"
+        '
         'lblTotCP
         '
         Me.lblTotCP.AutoSize = True
         Me.lblTotCP.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblTotCP.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotCP.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.lblTotCP.Location = New System.Drawing.Point(608, 261)
+        Me.lblTotCP.Location = New System.Drawing.Point(498, 299)
         Me.lblTotCP.Name = "lblTotCP"
         Me.lblTotCP.Size = New System.Drawing.Size(14, 13)
         Me.lblTotCP.TabIndex = 153
@@ -826,11 +853,11 @@ Partial Class Products3
         Me.Label55.AutoSize = True
         Me.Label55.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label55.ForeColor = System.Drawing.Color.Navy
-        Me.Label55.Location = New System.Drawing.Point(530, 261)
+        Me.Label55.Location = New System.Drawing.Point(395, 299)
         Me.Label55.Name = "Label55"
-        Me.Label55.Size = New System.Drawing.Size(59, 13)
+        Me.Label55.Size = New System.Drawing.Size(89, 13)
         Me.Label55.TabIndex = 152
-        Me.Label55.Text = "Total CP :"
+        Me.Label55.Text = "Total CP           :"
         '
         'ChkDis
         '
@@ -899,7 +926,7 @@ Partial Class Products3
         Me.lblLastAdded.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblLastAdded.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLastAdded.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.lblLastAdded.Location = New System.Drawing.Point(498, 282)
+        Me.lblLastAdded.Location = New System.Drawing.Point(498, 280)
         Me.lblLastAdded.Name = "lblLastAdded"
         Me.lblLastAdded.Size = New System.Drawing.Size(14, 13)
         Me.lblLastAdded.TabIndex = 147
@@ -977,11 +1004,11 @@ Partial Class Products3
         Me.Label53.AutoSize = True
         Me.Label53.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label53.ForeColor = System.Drawing.Color.Navy
-        Me.Label53.Location = New System.Drawing.Point(396, 282)
+        Me.Label53.Location = New System.Drawing.Point(396, 280)
         Me.Label53.Name = "Label53"
-        Me.Label53.Size = New System.Drawing.Size(85, 13)
+        Me.Label53.Size = New System.Drawing.Size(88, 13)
         Me.Label53.TabIndex = 109
-        Me.Label53.Text = "Last Added    :"
+        Me.Label53.Text = "Last Added     :"
         '
         'Label52
         '
@@ -990,9 +1017,9 @@ Partial Class Products3
         Me.Label52.ForeColor = System.Drawing.Color.Navy
         Me.Label52.Location = New System.Drawing.Point(396, 261)
         Me.Label52.Name = "Label52"
-        Me.Label52.Size = New System.Drawing.Size(84, 13)
+        Me.Label52.Size = New System.Drawing.Size(87, 13)
         Me.Label52.TabIndex = 109
-        Me.Label52.Text = "Total Entries :"
+        Me.Label52.Text = "Total Entries  :"
         '
         'Label17
         '
@@ -1481,6 +1508,69 @@ Partial Class Products3
         Me.pnlColors.Tag = "568, 371"
         Me.pnlColors.Visible = False
         '
+        'TGColor
+        '
+        Me.TGColor.AllowUserToAddRows = False
+        Me.TGColor.AllowUserToDeleteRows = False
+        Me.TGColor.AllowUserToResizeColumns = False
+        Me.TGColor.AllowUserToResizeRows = False
+        Me.TGColor.BackgroundColor = System.Drawing.Color.White
+        Me.TGColor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.TGColor.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
+        Me.TGColor.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.TGColor.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        Me.TGColor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.TGColor.ColumnHeadersVisible = False
+        Me.TGColor.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column26, Me.Column27, Me.Column28})
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(71, Byte), Integer))
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.TGColor.DefaultCellStyle = DataGridViewCellStyle4
+        Me.TGColor.EnableHeadersVisualStyles = False
+        Me.TGColor.GridColor = System.Drawing.Color.WhiteSmoke
+        Me.TGColor.Location = New System.Drawing.Point(14, 86)
+        Me.TGColor.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TGColor.Name = "TGColor"
+        Me.TGColor.ReadOnly = True
+        Me.TGColor.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        Me.TGColor.RowHeadersVisible = False
+        Me.TGColor.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TGColor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.TGColor.Size = New System.Drawing.Size(220, 262)
+        Me.TGColor.TabIndex = 2
+        '
+        'Column26
+        '
+        Me.Column26.HeaderText = "ID"
+        Me.Column26.Name = "Column26"
+        Me.Column26.ReadOnly = True
+        Me.Column26.Visible = False
+        '
+        'Column27
+        '
+        Me.Column27.HeaderText = "Code"
+        Me.Column27.Name = "Column27"
+        Me.Column27.ReadOnly = True
+        Me.Column27.Width = 80
+        '
+        'Column28
+        '
+        Me.Column28.HeaderText = "Color"
+        Me.Column28.Name = "Column28"
+        Me.Column28.ReadOnly = True
+        Me.Column28.Width = 160
+        '
         'btnReLoad
         '
         Me.btnReLoad.BackColor = System.Drawing.Color.Black
@@ -1606,25 +1696,25 @@ Partial Class Products3
         Me.TGPick.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.TGPick.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.TGPick.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle23.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle23.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.TGPick.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.TGPick.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.TGPick.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.TGPick.ColumnHeadersVisible = False
         Me.TGPick.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3})
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle24.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(71, Byte), Integer))
-        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.TGPick.DefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(71, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.TGPick.DefaultCellStyle = DataGridViewCellStyle6
         Me.TGPick.EnableHeadersVisualStyles = False
         Me.TGPick.GridColor = System.Drawing.Color.WhiteSmoke
         Me.TGPick.Location = New System.Drawing.Point(333, 86)
@@ -1670,69 +1760,6 @@ Partial Class Products3
         Me.Label28.TabIndex = 7
         Me.Label28.Text = "Color Picker"
         Me.Label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'TGColor
-        '
-        Me.TGColor.AllowUserToAddRows = False
-        Me.TGColor.AllowUserToDeleteRows = False
-        Me.TGColor.AllowUserToResizeColumns = False
-        Me.TGColor.AllowUserToResizeRows = False
-        Me.TGColor.BackgroundColor = System.Drawing.Color.White
-        Me.TGColor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.TGColor.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
-        Me.TGColor.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle29.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle29.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.TGColor.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle29
-        Me.TGColor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.TGColor.ColumnHeadersVisible = False
-        Me.TGColor.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column26, Me.Column27, Me.Column28})
-        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle30.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(71, Byte), Integer))
-        DataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.TGColor.DefaultCellStyle = DataGridViewCellStyle30
-        Me.TGColor.EnableHeadersVisualStyles = False
-        Me.TGColor.GridColor = System.Drawing.Color.WhiteSmoke
-        Me.TGColor.Location = New System.Drawing.Point(14, 86)
-        Me.TGColor.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TGColor.Name = "TGColor"
-        Me.TGColor.ReadOnly = True
-        Me.TGColor.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        Me.TGColor.RowHeadersVisible = False
-        Me.TGColor.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TGColor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.TGColor.Size = New System.Drawing.Size(220, 262)
-        Me.TGColor.TabIndex = 2
-        '
-        'Column26
-        '
-        Me.Column26.HeaderText = "ID"
-        Me.Column26.Name = "Column26"
-        Me.Column26.ReadOnly = True
-        Me.Column26.Visible = False
-        '
-        'Column27
-        '
-        Me.Column27.HeaderText = "Code"
-        Me.Column27.Name = "Column27"
-        Me.Column27.ReadOnly = True
-        Me.Column27.Width = 80
-        '
-        'Column28
-        '
-        Me.Column28.HeaderText = "Color"
-        Me.Column28.Name = "Column28"
-        Me.Column28.ReadOnly = True
-        Me.Column28.Width = 160
         '
         'Label27
         '
@@ -2453,7 +2480,6 @@ Partial Class Products3
         Me.Column44.HeaderText = "Category"
         Me.Column44.Name = "Column44"
         Me.Column44.ReadOnly = True
-        Me.Column44.Visible = False
         '
         'Column35
         '
@@ -2509,6 +2535,7 @@ Partial Class Products3
         Me.Column48.HeaderText = "Color"
         Me.Column48.Name = "Column48"
         Me.Column48.ReadOnly = True
+        Me.Column48.Visible = False
         '
         'Column39
         '
@@ -2559,6 +2586,19 @@ Partial Class Products3
         Me.Column52.ReadOnly = True
         Me.Column52.Visible = False
         '
+        'Column53
+        '
+        Me.Column53.HeaderText = "TypeId"
+        Me.Column53.Name = "Column53"
+        Me.Column53.ReadOnly = True
+        Me.Column53.Visible = False
+        '
+        'Column54
+        '
+        Me.Column54.HeaderText = "Type"
+        Me.Column54.Name = "Column54"
+        Me.Column54.ReadOnly = True
+        '
         'Products3
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2592,8 +2632,8 @@ Partial Class Products3
         Me.pnlCategoryList.ResumeLayout(False)
         Me.pnlColors.ResumeLayout(False)
         Me.pnlColors.PerformLayout()
-        CType(Me.TGPick, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TGColor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TGPick, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlMultiOptions.ResumeLayout(False)
         Me.pnlMultiOptions.PerformLayout()
         Me.pnlHSNUpdater.ResumeLayout(False)
@@ -2767,6 +2807,8 @@ Partial Class Products3
     Friend WithEvents Label52 As Label
     Friend WithEvents lblTotCP As Label
     Friend WithEvents Label55 As Label
+    Friend WithEvents cmbType As ComboBox
+    Friend WithEvents Label54 As Label
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
@@ -2816,4 +2858,6 @@ Partial Class Products3
     Friend WithEvents Column41 As DataGridViewTextBoxColumn
     Friend WithEvents Column51 As DataGridViewTextBoxColumn
     Friend WithEvents Column52 As DataGridViewTextBoxColumn
+    Friend WithEvents Column53 As DataGridViewTextBoxColumn
+    Friend WithEvents Column54 As DataGridViewTextBoxColumn
 End Class

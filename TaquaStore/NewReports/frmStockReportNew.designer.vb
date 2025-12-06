@@ -31,6 +31,7 @@ Partial Class frmStockReportNew
         Me.btnFilter = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.pnlFilter = New System.Windows.Forms.Panel()
+        Me.CmbLocation = New System.Windows.Forms.ComboBox()
         Me.chkEZS = New System.Windows.Forms.CheckBox()
         Me.btnResetAttribute = New System.Windows.Forms.Label()
         Me.btnHide = New System.Windows.Forms.Button()
@@ -61,7 +62,8 @@ Partial Class frmStockReportNew
         Me.Label11 = New System.Windows.Forms.Label()
         Me.pnlLoading = New System.Windows.Forms.Panel()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.CmbLocation = New System.Windows.Forms.ComboBox()
+        Me.cmbType = New System.Windows.Forms.ComboBox()
+        Me.Label8 = New System.Windows.Forms.Label()
         CType(Me.TG, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -172,6 +174,8 @@ Partial Class frmStockReportNew
         '
         Me.pnlFilter.BackColor = System.Drawing.Color.WhiteSmoke
         Me.pnlFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlFilter.Controls.Add(Me.cmbType)
+        Me.pnlFilter.Controls.Add(Me.Label8)
         Me.pnlFilter.Controls.Add(Me.CmbLocation)
         Me.pnlFilter.Controls.Add(Me.chkEZS)
         Me.pnlFilter.Controls.Add(Me.btnResetAttribute)
@@ -204,8 +208,18 @@ Partial Class frmStockReportNew
         Me.pnlFilter.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pnlFilter.Location = New System.Drawing.Point(131, 101)
         Me.pnlFilter.Name = "pnlFilter"
-        Me.pnlFilter.Size = New System.Drawing.Size(691, 402)
+        Me.pnlFilter.Size = New System.Drawing.Size(691, 440)
         Me.pnlFilter.TabIndex = 3
+        '
+        'CmbLocation
+        '
+        Me.CmbLocation.BackColor = System.Drawing.Color.Aquamarine
+        Me.CmbLocation.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CmbLocation.FormattingEnabled = True
+        Me.CmbLocation.Location = New System.Drawing.Point(473, 401)
+        Me.CmbLocation.Name = "CmbLocation"
+        Me.CmbLocation.Size = New System.Drawing.Size(197, 22)
+        Me.CmbLocation.TabIndex = 63
         '
         'chkEZS
         '
@@ -214,7 +228,7 @@ Partial Class frmStockReportNew
         Me.chkEZS.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkEZS.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkEZS.ForeColor = System.Drawing.Color.Maroon
-        Me.chkEZS.Location = New System.Drawing.Point(17, 360)
+        Me.chkEZS.Location = New System.Drawing.Point(17, 403)
         Me.chkEZS.Name = "chkEZS"
         Me.chkEZS.Size = New System.Drawing.Size(147, 20)
         Me.chkEZS.TabIndex = 62
@@ -250,7 +264,7 @@ Partial Class frmStockReportNew
         'btnApplyFilter
         '
         Me.btnApplyFilter.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnApplyFilter.Location = New System.Drawing.Point(257, 353)
+        Me.btnApplyFilter.Location = New System.Drawing.Point(257, 396)
         Me.btnApplyFilter.Name = "btnApplyFilter"
         Me.btnApplyFilter.Size = New System.Drawing.Size(175, 32)
         Me.btnApplyFilter.TabIndex = 15
@@ -266,7 +280,7 @@ Partial Class frmStockReportNew
         Me.SimpleLine3.GradientAngle = simpleline.assemblies.GradientDirection.Horizontal
         Me.SimpleLine3.LineColor = System.Drawing.Color.LightGray
         Me.SimpleLine3.LineWidth = 1
-        Me.SimpleLine3.Location = New System.Drawing.Point(17, 340)
+        Me.SimpleLine3.Location = New System.Drawing.Point(17, 386)
         Me.SimpleLine3.Name = "SimpleLine3"
         Me.SimpleLine3.Size = New System.Drawing.Size(653, 1)
         Me.SimpleLine3.Style = simpleline.assemblies.LineStyle.Horizontal
@@ -525,15 +539,24 @@ Partial Class frmStockReportNew
         Me.Label18.TabIndex = 0
         Me.Label18.Text = "Loading Data, Please Wait"
         '
-        'CmbLocation
+        'cmbType
         '
-        Me.CmbLocation.BackColor = System.Drawing.Color.Aquamarine
-        Me.CmbLocation.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CmbLocation.FormattingEnabled = True
-        Me.CmbLocation.Location = New System.Drawing.Point(473, 358)
-        Me.CmbLocation.Name = "CmbLocation"
-        Me.CmbLocation.Size = New System.Drawing.Size(197, 22)
-        Me.CmbLocation.TabIndex = 63
+        Me.cmbType.BackColor = System.Drawing.Color.Thistle
+        Me.cmbType.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbType.FormattingEnabled = True
+        Me.cmbType.Location = New System.Drawing.Point(17, 346)
+        Me.cmbType.Name = "cmbType"
+        Me.cmbType.Size = New System.Drawing.Size(317, 22)
+        Me.cmbType.TabIndex = 64
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(14, 329)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(31, 13)
+        Me.Label8.TabIndex = 65
+        Me.Label8.Text = "Type"
         '
         'frmStockReportNew
         '
@@ -602,4 +625,6 @@ Partial Class frmStockReportNew
     Friend WithEvents btnExport As Button
     Friend WithEvents btnExit As Button
     Friend WithEvents CmbLocation As ComboBox
+    Friend WithEvents cmbType As ComboBox
+    Friend WithEvents Label8 As Label
 End Class
