@@ -70,9 +70,6 @@
     <ApplicationIcon>Warehouse.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="A">
-      <HintPath>G:\Softwares\Developer\Control Library\A.dll</HintPath>
-    </Reference>
     <Reference Include="AdvancedDataGridView">
       <HintPath>..\..\TaquaShop\packages\DG.AdvancedDataGridView.1.1.24512.7\lib\net40\AdvancedDataGridView.dll</HintPath>
     </Reference>
