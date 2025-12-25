@@ -390,4 +390,10 @@ Public Class frmProductEdit2
     Private Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
         resetForm()
     End Sub
+
+    Private Sub btnReloadCategory_Click(sender As Object, e As EventArgs) Handles btnReloadCategory.Click
+
+        loadAttributes()
+        resetAttributes()
+    End Sub
 End Class

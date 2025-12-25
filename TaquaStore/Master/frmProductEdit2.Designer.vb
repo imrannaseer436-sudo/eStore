@@ -81,6 +81,7 @@ Partial Class frmProductEdit2
         Me.btnReset = New System.Windows.Forms.Button()
         Me.cmbType = New System.Windows.Forms.ComboBox()
         Me.Label28 = New System.Windows.Forms.Label()
+        Me.btnReloadCategory = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -663,12 +664,25 @@ Partial Class frmProductEdit2
         Me.Label28.TabIndex = 55
         Me.Label28.Text = "Type"
         '
+        'btnReloadCategory
+        '
+        Me.btnReloadCategory.AutoSize = True
+        Me.btnReloadCategory.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnReloadCategory.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnReloadCategory.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnReloadCategory.Location = New System.Drawing.Point(894, 9)
+        Me.btnReloadCategory.Name = "btnReloadCategory"
+        Me.btnReloadCategory.Size = New System.Drawing.Size(113, 13)
+        Me.btnReloadCategory.TabIndex = 148
+        Me.btnReloadCategory.Text = "RELOAD CATEGORY"
+        '
         'frmProductEdit2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(1019, 661)
+        Me.Controls.Add(Me.btnReloadCategory)
         Me.Controls.Add(Me.cmbType)
         Me.Controls.Add(Me.Label28)
         Me.Controls.Add(Me.btnReset)
@@ -799,4 +813,5 @@ Partial Class frmProductEdit2
     Friend WithEvents btnReset As Button
     Friend WithEvents cmbType As ComboBox
     Friend WithEvents Label28 As Label
+    Friend WithEvents btnReloadCategory As Label
 End Class
