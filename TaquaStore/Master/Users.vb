@@ -23,6 +23,9 @@ Public Class Users
             txtRtype.Clear()
             txtRtype.Focus()
             Exit Sub
+        ElseIf Not IsAdmin Then
+            xMessage.ShowMsg("  Please Contact Admin..!", False, frmMainScreen, 0, xMessage.MsgStyle.iError)
+            Exit Sub
         End If
 
         If xMessage.ShowMsg("Do you want to save..?", True, frmMainScreen, 0, xMessage.MsgStyle.Question) = False Then Exit Sub
@@ -104,7 +107,10 @@ Public Class Users
     Private Sub btnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClose.Click
 
         If xMessage.ShowMsg("Do you want to exit..?", True, frmMainScreen, 0, xMessage.MsgStyle.iExit) = False Then Exit Sub
-        Close()
+        MainWindowX.CloseTab(Me.Name)
+        If Not MainWindowX.TabExists(Me.Name) Then
+            Me.Close()
+        End If
 
     End Sub
 

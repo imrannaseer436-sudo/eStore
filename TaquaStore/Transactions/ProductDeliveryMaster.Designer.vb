@@ -380,7 +380,7 @@ Partial Class ProductDeliveryMaster
         Me.Label4.ForeColor = System.Drawing.Color.DimGray
         Me.Label4.Location = New System.Drawing.Point(121, 169)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(135, 15)
+        Me.Label4.Size = New System.Drawing.Size(137, 15)
         Me.Label4.TabIndex = 8
         Me.Label4.Text = "PRODUCT DESCRIPTION"
         '
@@ -430,7 +430,7 @@ Partial Class ProductDeliveryMaster
         Me.Label5.ForeColor = System.Drawing.Color.DimGray
         Me.Label5.Location = New System.Drawing.Point(498, 169)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(63, 15)
+        Me.Label5.Size = New System.Drawing.Size(65, 15)
         Me.Label5.TabIndex = 8
         Me.Label5.Text = "QUANTITY"
         '
@@ -517,7 +517,7 @@ Partial Class ProductDeliveryMaster
         Me.Label2.ForeColor = System.Drawing.Color.DimGray
         Me.Label2.Location = New System.Drawing.Point(10, 42)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(117, 15)
+        Me.Label2.Size = New System.Drawing.Size(118, 15)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "DELIVERY LOCATION"
         '
@@ -527,7 +527,7 @@ Partial Class ProductDeliveryMaster
         Me.Label8.ForeColor = System.Drawing.Color.DimGray
         Me.Label8.Location = New System.Drawing.Point(308, 42)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(56, 15)
+        Me.Label8.Size = New System.Drawing.Size(57, 15)
         Me.Label8.TabIndex = 14
         Me.Label8.Text = "OPTIONS"
         '
@@ -789,7 +789,7 @@ Partial Class ProductDeliveryMaster
         Me.Label28.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label28.Location = New System.Drawing.Point(3, 0)
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(134, 32)
+        Me.Label28.Size = New System.Drawing.Size(133, 32)
         Me.Label28.TabIndex = 0
         Me.Label28.Text = "List of GRN"
         '
@@ -822,7 +822,7 @@ Partial Class ProductDeliveryMaster
         Me.Label6.ForeColor = System.Drawing.Color.White
         Me.Label6.Location = New System.Drawing.Point(3, 5)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(43, 15)
+        Me.Label6.Size = New System.Drawing.Size(44, 15)
         Me.Label6.TabIndex = 17
         Me.Label6.Text = "BATCH"
         '
@@ -1020,7 +1020,7 @@ Partial Class ProductDeliveryMaster
         Me.Label13.AutoSize = True
         Me.Label13.Location = New System.Drawing.Point(3, 39)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(60, 13)
+        Me.Label13.Size = New System.Drawing.Size(59, 13)
         Me.Label13.TabIndex = 1
         Me.Label13.Text = "LOCATION"
         '

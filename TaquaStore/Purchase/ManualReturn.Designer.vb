@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ManualReturn
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class ManualReturn
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -103,6 +103,7 @@ Partial Class ManualReturn
         Me.Column22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.pnlGList = New System.Windows.Forms.Panel()
+        Me.btnHideEditPnl = New System.Windows.Forms.Button()
         Me.TGGrn = New System.Windows.Forms.DataGridView()
         Me.btnFilter = New System.Windows.Forms.Button()
         Me.cmbVdr = New System.Windows.Forms.ComboBox()
@@ -137,7 +138,6 @@ Partial Class ManualReturn
         Me.Column20 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Column23 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.TG, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -345,7 +345,7 @@ Partial Class ManualReturn
         Me.Label17.AutoSize = True
         Me.Label17.Location = New System.Drawing.Point(437, 115)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(96, 15)
+        Me.Label17.Size = New System.Drawing.Size(97, 15)
         Me.Label17.TabIndex = 27
         Me.Label17.Text = "Transport Service"
         '
@@ -657,7 +657,7 @@ Partial Class ManualReturn
         Me.Label33.ForeColor = System.Drawing.Color.Maroon
         Me.Label33.Location = New System.Drawing.Point(402, 224)
         Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(48, 15)
+        Me.Label33.Size = New System.Drawing.Size(49, 15)
         Me.Label33.TabIndex = 36
         Me.Label33.Text = "TAX (%)"
         '
@@ -678,7 +678,7 @@ Partial Class ManualReturn
         Me.Label32.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label32.Location = New System.Drawing.Point(455, 224)
         Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(38, 15)
+        Me.Label32.Size = New System.Drawing.Size(39, 15)
         Me.Label32.TabIndex = 33
         Me.Label32.Text = "IGST ?"
         '
@@ -723,7 +723,7 @@ Partial Class ManualReturn
         Me.Label7.ForeColor = System.Drawing.Color.Gray
         Me.Label7.Location = New System.Drawing.Point(281, 224)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(63, 15)
+        Me.Label7.Size = New System.Drawing.Size(65, 15)
         Me.Label7.TabIndex = 12
         Me.Label7.Text = "QUANTITY"
         '
@@ -733,7 +733,7 @@ Partial Class ManualReturn
         Me.Label4.ForeColor = System.Drawing.Color.Gray
         Me.Label4.Location = New System.Drawing.Point(227, 224)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(33, 15)
+        Me.Label4.Size = New System.Drawing.Size(34, 15)
         Me.Label4.TabIndex = 12
         Me.Label4.Text = "RATE"
         '
@@ -743,7 +743,7 @@ Partial Class ManualReturn
         Me.Label12.ForeColor = System.Drawing.Color.Gray
         Me.Label12.Location = New System.Drawing.Point(528, 224)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(42, 15)
+        Me.Label12.Size = New System.Drawing.Size(43, 15)
         Me.Label12.TabIndex = 12
         Me.Label12.Text = "STOCK"
         '
@@ -913,6 +913,7 @@ Partial Class ManualReturn
         '
         Me.pnlGList.BackColor = System.Drawing.Color.WhiteSmoke
         Me.pnlGList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlGList.Controls.Add(Me.btnHideEditPnl)
         Me.pnlGList.Controls.Add(Me.TGGrn)
         Me.pnlGList.Controls.Add(Me.btnFilter)
         Me.pnlGList.Controls.Add(Me.cmbVdr)
@@ -920,9 +921,22 @@ Partial Class ManualReturn
         Me.pnlGList.Controls.Add(Me.Label28)
         Me.pnlGList.Location = New System.Drawing.Point(182, 78)
         Me.pnlGList.Name = "pnlGList"
-        Me.pnlGList.Size = New System.Drawing.Size(803, 382)
+        Me.pnlGList.Size = New System.Drawing.Size(725, 382)
         Me.pnlGList.TabIndex = 7
         Me.pnlGList.Visible = False
+        '
+        'btnHideEditPnl
+        '
+        Me.btnHideEditPnl.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(121, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.btnHideEditPnl.FlatAppearance.BorderSize = 0
+        Me.btnHideEditPnl.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnHideEditPnl.ForeColor = System.Drawing.Color.White
+        Me.btnHideEditPnl.Location = New System.Drawing.Point(584, 11)
+        Me.btnHideEditPnl.Name = "btnHideEditPnl"
+        Me.btnHideEditPnl.Size = New System.Drawing.Size(43, 23)
+        Me.btnHideEditPnl.TabIndex = 3
+        Me.btnHideEditPnl.Text = "Hide"
+        Me.btnHideEditPnl.UseVisualStyleBackColor = False
         '
         'TGGrn
         '
@@ -944,7 +958,7 @@ Partial Class ManualReturn
         Me.TGGrn.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.TGGrn.ColumnHeadersHeight = 25
         Me.TGGrn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.TGGrn.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column14, Me.Column15, Me.Column16, Me.Column17, Me.Column18, Me.Column24, Me.Column20, Me.Column4, Me.Column23, Me.Column9})
+        Me.TGGrn.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column14, Me.Column15, Me.Column16, Me.Column17, Me.Column18, Me.Column24, Me.Column20, Me.Column4, Me.Column23})
         DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle9.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -964,7 +978,7 @@ Partial Class ManualReturn
         Me.TGGrn.RowTemplate.Height = 25
         Me.TGGrn.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.TGGrn.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.TGGrn.Size = New System.Drawing.Size(801, 342)
+        Me.TGGrn.Size = New System.Drawing.Size(723, 342)
         Me.TGGrn.TabIndex = 2
         '
         'btnFilter
@@ -975,7 +989,7 @@ Partial Class ManualReturn
         Me.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnFilter.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnFilter.ForeColor = System.Drawing.Color.White
-        Me.btnFilter.Location = New System.Drawing.Point(755, 9)
+        Me.btnFilter.Location = New System.Drawing.Point(535, 11)
         Me.btnFilter.Name = "btnFilter"
         Me.btnFilter.Size = New System.Drawing.Size(43, 23)
         Me.btnFilter.TabIndex = 1
@@ -987,15 +1001,15 @@ Partial Class ManualReturn
         Me.cmbVdr.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.cmbVdr.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cmbVdr.FormattingEnabled = True
-        Me.cmbVdr.Location = New System.Drawing.Point(384, 9)
+        Me.cmbVdr.Location = New System.Drawing.Point(257, 11)
         Me.cmbVdr.Name = "cmbVdr"
-        Me.cmbVdr.Size = New System.Drawing.Size(365, 23)
+        Me.cmbVdr.Size = New System.Drawing.Size(272, 23)
         Me.cmbVdr.TabIndex = 0
         '
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(333, 11)
+        Me.Label29.Location = New System.Drawing.Point(206, 13)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(44, 15)
         Me.Label29.TabIndex = 1
@@ -1159,7 +1173,7 @@ Partial Class ManualReturn
         Me.Label24.AutoSize = True
         Me.Label24.Location = New System.Drawing.Point(19, 117)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(96, 15)
+        Me.Label24.Size = New System.Drawing.Size(97, 15)
         Me.Label24.TabIndex = 42
         Me.Label24.Text = "Transport Service"
         '
@@ -1300,13 +1314,6 @@ Partial Class ManualReturn
         Me.Column23.UseColumnTextForButtonValue = True
         Me.Column23.Width = 80
         '
-        'Column9
-        '
-        Me.Column9.HeaderText = ""
-        Me.Column9.Name = "Column9"
-        Me.Column9.ReadOnly = True
-        Me.Column9.Width = 20
-        '
         'ManualReturn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -1432,6 +1439,7 @@ Partial Class ManualReturn
     Friend WithEvents Label37 As System.Windows.Forms.Label
     Friend WithEvents Label38 As Label
     Friend WithEvents txtRemarks As TextBox
+    Friend WithEvents btnHideEditPnl As Button
     Friend WithEvents Column14 As DataGridViewTextBoxColumn
     Friend WithEvents Column15 As DataGridViewTextBoxColumn
     Friend WithEvents Column16 As DataGridViewTextBoxColumn
@@ -1441,5 +1449,4 @@ Partial Class ManualReturn
     Friend WithEvents Column20 As DataGridViewButtonColumn
     Friend WithEvents Column4 As DataGridViewButtonColumn
     Friend WithEvents Column23 As DataGridViewButtonColumn
-    Friend WithEvents Column9 As DataGridViewTextBoxColumn
 End Class

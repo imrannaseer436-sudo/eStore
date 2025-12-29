@@ -6,6 +6,7 @@ Public Class ManualReturn
     Private PluNm As String
     Private Edit As Boolean = False
     Private Rpt As New RptManualReturn
+    Private isAutomatic As Boolean = False
 
     Private Sub ManualReturn_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
 
@@ -97,27 +98,33 @@ Public Class ManualReturn
             e.SuppressKeyPress = True
 
             If Not CheckVendorId() Then
-                TTip.Show("Please choose correct vendor..!", txtCode, 0, 25, 2000)
-                cmbVendor.Focus()
-                Exit Sub
-            End If
+                    TTip.Show("Please choose correct vendor..!", txtCode, 0, 25, 2000)
+                    cmbVendor.Focus()
+                    Exit Sub
+                End If
 
-            SQL = "select p.pluid,plucode,pluname,costprice,v.stock from productmaster p,v_stockpos v where p.pluid=v.pluid and plucode='" & txtCode.Text.Trim & "'"
-            With ESSA.OpenReader(SQL)
+                SQL = "select p.pluid,plucode,pluname,costprice,v.stock from productmaster p,v_stockpos v where p.pluid=v.pluid and plucode='" & txtCode.Text.Trim & "'"
+                With ESSA.OpenReader(SQL)
                 If .Read Then
                     PluID = .Item(0)
                     txtCode.Text = .GetString(1)
                     PluNm = .GetString(2)
                     txtRate.Text = Format(.Item(3), "0.000")
                     txtStock.Text = .Item(4)
-                    txtRQty.Focus()
+
+                    If cmbVendor.SelectedValue = 1 Then
+                        txtRQty.Text = 1
+                        AutomatedEntry()
+                    Else
+                        txtRQty.Focus()
+                    End If
                 Else
                     TTip.Show("Sorry, Product code not found..!", txtCode, 0, 25, 2000)
-                End If
-                .Close()
-            End With
+                    End If
+                    .Close()
+                End With
 
-        End If
+            End If
 
     End Sub
 
@@ -414,70 +421,7 @@ Public Class ManualReturn
 
     Private Sub cmbCTax_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbCTax.KeyDown
 
-        If e.KeyCode = Keys.Enter Then
-            e.SuppressKeyPress = True
-
-            Dim NRI = ESSA.FindGridIndex(TG, 0, PluID)
-
-            If NRI = -1 Then
-
-                If Val(txtRQty.Text) > Val(txtStock.Text) Then
-                    TTip.Show("Insufficient Stock..!", txtRQty, 0, 25, 2000)
-                    Exit Sub
-                End If
-
-            Else
-
-                If Val(TG.Item(4, NRI).Value) + Val(txtRQty.Text) > Val(txtStock.Text) Then
-                    TTip.Show("Insufficient Stock..!", txtRQty, 0, 25, 2000)
-                    Exit Sub
-                End If
-
-            End If
-
-            If Isa.FoundInList(cmbCTax) = False Then
-                TTip.Show("Choose Yes or No", cmbCTax, 0, 25, 2000)
-                Exit Sub
-            End If
-
-            Dim Amount As Double = 0
-            Dim TaxAmt As Double = 0
-            Dim DisAmt As Double = 0
-
-            If NRI = -1 Then NRI = TG.Rows.Add
-
-            TG.Item(0, NRI).Value = PluID
-            TG.Item(1, NRI).Value = NRI + 1
-            TG.Item(2, NRI).Value = txtCode.Text
-            TG.Item(3, NRI).Value = PluNm
-            TG.Item(4, NRI).Value = Val(TG.Item(4, NRI).Value) + Val(txtRQty.Text)
-            TG.Item(5, NRI).Value = Format(Val(txtRate.Text), "0.000")
-
-            Amount = Val(TG.Item(4, NRI).Value) * Val(txtRate.Text)
-
-            DisAmt = (Amount / 100) * Val(txtDisPerc.Text)
-
-            TaxAmt = (((Amount - DisAmt) * Val(txtTax.Text)) / 100)
-
-            TG.Item(6, NRI).Value = Format(Amount, "0.00")
-            TG.Item(7, NRI).Value = Format(Val(txtTax.Text), "0.0")
-            TG.Item(8, NRI).Value = Format(TaxAmt, "0.00")
-            TG.Item(9, NRI).Value = Format((Amount - DisAmt) + TaxAmt, "0.00")
-            TG.Item(10, NRI).Value = cmbCTax.Text.Trim
-
-            TG.Item(11, NRI).Value = Format(Val(txtDisPerc.Text), "0.0")
-            TG.Item(12, NRI).Value = Format(DisAmt, "0.00")
-
-            txtCode.Clear()
-            txtStock.Clear()
-            txtRate.Clear()
-            txtRQty.Clear()
-            txtCode.Focus()
-            txtTax.Clear()
-
-            CalulateTotal()
-
-        End If
+        AutomatedEntry()
 
     End Sub
 
@@ -512,4 +456,87 @@ Public Class ManualReturn
 
     End Function
 
+    Private Sub btnHideEditPnl_Click(sender As Object, e As EventArgs) Handles btnHideEditPnl.Click
+
+        pnlGList.Hide()
+
+    End Sub
+    Private Sub AutomatedEntry()
+
+        Dim NRI = ESSA.FindGridIndex(TG, 0, PluID)
+
+        If NRI = -1 Then
+
+            If Val(txtRQty.Text) > Val(txtStock.Text) Then
+                TTip.Show("Insufficient Stock..!", txtRQty, 0, 25, 2000)
+                Exit Sub
+            End If
+
+        Else
+
+            If Val(TG.Item(4, NRI).Value) + Val(txtRQty.Text) > Val(txtStock.Text) Then
+                TTip.Show("Insufficient Stock..!", txtRQty, 0, 25, 2000)
+                Exit Sub
+            End If
+
+        End If
+        If Isa.FoundInList(cmbCTax) = False Then
+            TTip.Show("Choose Yes or No", cmbCTax, 0, 25, 2000)
+            Exit Sub
+        End If
+
+        Dim Amount As Double = 0
+        Dim TaxAmt As Double = 0
+        Dim DisAmt As Double = 0
+
+        If NRI = -1 Then NRI = TG.Rows.Add
+
+        TG.Item(0, NRI).Value = PluID
+        TG.Item(1, NRI).Value = NRI + 1
+        TG.Item(2, NRI).Value = txtCode.Text
+        TG.Item(3, NRI).Value = PluNm
+        TG.Item(4, NRI).Value = Val(TG.Item(4, NRI).Value) + Val(txtRQty.Text)
+        TG.Item(5, NRI).Value = Format(Val(txtRate.Text), "0.000")
+
+        Amount = Val(TG.Item(4, NRI).Value) * Val(txtRate.Text)
+
+        DisAmt = (Amount / 100) * Val(txtDisPerc.Text)
+
+        TaxAmt = (((Amount - DisAmt) * Val(txtTax.Text)) / 100)
+
+        TG.Item(6, NRI).Value = Format(Amount, "0.00")
+        TG.Item(7, NRI).Value = Format(Val(txtTax.Text), "0.0")
+        TG.Item(8, NRI).Value = Format(TaxAmt, "0.00")
+        TG.Item(9, NRI).Value = Format((Amount - DisAmt) + TaxAmt, "0.00")
+        TG.Item(10, NRI).Value = cmbCTax.Text.Trim
+
+        TG.Item(11, NRI).Value = Format(Val(txtDisPerc.Text), "0.0")
+        TG.Item(12, NRI).Value = Format(DisAmt, "0.00")
+
+        txtCode.Clear()
+        txtStock.Clear()
+        txtRate.Clear()
+        txtRQty.Clear()
+        txtCode.Focus()
+        txtTax.Clear()
+
+        CalulateTotal()
+
+    End Sub
+
+    Private Sub cmbVendor_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbVendor.SelectedValueChanged
+
+        'for essa garments vendor only
+        If cmbVendor.SelectedValue = 1 Then
+            txtRQty.Enabled = False
+            txtDisPerc.Enabled = False
+            txtTax.Enabled = False
+            cmbCTax.SelectedIndex = 1  'making igst false
+        Else
+            txtRQty.Enabled = True
+            txtDisPerc.Enabled = True
+            txtTax.Enabled = True
+            cmbCTax.SelectedIndex = 0
+        End If
+    End Sub
 End Class
