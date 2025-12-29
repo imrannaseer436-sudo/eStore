@@ -111,7 +111,6 @@ Public Class ManualReturn
                     PluNm = .GetString(2)
                     txtRate.Text = Format(.Item(3), "0.000")
                     txtStock.Text = .Item(4)
-                    txtRQty.Focus()
 
                     If cmbVendor.SelectedValue = 1 Then
                         txtRQty.Text = 1
