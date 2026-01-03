@@ -119,91 +119,40 @@ Public Class DiscountAssigner
                 Dim connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + txtFileName.Text + ";Extended Properties=""Excel 8.0;HDR=YES;"""
                 TG.Rows.Clear()
 
-                If chkRateUpdate.Checked = True Then
 
-                    If chkLESWQ.Checked = False Then
-
-                        Using icon As New OleDbConnection(connectionString)
-                            icon.Open()
-                            Using Cmd As New OleDbCommand("select code,count(code) as qty,rate from [sheet1$] group by code,rate", icon)
-                                Dim Rs = Cmd.ExecuteReader(CommandBehavior.CloseConnection)
-                                While Rs.Read
-                                    TG.Rows.Add()
-                                    TG.Item(1, TG.Rows.Count - 1).Value = TG.Rows.Count
-                                    TG.Item(2, TG.Rows.Count - 1).Value = Rs.GetString(0)
-                                    TG.Item(7, TG.Rows.Count - 1).Value = Rs.Item(1)
-                                    TG.Item(10, TG.Rows.Count - 1).Value = "NO"
-                                    'TG.Item(5, TG.Rows.Count - 1).Value = Rs.Item(2)
-                                    TG.Item(6, TG.Rows.Count - 1).Value = Format(Rs.Item(2), "0.00")
-                                End While
-                            End Using
-                            icon.Close()
-                        End Using
-
+                If chkRateUpdate.Checked Then
+                    If chkLESWQ.Checked Then
+                        SQL = "SELECT code, SUM(qty) AS qty1, rate FROM [sheet1$] GROUP BY code, rate"
                     Else
-
-                        Using icon As New OleDbConnection(connectionString)
-                            icon.Open()
-                            Using Cmd As New OleDbCommand("select code,sum(qty) as qty1,rate from [sheet1$] group by code,rate", icon)
-                                Dim Rs = Cmd.ExecuteReader(CommandBehavior.CloseConnection)
-                                While Rs.Read
-                                    TG.Rows.Add()
-                                    TG.Item(1, TG.Rows.Count - 1).Value = TG.Rows.Count
-                                    TG.Item(2, TG.Rows.Count - 1).Value = Rs.GetString(0)
-                                    TG.Item(7, TG.Rows.Count - 1).Value = Rs.Item(1)
-                                    TG.Item(10, TG.Rows.Count - 1).Value = "NO"
-                                    'TG.Item(5, TG.Rows.Count - 1).Value = Rs.Item(2)
-                                    TG.Item(6, TG.Rows.Count - 1).Value = Format(Rs.Item(2), "0.00")
-                                End While
-                            End Using
-                            icon.Close()
-                        End Using
-
+                        SQL = "SELECT code, COUNT(code) AS qty, rate FROM [sheet1$] GROUP BY code, rate"
                     End If
-
                 Else
-
-                    If chkLESWQ.Checked = False Then
-
-                        Using icon As New OleDbConnection(connectionString)
-                            icon.Open()
-                            Using Cmd As New OleDbCommand("select code,count(code) as qty from [sheet1$] group by code", icon)
-                                Dim Rs = Cmd.ExecuteReader(CommandBehavior.CloseConnection)
-                                While Rs.Read
-                                    TG.Rows.Add()
-                                    TG.Item(1, TG.Rows.Count - 1).Value = TG.Rows.Count
-                                    TG.Item(2, TG.Rows.Count - 1).Value = Rs.GetString(0)
-                                    TG.Item(7, TG.Rows.Count - 1).Value = Rs.Item(1)
-                                    TG.Item(10, TG.Rows.Count - 1).Value = "NO"
-                                    'TG.Item(5, TG.Rows.Count - 1).Value = Rs.Item(2)
-                                    'TG.Item(6, TG.Rows.Count - 1).Value = Format(Rs.Item(2), "0.00")
-                                End While
-                            End Using
-                            icon.Close()
-                        End Using
-
+                    If chkLESWQ.Checked Then
+                        SQL = "SELECT code, SUM(qty) AS qty1 FROM [sheet1$] GROUP BY code"
                     Else
-
-                        Using icon As New OleDbConnection(connectionString)
-                            icon.Open()
-                            Using Cmd As New OleDbCommand("select code,sum(qty) as qty1 from [sheet1$] group by code", icon)
-                                Dim Rs = Cmd.ExecuteReader(CommandBehavior.CloseConnection)
-                                While Rs.Read
-                                    TG.Rows.Add()
-                                    TG.Item(1, TG.Rows.Count - 1).Value = TG.Rows.Count
-                                    TG.Item(2, TG.Rows.Count - 1).Value = Rs.GetString(0)
-                                    TG.Item(7, TG.Rows.Count - 1).Value = Rs.Item(1)
-                                    TG.Item(10, TG.Rows.Count - 1).Value = "NO"
-                                    'TG.Item(5, TG.Rows.Count - 1).Value = Rs.Item(2)
-                                    'TG.Item(6, TG.Rows.Count - 1).Value = Format(Rs.Item(2), "0.00")
-                                End While
-                            End Using
-                            icon.Close()
-                        End Using
-
+                        SQL = "SELECT code, COUNT(code) AS qty FROM [sheet1$] GROUP BY code"
                     End If
-
                 End If
+
+                Using icon As New OleDbConnection(connectionString)
+                    icon.Open()
+                    Using Cmd As New OleDbCommand(SQL, icon)
+                        Using Rs = Cmd.ExecuteReader()
+                            While Rs.Read
+                                TG.Rows.Add()
+                                TG.Item(1, TG.Rows.Count - 1).Value = TG.Rows.Count
+                                TG.Item(2, TG.Rows.Count - 1).Value = Rs.GetString(0)
+                                TG.Item(7, TG.Rows.Count - 1).Value = Rs.Item(1)
+                                TG.Item(10, TG.Rows.Count - 1).Value = "NO"
+
+                                ' Only when RateUpdate is checked
+                                If chkRateUpdate.Checked Then
+                                    TG.Item(6, TG.Rows.Count - 1).Value = Format(Rs.Item(2), "0.00")
+                                End If
+                            End While
+                        End Using
+                    End Using
+                End Using
 
             Catch ex As Exception
 

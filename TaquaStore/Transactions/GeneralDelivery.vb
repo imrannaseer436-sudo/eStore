@@ -1,10 +1,7 @@
 ﻿'********************************* In the name of Allah, Most Merciful, Most Compassionate **************************
 Imports System.Data.SqlClient
-Imports System.Web.UI.WebControls.WebParts
 Imports OfficeOpenXml
-Imports OfficeOpenXml.ConditionalFormatting
-Imports OfficeOpenXml.FormulaParsing.Utilities
-Imports Syncfusion.Windows.Forms.Tools
+
 Public Class GeneralDelivery
 
     Private PluID As Integer
