@@ -1,5 +1,10 @@
 ﻿'********************************* In the name of Allah, Most Merciful, Most Compassionate **************************
 Imports System.Data.SqlClient
+Imports System.Web.UI.WebControls.WebParts
+Imports OfficeOpenXml
+Imports OfficeOpenXml.ConditionalFormatting
+Imports OfficeOpenXml.FormulaParsing.Utilities
+Imports Syncfusion.Windows.Forms.Tools
 Public Class GeneralDelivery
 
     Private PluID As Integer
@@ -395,4 +400,42 @@ Public Class GeneralDelivery
 
     End Function
 
+    Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
+
+        Dim sfd1 As New SaveFileDialog
+        sfd1.Title = "Please select export location"
+        sfd1.FileName = "General Delivery Report"
+        sfd1.Filter = "Excel Files (*.xlsx)|*.xlsx"
+        If sfd1.ShowDialog = DialogResult.Cancel Then Exit Sub
+
+        Dim fileName = sfd1.FileName & ".xlsx"
+        ESSA.OpenConnection()
+
+        SQL = "SELECT M.VchNo, M.VchDt, C.CustomerName, M.Remarks,A.Department,A.Category ,PM.Plucode,PM.Pluname [Desc], D.Qty, PM.CostPrice, D.Rate [Retail Price]
+                FROM DCMast M
+                JOIN DCDet D ON M.VchNo = D.VchNo
+                JOIN ProductMaster PM ON PM.PluID = D.PluID 
+                JOIN ProductAttributes A ON A.PluId = D.PluID
+                JOIN Customers C ON C.CustomerID = M.CustID
+                ORDER BY M.VchNo"
+
+        Dim table As New DataTable
+
+        Using adapter As New SqlDataAdapter(SQL, Con)
+
+            adapter.Fill(table)
+
+        End Using
+
+
+        Using package As New ExcelPackage(New IO.FileInfo(fileName))
+            Dim ws As ExcelWorksheet = package.Workbook.Worksheets.Add("Sheet1")
+            ws.Cells("A1").LoadFromDataTable(Table, True)
+            package.Save()
+        End Using
+
+        MsgBox("File exported successfully..!", MsgBoxStyle.Exclamation)
+
+
+    End Sub
 End Class

@@ -2,7 +2,7 @@
 Imports System.Data.SqlClient
 Imports System.Diagnostics.Eventing.Reader
 
-Public Class DiscountAssigner
+Public Class DiscountAssignerNew
 
     Private ReasonProvided As Boolean = False
     Private LSERVER As String = "LIVESERVER"
@@ -10,61 +10,61 @@ Public Class DiscountAssigner
 
     Private Sub DiscountAssigner_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
 
-        If e.KeyCode = Keys.F2 Then
+        'If e.KeyCode = Keys.F2 Then
 
-            Dim Tmp As Integer = 0
-            Dim TMd As SByte = 0
-            Dim DVal = Val(InputBox("Enter discount percentage..!"))
+        '    Dim Tmp As Integer = 0
+        '    Dim TMd As SByte = 0
+        '    Dim DVal = Val(InputBox("Enter discount percentage..!"))
 
-            For i As Integer = 0 To TG.Rows.Count - 1
-                TG.Item(5, i).Value = Format(DVal, "00.0")
-                Tmp = Int(Val(TG.Item(4, i).Value) - ((Val(TG.Item(4, i).Value) * DVal) / 100))
-                TMd = Tmp Mod 5
-                If TMd > 0 Then
-                    Tmp = Tmp + (5 - TMd)
-                End If
+        '    For i As Integer = 0 To TG.Rows.Count - 1
+        '        TG.Item(5, i).Value = Format(DVal, "00.0")
+        '        Tmp = Int(Val(TG.Item(4, i).Value) - ((Val(TG.Item(4, i).Value) * DVal) / 100))
+        '        TMd = Tmp Mod 5
+        '        If TMd > 0 Then
+        '            Tmp = Tmp + (5 - TMd)
+        '        End If
 
-                If chkLWR.Checked = True Then
-                    Tmp = RoundOff(Tmp)
-                End If
+        '        If chkLWR.Checked = True Then
+        '            Tmp = RoundOff(Tmp)
+        '        End If
 
-                TG.Item(6, i).Value = Format(Tmp, "0.00")
-            Next
+        '        TG.Item(6, i).Value = Format(Tmp, "0.00")
+        '    Next
 
-        ElseIf e.KeyCode = Keys.F3 Then
+        'ElseIf e.KeyCode = Keys.F3 Then
 
-            Dim DVal = Val(InputBox("Enter new rate..!"))
-            For i As Integer = 0 To TG.Rows.Count - 1
-                TG.Item(6, i).Value = Format(DVal, "00.00")
-            Next
+        '    Dim DVal = Val(InputBox("Enter new rate..!"))
+        '    For i As Integer = 0 To TG.Rows.Count - 1
+        '        TG.Item(6, i).Value = Format(DVal, "00.00")
+        '    Next
 
-        ElseIf e.KeyCode = Keys.F6 Then
+        'ElseIf e.KeyCode = Keys.F6 Then
 
-            ApplyFlag(TG, 10, "YES")
+        '    ApplyFlag(TG, 10, "YES")
 
-        ElseIf e.KeyCode = Keys.F7 Then
+        'ElseIf e.KeyCode = Keys.F7 Then
 
-            ApplyFlag(TG, 10, "NO")
+        '    ApplyFlag(TG, 10, "NO")
 
-        ElseIf e.KeyCode = Keys.F8 Then
+        'ElseIf e.KeyCode = Keys.F8 Then
 
-            If MsgBox("Do you want to show discount percentage..?", MsgBoxStyle.Question + MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+        '    If MsgBox("Do you want to show discount percentage..?", MsgBoxStyle.Question + MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
-            Dim revDiscount As Double = 0
+        '    Dim revDiscount As Double = 0
 
-            For i As Integer = 0 To TG.Rows.Count - 1
+        '    For i As Integer = 0 To TG.Rows.Count - 1
 
-                revDiscount = (Val(TG.Item(6, i).Value) / Val(TG.Item(4, i).Value)) * 100
-                TG.Item(5, i).Value = Format(revDiscount, "0.0")
+        '        revDiscount = (Val(TG.Item(6, i).Value) / Val(TG.Item(4, i).Value)) * 100
+        '        TG.Item(5, i).Value = Format(revDiscount, "0.0")
 
-            Next
+        '    Next
 
-        ElseIf e.KeyCode = Keys.F9 Then
+        'ElseIf e.KeyCode = Keys.F9 Then
 
-            If TG.CurrentRow Is Nothing Then Exit Sub
-            TG.Rows.RemoveAt(TG.CurrentRow.Index)
+        '    If TG.CurrentRow Is Nothing Then Exit Sub
+        '    TG.Rows.RemoveAt(TG.CurrentRow.Index)
 
-        End If
+        'End If
 
     End Sub
 
@@ -77,6 +77,8 @@ Public Class DiscountAssigner
     End Sub
 
     Private Sub DiscountAssigner_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        MainWindowX.pnlQV.Visible = False
 
         TG.ColumnHeadersDefaultCellStyle.Font = New Font(TG.Font, FontStyle.Bold)
 
@@ -746,16 +748,6 @@ Public Class DiscountAssigner
 
     End Sub
 
-    Private Sub btnShowRM_Click(sender As Object, e As EventArgs) Handles btnShowRM.Click
-
-        If TG.Rows.Count = 0 Then Exit Sub
-        pnlRM.Visible = True
-        cmbMode.SelectedIndex = 0
-        cmbType.SelectedIndex = 0
-        cmbMode.Focus()
-
-    End Sub
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles BtnHide2.Click
 
         PnlDisReason.Visible = False
@@ -846,6 +838,98 @@ Public Class DiscountAssigner
             Exit Sub
 
         End If
+
+    End Sub
+
+    Private Sub btnDisAssignerClose_Click(sender As Object, e As EventArgs) Handles btnDisAssignerClose.Click
+
+        If MsgBox("Are you sure, do you want to close..?", MsgBoxStyle.Question + MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+        MainWindowX.CloseTab(Me.Name)
+
+    End Sub
+
+    Private Sub DiscountAssignerNew_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+
+        ESSA.MovetoCenter(pnlHint, Me)
+        ESSA.MovetoCenter(pnlRM, Me)
+        ESSA.MovetoCenter(PnlDisReason, Me)
+        ESSA.MovetoCenter(lblLoad, Me)
+
+    End Sub
+
+    Private Sub btnRateModifier_Click(sender As Object, e As EventArgs) Handles btnRateModifier.Click
+
+        If TG.Rows.Count = 0 Then Exit Sub
+        pnlRM.Visible = True
+        cmbMode.SelectedIndex = 0
+        cmbType.SelectedIndex = 0
+        cmbMode.Focus()
+
+    End Sub
+
+    Private Sub btnF2Discount_Click(sender As Object, e As EventArgs) Handles btnF2Discount.Click
+
+        Dim Tmp As Integer = 0
+        Dim TMd As SByte = 0
+        Dim DVal = Val(InputBox("Enter discount percentage..!"))
+
+        For i As Integer = 0 To TG.Rows.Count - 1
+            TG.Item(5, i).Value = Format(DVal, "00.0")
+            Tmp = Int(Val(TG.Item(4, i).Value) - ((Val(TG.Item(4, i).Value) * DVal) / 100))
+            TMd = Tmp Mod 5
+            If TMd > 0 Then
+                Tmp = Tmp + (5 - TMd)
+            End If
+
+            If chkLWR.Checked = True Then
+                Tmp = RoundOff(Tmp)
+            End If
+
+            TG.Item(6, i).Value = Format(Tmp, "0.00")
+        Next
+
+    End Sub
+
+    Private Sub btnF3Rate_Click(sender As Object, e As EventArgs) Handles btnF3Rate.Click
+
+        Dim DVal = Val(InputBox("Enter new rate..!"))
+        For i As Integer = 0 To TG.Rows.Count - 1
+            TG.Item(6, i).Value = Format(DVal, "00.00")
+        Next
+
+    End Sub
+
+    Private Sub btnF6Yes_Click(sender As Object, e As EventArgs) Handles btnF6Yes.Click
+
+        ApplyFlag(TG, 10, "YES")
+
+    End Sub
+
+    Private Sub btnF7No_Click(sender As Object, e As EventArgs) Handles btnF7No.Click
+
+        ApplyFlag(TG, 10, "NO")
+
+    End Sub
+
+    Private Sub btnF8SDV_Click(sender As Object, e As EventArgs) Handles btnF8SDV.Click
+
+        If MsgBox("Do you want to show discount percentage..?", MsgBoxStyle.Question + MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+        Dim revDiscount As Double = 0
+
+        For i As Integer = 0 To TG.Rows.Count - 1
+
+            revDiscount = (Val(TG.Item(6, i).Value) / Val(TG.Item(4, i).Value)) * 100
+            TG.Item(5, i).Value = Format(revDiscount, "0.0")
+
+        Next
+
+    End Sub
+
+    Private Sub btnF9DeleteRow_Click(sender As Object, e As EventArgs) Handles btnF9DeleteRow.Click
+
+        If TG.CurrentRow Is Nothing Then Exit Sub
+        TG.Rows.RemoveAt(TG.CurrentRow.Index)
 
     End Sub
 End Class

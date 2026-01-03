@@ -72,6 +72,7 @@ Partial Class GeneralDelivery
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.pnlAlter = New System.Windows.Forms.Panel()
+        Me.chkCostPrice = New System.Windows.Forms.CheckBox()
         Me.btnHide = New System.Windows.Forms.Button()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TGAlter = New System.Windows.Forms.DataGridView()
@@ -83,7 +84,7 @@ Partial Class GeneralDelivery
         Me.Column12 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Column13 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.chkCostPrice = New System.Windows.Forms.CheckBox()
+        Me.btnExport = New System.Windows.Forms.Button()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -95,6 +96,7 @@ Partial Class GeneralDelivery
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(71, Byte), Integer))
+        Me.Panel3.Controls.Add(Me.btnExport)
         Me.Panel3.Controls.Add(Me.btnAlter)
         Me.Panel3.Controls.Add(Me.btnReset)
         Me.Panel3.Controls.Add(Me.btnSave)
@@ -249,7 +251,7 @@ Partial Class GeneralDelivery
         Me.Label11.ForeColor = System.Drawing.Color.DimGray
         Me.Label11.Location = New System.Drawing.Point(413, 180)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(58, 13)
+        Me.Label11.Size = New System.Drawing.Size(56, 13)
         Me.Label11.TabIndex = 34
         Me.Label11.Text = "QUANTITY"
         '
@@ -259,7 +261,7 @@ Partial Class GeneralDelivery
         Me.Label10.ForeColor = System.Drawing.Color.DimGray
         Me.Label10.Location = New System.Drawing.Point(361, 180)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(32, 13)
+        Me.Label10.Size = New System.Drawing.Size(31, 13)
         Me.Label10.TabIndex = 34
         Me.Label10.Text = "RATE"
         '
@@ -269,7 +271,7 @@ Partial Class GeneralDelivery
         Me.Label9.ForeColor = System.Drawing.Color.DimGray
         Me.Label9.Location = New System.Drawing.Point(100, 180)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(130, 13)
+        Me.Label9.Size = New System.Drawing.Size(128, 13)
         Me.Label9.TabIndex = 34
         Me.Label9.Text = "PRODUCT DESCRIPTION"
         '
@@ -321,7 +323,7 @@ Partial Class GeneralDelivery
         Me.Label5.ForeColor = System.Drawing.Color.DimGray
         Me.Label5.Location = New System.Drawing.Point(100, 44)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(83, 13)
+        Me.Label5.Size = New System.Drawing.Size(82, 13)
         Me.Label5.TabIndex = 30
         Me.Label5.Text = "CHALLAN DATE"
         '
@@ -460,7 +462,7 @@ Partial Class GeneralDelivery
         Me.Label2.ForeColor = System.Drawing.Color.DimGray
         Me.Label2.Location = New System.Drawing.Point(200, 44)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(99, 13)
+        Me.Label2.Size = New System.Drawing.Size(98, 13)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "CUSTOMER NAME"
         '
@@ -590,6 +592,17 @@ Partial Class GeneralDelivery
         Me.pnlAlter.TabIndex = 22
         Me.pnlAlter.Visible = False
         '
+        'chkCostPrice
+        '
+        Me.chkCostPrice.AutoSize = True
+        Me.chkCostPrice.ForeColor = System.Drawing.SystemColors.HighlightText
+        Me.chkCostPrice.Location = New System.Drawing.Point(436, 7)
+        Me.chkCostPrice.Name = "chkCostPrice"
+        Me.chkCostPrice.Size = New System.Drawing.Size(85, 17)
+        Me.chkCostPrice.TabIndex = 10
+        Me.chkCostPrice.Text = "COST PRICE"
+        Me.chkCostPrice.UseVisualStyleBackColor = True
+        '
         'btnHide
         '
         Me.btnHide.BackColor = System.Drawing.Color.White
@@ -714,16 +727,20 @@ Partial Class GeneralDelivery
         Me.Column14.ReadOnly = True
         Me.Column14.Width = 20
         '
-        'chkCostPrice
+        'btnExport
         '
-        Me.chkCostPrice.AutoSize = True
-        Me.chkCostPrice.ForeColor = System.Drawing.SystemColors.HighlightText
-        Me.chkCostPrice.Location = New System.Drawing.Point(436, 7)
-        Me.chkCostPrice.Name = "chkCostPrice"
-        Me.chkCostPrice.Size = New System.Drawing.Size(86, 17)
-        Me.chkCostPrice.TabIndex = 10
-        Me.chkCostPrice.Text = "COST PRICE"
-        Me.chkCostPrice.UseVisualStyleBackColor = True
+        Me.btnExport.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnExport.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(121, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.btnExport.FlatAppearance.BorderSize = 0
+        Me.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnExport.ForeColor = System.Drawing.Color.White
+        Me.btnExport.Location = New System.Drawing.Point(474, 4)
+        Me.btnExport.Name = "btnExport"
+        Me.btnExport.Size = New System.Drawing.Size(67, 30)
+        Me.btnExport.TabIndex = 4
+        Me.btnExport.Tag = "1"
+        Me.btnExport.Text = "EXPORT"
+        Me.btnExport.UseVisualStyleBackColor = False
         '
         'GeneralDelivery
         '
@@ -806,4 +823,5 @@ Partial Class GeneralDelivery
     Friend WithEvents Column13 As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents Column14 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents chkCostPrice As CheckBox
+    Friend WithEvents btnExport As Button
 End Class

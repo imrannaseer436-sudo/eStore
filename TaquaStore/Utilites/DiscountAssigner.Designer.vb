@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class DiscountAssigner
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,11 +20,27 @@ Partial Class DiscountAssigner
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DiscountAssigner))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DiscountAssigner))
         Me.TG = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtFileName = New System.Windows.Forms.TextBox()
         Me.btnBrowse = New System.Windows.Forms.Button()
@@ -49,6 +65,17 @@ Partial Class DiscountAssigner
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtDate = New System.Windows.Forms.TextBox()
         Me.TGTMP = New System.Windows.Forms.DataGridView()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.btnCle = New System.Windows.Forms.Button()
         Me.chkLoadCostPrice = New System.Windows.Forms.CheckBox()
@@ -82,33 +109,7 @@ Partial Class DiscountAssigner
         Me.BtnReason = New System.Windows.Forms.Button()
         Me.CmbShop = New System.Windows.Forms.ComboBox()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.chkRateUpdate = New System.Windows.Forms.CheckBox()
         CType(Me.TG, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlHint.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -131,6 +132,109 @@ Partial Class DiscountAssigner
         Me.TG.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.TG.Size = New System.Drawing.Size(753, 350)
         Me.TG.TabIndex = 5
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "ID"
+        Me.Column1.Name = "Column1"
+        Me.Column1.Visible = False
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Sno"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        Me.Column2.Width = 50
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Code"
+        Me.Column3.Name = "Column3"
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "Description"
+        Me.Column4.Name = "Column4"
+        Me.Column4.ReadOnly = True
+        Me.Column4.Width = 210
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "OLD Rate"
+        Me.Column5.Name = "Column5"
+        Me.Column5.Width = 80
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Discount"
+        Me.Column6.Name = "Column6"
+        Me.Column6.Width = 60
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "New Rate"
+        Me.Column7.Name = "Column7"
+        Me.Column7.Width = 80
+        '
+        'Column9
+        '
+        Me.Column9.HeaderText = "Copies"
+        Me.Column9.Name = "Column9"
+        Me.Column9.Width = 60
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = ""
+        Me.Column8.Name = "Column8"
+        Me.Column8.ReadOnly = True
+        Me.Column8.Visible = False
+        Me.Column8.Width = 20
+        '
+        'Column10
+        '
+        Me.Column10.HeaderText = "ID"
+        Me.Column10.Name = "Column10"
+        Me.Column10.Visible = False
+        '
+        'Column17
+        '
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Column17.DefaultCellStyle = DataGridViewCellStyle1
+        Me.Column17.HeaderText = "S.Discount"
+        Me.Column17.Name = "Column17"
+        Me.Column17.ReadOnly = True
+        Me.Column17.Width = 88
+        '
+        'Column18
+        '
+        Me.Column18.HeaderText = ""
+        Me.Column18.Name = "Column18"
+        Me.Column18.ReadOnly = True
+        Me.Column18.Width = 20
+        '
+        'Column24
+        '
+        Me.Column24.HeaderText = "product"
+        Me.Column24.Name = "Column24"
+        Me.Column24.Visible = False
+        '
+        'Column25
+        '
+        Me.Column25.HeaderText = "style"
+        Me.Column25.Name = "Column25"
+        Me.Column25.Visible = False
+        '
+        'Column26
+        '
+        Me.Column26.HeaderText = "material"
+        Me.Column26.Name = "Column26"
+        Me.Column26.Visible = False
+        '
+        'Column27
+        '
+        Me.Column27.HeaderText = "color"
+        Me.Column27.Name = "Column27"
+        Me.Column27.Visible = False
         '
         'Label1
         '
@@ -388,6 +492,72 @@ Partial Class DiscountAssigner
         Me.TGTMP.TabIndex = 8
         Me.TGTMP.Visible = False
         '
+        'Column11
+        '
+        Me.Column11.HeaderText = "code"
+        Me.Column11.Name = "Column11"
+        Me.Column11.ReadOnly = True
+        '
+        'Column12
+        '
+        Me.Column12.HeaderText = "desc"
+        Me.Column12.Name = "Column12"
+        Me.Column12.ReadOnly = True
+        '
+        'Column13
+        '
+        Me.Column13.HeaderText = "oprice"
+        Me.Column13.Name = "Column13"
+        Me.Column13.ReadOnly = True
+        '
+        'Column14
+        '
+        Me.Column14.HeaderText = "disc"
+        Me.Column14.Name = "Column14"
+        Me.Column14.ReadOnly = True
+        '
+        'Column15
+        '
+        Me.Column15.HeaderText = "nprice"
+        Me.Column15.Name = "Column15"
+        Me.Column15.ReadOnly = True
+        '
+        'Column16
+        '
+        Me.Column16.HeaderText = "id"
+        Me.Column16.Name = "Column16"
+        Me.Column16.ReadOnly = True
+        '
+        'Column19
+        '
+        Me.Column19.HeaderText = "size"
+        Me.Column19.Name = "Column19"
+        Me.Column19.ReadOnly = True
+        '
+        'Column20
+        '
+        Me.Column20.HeaderText = "product"
+        Me.Column20.Name = "Column20"
+        Me.Column20.ReadOnly = True
+        '
+        'Column21
+        '
+        Me.Column21.HeaderText = "style"
+        Me.Column21.Name = "Column21"
+        Me.Column21.ReadOnly = True
+        '
+        'Column22
+        '
+        Me.Column22.HeaderText = "material"
+        Me.Column22.Name = "Column22"
+        Me.Column22.ReadOnly = True
+        '
+        'Column23
+        '
+        Me.Column23.HeaderText = "color"
+        Me.Column23.Name = "Column23"
+        Me.Column23.ReadOnly = True
+        '
         'Label10
         '
         Me.Label10.AutoSize = True
@@ -597,7 +767,7 @@ Partial Class DiscountAssigner
         'chkLESWQ
         '
         Me.chkLESWQ.AutoSize = True
-        Me.chkLESWQ.Location = New System.Drawing.Point(174, 52)
+        Me.chkLESWQ.Location = New System.Drawing.Point(12, 52)
         Me.chkLESWQ.Name = "chkLESWQ"
         Me.chkLESWQ.Size = New System.Drawing.Size(177, 18)
         Me.chkLESWQ.TabIndex = 19
@@ -740,7 +910,7 @@ Partial Class DiscountAssigner
         '
         'BtnReason
         '
-        Me.BtnReason.Location = New System.Drawing.Point(696, 26)
+        Me.BtnReason.Location = New System.Drawing.Point(696, 28)
         Me.BtnReason.Name = "BtnReason"
         Me.BtnReason.Size = New System.Drawing.Size(69, 23)
         Me.BtnReason.TabIndex = 5
@@ -764,180 +934,22 @@ Partial Class DiscountAssigner
         Me.Label18.TabIndex = 26
         Me.Label18.Text = "Shop"
         '
-        'Column11
+        'chkRateUpdate
         '
-        Me.Column11.HeaderText = "code"
-        Me.Column11.Name = "Column11"
-        Me.Column11.ReadOnly = True
-        '
-        'Column12
-        '
-        Me.Column12.HeaderText = "desc"
-        Me.Column12.Name = "Column12"
-        Me.Column12.ReadOnly = True
-        '
-        'Column13
-        '
-        Me.Column13.HeaderText = "oprice"
-        Me.Column13.Name = "Column13"
-        Me.Column13.ReadOnly = True
-        '
-        'Column14
-        '
-        Me.Column14.HeaderText = "disc"
-        Me.Column14.Name = "Column14"
-        Me.Column14.ReadOnly = True
-        '
-        'Column15
-        '
-        Me.Column15.HeaderText = "nprice"
-        Me.Column15.Name = "Column15"
-        Me.Column15.ReadOnly = True
-        '
-        'Column16
-        '
-        Me.Column16.HeaderText = "id"
-        Me.Column16.Name = "Column16"
-        Me.Column16.ReadOnly = True
-        '
-        'Column19
-        '
-        Me.Column19.HeaderText = "size"
-        Me.Column19.Name = "Column19"
-        Me.Column19.ReadOnly = True
-        '
-        'Column20
-        '
-        Me.Column20.HeaderText = "product"
-        Me.Column20.Name = "Column20"
-        Me.Column20.ReadOnly = True
-        '
-        'Column21
-        '
-        Me.Column21.HeaderText = "style"
-        Me.Column21.Name = "Column21"
-        Me.Column21.ReadOnly = True
-        '
-        'Column22
-        '
-        Me.Column22.HeaderText = "material"
-        Me.Column22.Name = "Column22"
-        Me.Column22.ReadOnly = True
-        '
-        'Column23
-        '
-        Me.Column23.HeaderText = "color"
-        Me.Column23.Name = "Column23"
-        Me.Column23.ReadOnly = True
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "ID"
-        Me.Column1.Name = "Column1"
-        Me.Column1.Visible = False
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Sno"
-        Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
-        Me.Column2.Width = 50
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Code"
-        Me.Column3.Name = "Column3"
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "Description"
-        Me.Column4.Name = "Column4"
-        Me.Column4.ReadOnly = True
-        Me.Column4.Width = 210
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "OLD Rate"
-        Me.Column5.Name = "Column5"
-        Me.Column5.Width = 80
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "Discount"
-        Me.Column6.Name = "Column6"
-        Me.Column6.Width = 60
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "New Rate"
-        Me.Column7.Name = "Column7"
-        Me.Column7.Width = 80
-        '
-        'Column9
-        '
-        Me.Column9.HeaderText = "Copies"
-        Me.Column9.Name = "Column9"
-        Me.Column9.Width = 60
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = ""
-        Me.Column8.Name = "Column8"
-        Me.Column8.ReadOnly = True
-        Me.Column8.Visible = False
-        Me.Column8.Width = 20
-        '
-        'Column10
-        '
-        Me.Column10.HeaderText = "ID"
-        Me.Column10.Name = "Column10"
-        Me.Column10.Visible = False
-        '
-        'Column17
-        '
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Column17.DefaultCellStyle = DataGridViewCellStyle1
-        Me.Column17.HeaderText = "S.Discount"
-        Me.Column17.Name = "Column17"
-        Me.Column17.ReadOnly = True
-        Me.Column17.Width = 88
-        '
-        'Column18
-        '
-        Me.Column18.HeaderText = ""
-        Me.Column18.Name = "Column18"
-        Me.Column18.ReadOnly = True
-        Me.Column18.Width = 20
-        '
-        'Column24
-        '
-        Me.Column24.HeaderText = "product"
-        Me.Column24.Name = "Column24"
-        Me.Column24.Visible = False
-        '
-        'Column25
-        '
-        Me.Column25.HeaderText = "style"
-        Me.Column25.Name = "Column25"
-        Me.Column25.Visible = False
-        '
-        'Column26
-        '
-        Me.Column26.HeaderText = "material"
-        Me.Column26.Name = "Column26"
-        Me.Column26.Visible = False
-        '
-        'Column27
-        '
-        Me.Column27.HeaderText = "color"
-        Me.Column27.Name = "Column27"
-        Me.Column27.Visible = False
+        Me.chkRateUpdate.AutoSize = True
+        Me.chkRateUpdate.Location = New System.Drawing.Point(195, 52)
+        Me.chkRateUpdate.Name = "chkRateUpdate"
+        Me.chkRateUpdate.Size = New System.Drawing.Size(75, 18)
+        Me.chkRateUpdate.TabIndex = 27
+        Me.chkRateUpdate.Text = "Load Rate"
+        Me.chkRateUpdate.UseVisualStyleBackColor = True
         '
         'DiscountAssigner
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(782, 526)
+        Me.Controls.Add(Me.chkRateUpdate)
         Me.Controls.Add(Me.PnlDisReason)
         Me.Controls.Add(Me.Label18)
         Me.Controls.Add(Me.CmbShop)
@@ -1005,7 +1017,6 @@ Partial Class DiscountAssigner
     Friend WithEvents SimpleLine1 As simpleline.assemblies.simpleLine
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents cmbLableFormat As System.Windows.Forms.ComboBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
@@ -1072,4 +1083,6 @@ Partial Class DiscountAssigner
     Friend WithEvents Column25 As DataGridViewTextBoxColumn
     Friend WithEvents Column26 As DataGridViewTextBoxColumn
     Friend WithEvents Column27 As DataGridViewTextBoxColumn
+    Friend WithEvents chkRateUpdate As CheckBox
+    Friend WithEvents Panel1 As Panel
 End Class

@@ -595,7 +595,6 @@ Partial Class ProductDeliveryMaster
         Me.TG.Location = New System.Drawing.Point(11, 3)
         Me.TG.Name = "TG"
         Me.TG.ReadOnly = True
-        Me.TG.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         Me.TG.RowHeadersVisible = False
         Me.TG.RowTemplate.Height = 30
         Me.TG.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect

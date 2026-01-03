@@ -599,6 +599,12 @@
     <Compile Include="Utilites\CodeReaderViewOld.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilites\DiscountAssignerNew.Designer.vb">
+      <DependentUpon>DiscountAssignerNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilites\DiscountAssignerNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilites\DiscountAssigner.Designer.vb">
       <DependentUpon>DiscountAssigner.vb</DependentUpon>
     </Compile>
@@ -1501,6 +1507,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilites\CodeReaderViewOld.resx">
       <DependentUpon>CodeReaderViewOld.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilites\DiscountAssignerNew.resx">
+      <DependentUpon>DiscountAssignerNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilites\DiscountAssigner.resx">
       <DependentUpon>DiscountAssigner.vb</DependentUpon>

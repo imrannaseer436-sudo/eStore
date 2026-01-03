@@ -1,5 +1,7 @@
 ﻿'*************************************** Bismillah **************************************************
 Imports System.Data.SqlClient
+Imports System.Data.OleDb
+
 Public Class ManualReturn
 
     Private PluID As Integer
@@ -114,7 +116,7 @@ Public Class ManualReturn
 
                     If cmbVendor.SelectedValue = 1 Then
                         txtRQty.Text = 1
-                        AutomatedEntry()
+                        AddToGrid()
                     Else
                         txtRQty.Focus()
                     End If
@@ -191,10 +193,13 @@ Public Class ManualReturn
         txtRmrks.Clear()
         txtRQty.Clear()
         txtStock.Clear()
+        txtRate.Clear()
+        txtDisPerc.Clear()
 
         cmbVendor.Focus()
         cmbTransport.SelectedIndex = cmbTransport.FindStringExact("UNSPECIFIED")
         cmbCourier.SelectedIndex = cmbCourier.FindStringExact("UNSPECIFIED")
+        cmbVendor.Enabled = True
 
     End Sub
 
@@ -399,6 +404,7 @@ Public Class ManualReturn
     Private Sub ManualReturn_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
 
         ESSA.MovetoCenter(pnlGList, Me)
+        ESSA.MovetoCenter(pnlExcelImport, Me)
 
     End Sub
 
@@ -421,7 +427,11 @@ Public Class ManualReturn
 
     Private Sub cmbCTax_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbCTax.KeyDown
 
-        AutomatedEntry()
+        If txtCode.Text = "" Or txtRQty.Text = "" Then
+            Exit Sub
+        End If
+
+        AddToGrid()
 
     End Sub
 
@@ -461,7 +471,7 @@ Public Class ManualReturn
         pnlGList.Hide()
 
     End Sub
-    Private Sub AutomatedEntry()
+    Private Sub AddToGrid()
 
         Dim NRI = ESSA.FindGridIndex(TG, 0, PluID)
 
@@ -509,15 +519,16 @@ Public Class ManualReturn
         TG.Item(8, NRI).Value = Format(TaxAmt, "0.00")
         TG.Item(9, NRI).Value = Format((Amount - DisAmt) + TaxAmt, "0.00")
         TG.Item(10, NRI).Value = cmbCTax.Text.Trim
-
         TG.Item(11, NRI).Value = Format(Val(txtDisPerc.Text), "0.0")
         TG.Item(12, NRI).Value = Format(DisAmt, "0.00")
 
+        cmbVendor.Enabled = False
         txtCode.Clear()
         txtStock.Clear()
         txtRate.Clear()
         txtRQty.Clear()
         txtCode.Focus()
+        txtCode.SelectAll()
         txtTax.Clear()
 
         CalulateTotal()
@@ -532,11 +543,148 @@ Public Class ManualReturn
             txtDisPerc.Enabled = False
             txtTax.Enabled = False
             cmbCTax.SelectedIndex = 1  'making igst false
+            cmbCTax.Enabled = False
+            btnImportExcel.Visible = True
         Else
             txtRQty.Enabled = True
             txtDisPerc.Enabled = True
             txtTax.Enabled = True
             cmbCTax.SelectedIndex = 0
+            cmbCTax.Enabled = True
+            btnImportExcel.Visible = False
         End If
+    End Sub
+
+    Private Sub btnImportExcel_Click(sender As Object, e As EventArgs) Handles btnImportExcel.Click
+
+        pnlExcelImport.Visible = True
+        txtFileName.Focus()
+
+    End Sub
+
+    Private Sub btnExcelHide_Click(sender As Object, e As EventArgs) Handles btnExcelHide.Click
+
+        pnlExcelImport.Visible = False
+
+    End Sub
+
+    Private Sub btnBrowse_Click(sender As Object, e As EventArgs) Handles btnBrowse.Click
+
+
+        OFD.ShowDialog()
+        txtFileName.Text = OFD.FileName
+
+        If txtFileName.Text.Trim.Length > 0 Then
+            lblLoading.Visible = True
+            lblLoading.Refresh()
+
+            Try
+
+                Dim connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + txtFileName.Text + ";Extended Properties=""Excel 8.0;HDR=YES;"""
+                dgvExcel.Rows.Clear()
+
+                Using excelConnection As New OleDbConnection(connectionString)
+                    excelConnection.Open()
+                    Using excelCmd As New OleDbCommand("select code,sum(qty) as qty1 from [sheet1$] group by code", excelConnection)
+                        Dim reader = excelCmd.ExecuteReader(CommandBehavior.CloseConnection)
+                        While reader.Read
+                            Dim rowIndex = dgvExcel.Rows.Add()
+                            dgvExcel.Item(2, rowIndex).Value = reader(0).ToString
+                            dgvExcel.Item(4, rowIndex).Value = reader(1)
+                        End While
+                    End Using
+                    excelConnection.Close()
+                End Using
+
+            Catch ex As Exception
+
+                If ex.Message.Contains("valid name") Then
+                    MsgBox("Worksheet name should be Sheet1", MsgBoxStyle.Critical)
+                Else
+                    MsgBox(ex.Message)
+                End If
+
+            End Try
+
+        End If
+
+        ESSA.OpenConnection()
+        Dim cmd = Con.CreateCommand
+
+        For i As Short = 0 To dgvExcel.RowCount - 1
+
+            SQL = $"SELECT P.PluID,P.Pluname,P.CostPrice,V.stock
+                    FROM ProductMaster P
+                    JOIN v_stockpos V ON V.pluid = P.PluID
+                    WHERE location_id = 1 AND VendorID = 1 AND P.Plucode = '{dgvExcel.Item(2, i).Value}'"
+
+            cmd.CommandText = SQL
+            Using reader = cmd.ExecuteReader(CommandBehavior.Default)
+                If reader.Read Then
+                    dgvExcel.Item(0, i).Value = reader(0)
+                    dgvExcel.Item(1, i).Value = i + 1
+                    dgvExcel.Item(3, i).Value = reader(1)
+                    dgvExcel.Item(5, i).Value = reader(2)
+                    dgvExcel.Item(6, i).Value = Val(dgvExcel.Item(4, i).Value) * Val(dgvExcel.Item(5, i).Value)
+                    dgvExcel.Item(7, i).Value = reader(3)
+                    If Val(dgvExcel.Item(4, i).Value) > reader(3) Then
+                        dgvExcel.Rows(i).DefaultCellStyle.BackColor = Color.Crimson
+                        dgvExcel.Rows(i).DefaultCellStyle.ForeColor = Color.White
+                    End If
+                Else
+                    dgvExcel.Item(0, i).Value = 0
+                    dgvExcel.Rows(i).DefaultCellStyle.BackColor = Color.Aqua
+                End If
+            End Using
+
+        Next
+        Con.Close()
+
+        lblLoading.Visible = False
+    End Sub
+
+    Private Sub btnImport_Click(sender As Object, e As EventArgs) Handles btnImport.Click
+        For i As Short = 0 To dgvExcel.RowCount - 1
+
+            If Val(dgvExcel.Item(0, i).Value) > 0 Then
+
+                If Val(dgvExcel.Item(4, i).Value) > Val(dgvExcel.Item(7, i).Value) Then
+                    MsgBox("Insufficient Stock..!", MsgBoxStyle.Critical)
+                    Exit Sub
+                    Exit For
+                End If
+            ElseIf Val(dgvExcel.Item(0, i).Value) = 0 Then
+                MsgBox("Please try to import essa garments barcodes only..!", MsgBoxStyle.Critical)
+                Exit Sub
+                Exit For
+            End If
+        Next
+
+        TG.Rows.Clear()
+
+        For i As Short = 0 To dgvExcel.RowCount - 1
+
+            If Val(dgvExcel.Item(0, i).Value) > 0 Then
+
+                Dim rowIndex = TG.Rows.Add
+                TG.Item(0, rowIndex).Value = dgvExcel.Item(0, i).Value
+                TG.Item(1, rowIndex).Value = dgvExcel.Item(1, i).Value
+                TG.Item(2, rowIndex).Value = dgvExcel.Item(2, i).Value
+                TG.Item(3, rowIndex).Value = dgvExcel.Item(3, i).Value
+                TG.Item(4, rowIndex).Value = dgvExcel.Item(4, i).Value
+                TG.Item(5, rowIndex).Value = Format(dgvExcel.Item(5, i).Value, "0.000")
+                TG.Item(6, rowIndex).Value = Format(dgvExcel.Item(6, i).Value, "0.00")
+                TG.Item(7, rowIndex).Value = "0.0"
+                TG.Item(8, rowIndex).Value = "0.00"
+                TG.Item(9, rowIndex).Value = Format(dgvExcel.Item(6, i).Value, "0.00")
+                TG.Item(10, rowIndex).Value = "NO"
+                TG.Item(11, rowIndex).Value = "0.0"
+                TG.Item(12, rowIndex).Value = "0.00"
+            End If
+        Next
+        cmbVendor.Enabled = False
+        CalulateTotal()
+        pnlExcelImport.Visible = False
+
     End Sub
 End Class

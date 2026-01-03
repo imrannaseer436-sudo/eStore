@@ -33,6 +33,7 @@ Partial Class ManualReturn
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.btnImportExcel = New System.Windows.Forms.Button()
         Me.Label37 = New System.Windows.Forms.Label()
         Me.btnReset = New System.Windows.Forms.Button()
         Me.Label22 = New System.Windows.Forms.Label()
@@ -105,6 +106,15 @@ Partial Class ManualReturn
         Me.pnlGList = New System.Windows.Forms.Panel()
         Me.btnHideEditPnl = New System.Windows.Forms.Button()
         Me.TGGrn = New System.Windows.Forms.DataGridView()
+        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column20 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Column23 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.btnFilter = New System.Windows.Forms.Button()
         Me.cmbVdr = New System.Windows.Forms.ComboBox()
         Me.Label29 = New System.Windows.Forms.Label()
@@ -129,26 +139,38 @@ Partial Class ManualReturn
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
-        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column20 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Column23 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.pnlExcelImport = New System.Windows.Forms.Panel()
+        Me.lblLoading = New System.Windows.Forms.Label()
+        Me.btnImport = New System.Windows.Forms.Button()
+        Me.btnExcelHide = New System.Windows.Forms.Button()
+        Me.dgvExcel = New System.Windows.Forms.DataGridView()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column29 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.btnBrowse = New System.Windows.Forms.Button()
+        Me.txtFileName = New System.Windows.Forms.TextBox()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.OFD = New System.Windows.Forms.OpenFileDialog()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.TG, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlGList.SuspendLayout()
         CType(Me.TGGrn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlFrieght.SuspendLayout()
+        Me.pnlExcelImport.SuspendLayout()
+        CType(Me.dgvExcel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(71, Byte), Integer))
+        Me.Panel3.Controls.Add(Me.btnImportExcel)
         Me.Panel3.Controls.Add(Me.Label37)
         Me.Panel3.Controls.Add(Me.btnReset)
         Me.Panel3.Controls.Add(Me.Label22)
@@ -158,8 +180,23 @@ Partial Class ManualReturn
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1166, 39)
+        Me.Panel3.Size = New System.Drawing.Size(1233, 39)
         Me.Panel3.TabIndex = 4
+        '
+        'btnImportExcel
+        '
+        Me.btnImportExcel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnImportExcel.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(121, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.btnImportExcel.FlatAppearance.BorderSize = 0
+        Me.btnImportExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnImportExcel.ForeColor = System.Drawing.Color.White
+        Me.btnImportExcel.Location = New System.Drawing.Point(811, 4)
+        Me.btnImportExcel.Name = "btnImportExcel"
+        Me.btnImportExcel.Size = New System.Drawing.Size(124, 30)
+        Me.btnImportExcel.TabIndex = 22
+        Me.btnImportExcel.Tag = "1"
+        Me.btnImportExcel.Text = "IMPORT EXCEL"
+        Me.btnImportExcel.UseVisualStyleBackColor = False
         '
         'Label37
         '
@@ -177,7 +214,7 @@ Partial Class ManualReturn
         Me.btnReset.FlatAppearance.BorderSize = 0
         Me.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnReset.ForeColor = System.Drawing.Color.White
-        Me.btnReset.Location = New System.Drawing.Point(1020, 4)
+        Me.btnReset.Location = New System.Drawing.Point(1087, 4)
         Me.btnReset.Name = "btnReset"
         Me.btnReset.Size = New System.Drawing.Size(67, 30)
         Me.btnReset.TabIndex = 3
@@ -203,7 +240,7 @@ Partial Class ManualReturn
         Me.btnClose.FlatAppearance.BorderSize = 0
         Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClose.ForeColor = System.Drawing.Color.White
-        Me.btnClose.Location = New System.Drawing.Point(1093, 4)
+        Me.btnClose.Location = New System.Drawing.Point(1160, 4)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(67, 30)
         Me.btnClose.TabIndex = 4
@@ -218,7 +255,7 @@ Partial Class ManualReturn
         Me.btnEdit.FlatAppearance.BorderSize = 0
         Me.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEdit.ForeColor = System.Drawing.Color.White
-        Me.btnEdit.Location = New System.Drawing.Point(947, 4)
+        Me.btnEdit.Location = New System.Drawing.Point(1014, 4)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(67, 30)
         Me.btnEdit.TabIndex = 1
@@ -232,7 +269,7 @@ Partial Class ManualReturn
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(874, 4)
+        Me.btnSave.Location = New System.Drawing.Point(941, 4)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(67, 30)
         Me.btnSave.TabIndex = 0
@@ -302,7 +339,7 @@ Partial Class ManualReturn
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 39)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1166, 279)
+        Me.Panel1.Size = New System.Drawing.Size(1233, 279)
         Me.Panel1.TabIndex = 5
         '
         'Label19
@@ -804,7 +841,7 @@ Partial Class ManualReturn
         Me.TG.RowHeadersVisible = False
         Me.TG.RowTemplate.Height = 25
         Me.TG.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.TG.Size = New System.Drawing.Size(1166, 220)
+        Me.TG.Size = New System.Drawing.Size(1233, 220)
         Me.TG.TabIndex = 6
         '
         'Column7
@@ -980,6 +1017,81 @@ Partial Class ManualReturn
         Me.TGGrn.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.TGGrn.Size = New System.Drawing.Size(723, 342)
         Me.TGGrn.TabIndex = 2
+        '
+        'Column14
+        '
+        Me.Column14.HeaderText = "VCH NO"
+        Me.Column14.Name = "Column14"
+        Me.Column14.ReadOnly = True
+        Me.Column14.Width = 80
+        '
+        'Column15
+        '
+        Me.Column15.HeaderText = "DATE"
+        Me.Column15.Name = "Column15"
+        Me.Column15.ReadOnly = True
+        Me.Column15.Width = 80
+        '
+        'Column16
+        '
+        Me.Column16.HeaderText = "VENDOR"
+        Me.Column16.Name = "Column16"
+        Me.Column16.ReadOnly = True
+        Me.Column16.Width = 180
+        '
+        'Column17
+        '
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Column17.DefaultCellStyle = DataGridViewCellStyle7
+        Me.Column17.HeaderText = "QUANTITY"
+        Me.Column17.Name = "Column17"
+        Me.Column17.ReadOnly = True
+        Me.Column17.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Column17.Width = 70
+        '
+        'Column18
+        '
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Column18.DefaultCellStyle = DataGridViewCellStyle8
+        Me.Column18.HeaderText = "AMOUNT"
+        Me.Column18.Name = "Column18"
+        Me.Column18.ReadOnly = True
+        Me.Column18.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Column18.Width = 70
+        '
+        'Column24
+        '
+        Me.Column24.HeaderText = "POD NO"
+        Me.Column24.Name = "Column24"
+        Me.Column24.ReadOnly = True
+        Me.Column24.Visible = False
+        '
+        'Column20
+        '
+        Me.Column20.HeaderText = "PRINT"
+        Me.Column20.Name = "Column20"
+        Me.Column20.ReadOnly = True
+        Me.Column20.Text = "PRINT"
+        Me.Column20.UseColumnTextForButtonValue = True
+        Me.Column20.Width = 60
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "FRIEGHT"
+        Me.Column4.Name = "Column4"
+        Me.Column4.ReadOnly = True
+        Me.Column4.Text = "FRIEGHT"
+        Me.Column4.UseColumnTextForButtonValue = True
+        Me.Column4.Width = 80
+        '
+        'Column23
+        '
+        Me.Column23.HeaderText = "DELETE"
+        Me.Column23.Name = "Column23"
+        Me.Column23.ReadOnly = True
+        Me.Column23.Text = "DELETE"
+        Me.Column23.UseColumnTextForButtonValue = True
+        Me.Column23.Width = 80
         '
         'btnFilter
         '
@@ -1239,87 +1351,185 @@ Partial Class ManualReturn
         Me.Label27.TabIndex = 41
         Me.Label27.Text = "Courier Service"
         '
-        'Column14
+        'pnlExcelImport
         '
-        Me.Column14.HeaderText = "VCH NO"
-        Me.Column14.Name = "Column14"
-        Me.Column14.ReadOnly = True
-        Me.Column14.Width = 80
+        Me.pnlExcelImport.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlExcelImport.Controls.Add(Me.lblLoading)
+        Me.pnlExcelImport.Controls.Add(Me.btnImport)
+        Me.pnlExcelImport.Controls.Add(Me.btnExcelHide)
+        Me.pnlExcelImport.Controls.Add(Me.dgvExcel)
+        Me.pnlExcelImport.Controls.Add(Me.Label39)
+        Me.pnlExcelImport.Controls.Add(Me.btnBrowse)
+        Me.pnlExcelImport.Controls.Add(Me.txtFileName)
+        Me.pnlExcelImport.Controls.Add(Me.Label40)
+        Me.pnlExcelImport.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.pnlExcelImport.Location = New System.Drawing.Point(355, 119)
+        Me.pnlExcelImport.Name = "pnlExcelImport"
+        Me.pnlExcelImport.Size = New System.Drawing.Size(706, 385)
+        Me.pnlExcelImport.TabIndex = 26
+        Me.pnlExcelImport.Visible = False
         '
-        'Column15
+        'lblLoading
         '
-        Me.Column15.HeaderText = "DATE"
-        Me.Column15.Name = "Column15"
-        Me.Column15.ReadOnly = True
-        Me.Column15.Width = 80
+        Me.lblLoading.AutoSize = True
+        Me.lblLoading.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLoading.ForeColor = System.Drawing.Color.Red
+        Me.lblLoading.Location = New System.Drawing.Point(8, 360)
+        Me.lblLoading.Name = "lblLoading"
+        Me.lblLoading.Size = New System.Drawing.Size(185, 18)
+        Me.lblLoading.TabIndex = 7
+        Me.lblLoading.Text = "Loading, Please Wait...!"
+        Me.lblLoading.Visible = False
         '
-        'Column16
+        'btnImport
         '
-        Me.Column16.HeaderText = "VENDOR"
-        Me.Column16.Name = "Column16"
-        Me.Column16.ReadOnly = True
-        Me.Column16.Width = 180
+        Me.btnImport.BackColor = System.Drawing.Color.Gainsboro
+        Me.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnImport.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnImport.Location = New System.Drawing.Point(585, 353)
+        Me.btnImport.Name = "btnImport"
+        Me.btnImport.Size = New System.Drawing.Size(107, 25)
+        Me.btnImport.TabIndex = 6
+        Me.btnImport.Text = "&Import"
+        Me.btnImport.UseVisualStyleBackColor = False
         '
-        'Column17
+        'btnExcelHide
         '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Column17.DefaultCellStyle = DataGridViewCellStyle7
-        Me.Column17.HeaderText = "QUANTITY"
-        Me.Column17.Name = "Column17"
-        Me.Column17.ReadOnly = True
-        Me.Column17.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Column17.Width = 70
+        Me.btnExcelHide.FlatAppearance.BorderSize = 0
+        Me.btnExcelHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnExcelHide.Font = New System.Drawing.Font("Webdings", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.btnExcelHide.Location = New System.Drawing.Point(670, 3)
+        Me.btnExcelHide.Name = "btnExcelHide"
+        Me.btnExcelHide.Size = New System.Drawing.Size(33, 26)
+        Me.btnExcelHide.TabIndex = 5
+        Me.btnExcelHide.Text = "r"
+        Me.btnExcelHide.UseVisualStyleBackColor = True
         '
-        'Column18
+        'dgvExcel
         '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Column18.DefaultCellStyle = DataGridViewCellStyle8
-        Me.Column18.HeaderText = "AMOUNT"
-        Me.Column18.Name = "Column18"
-        Me.Column18.ReadOnly = True
-        Me.Column18.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Column18.Width = 70
+        Me.dgvExcel.AllowUserToAddRows = False
+        Me.dgvExcel.AllowUserToDeleteRows = False
+        Me.dgvExcel.AllowUserToResizeColumns = False
+        Me.dgvExcel.AllowUserToResizeRows = False
+        Me.dgvExcel.BackgroundColor = System.Drawing.Color.White
+        Me.dgvExcel.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.dgvExcel.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        Me.dgvExcel.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column9, Me.Column19, Me.Column25, Me.Column26, Me.Column27, Me.Column28, Me.Column29, Me.Column30})
+        Me.dgvExcel.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.dgvExcel.EnableHeadersVisualStyles = False
+        Me.dgvExcel.GridColor = System.Drawing.Color.Silver
+        Me.dgvExcel.Location = New System.Drawing.Point(0, 82)
+        Me.dgvExcel.Name = "dgvExcel"
+        Me.dgvExcel.ReadOnly = True
+        Me.dgvExcel.RowHeadersVisible = False
+        Me.dgvExcel.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.dgvExcel.Size = New System.Drawing.Size(704, 301)
+        Me.dgvExcel.TabIndex = 4
         '
-        'Column24
+        'Column9
         '
-        Me.Column24.HeaderText = "POD NO"
-        Me.Column24.Name = "Column24"
-        Me.Column24.ReadOnly = True
-        Me.Column24.Visible = False
+        Me.Column9.HeaderText = "ID"
+        Me.Column9.Name = "Column9"
+        Me.Column9.ReadOnly = True
+        Me.Column9.Visible = False
         '
-        'Column20
+        'Column19
         '
-        Me.Column20.HeaderText = "PRINT"
-        Me.Column20.Name = "Column20"
-        Me.Column20.ReadOnly = True
-        Me.Column20.Text = "PRINT"
-        Me.Column20.UseColumnTextForButtonValue = True
-        Me.Column20.Width = 60
+        Me.Column19.HeaderText = "SNO"
+        Me.Column19.Name = "Column19"
+        Me.Column19.ReadOnly = True
+        Me.Column19.Width = 50
         '
-        'Column4
+        'Column25
         '
-        Me.Column4.HeaderText = "FRIEGHT"
-        Me.Column4.Name = "Column4"
-        Me.Column4.ReadOnly = True
-        Me.Column4.Text = "FRIEGHT"
-        Me.Column4.UseColumnTextForButtonValue = True
-        Me.Column4.Width = 80
+        Me.Column25.HeaderText = "CODE"
+        Me.Column25.Name = "Column25"
+        Me.Column25.ReadOnly = True
+        Me.Column25.Width = 80
         '
-        'Column23
+        'Column26
         '
-        Me.Column23.HeaderText = "DELETE"
-        Me.Column23.Name = "Column23"
-        Me.Column23.ReadOnly = True
-        Me.Column23.Text = "DELETE"
-        Me.Column23.UseColumnTextForButtonValue = True
-        Me.Column23.Width = 80
+        Me.Column26.HeaderText = "DESCRIPTION"
+        Me.Column26.Name = "Column26"
+        Me.Column26.ReadOnly = True
+        Me.Column26.Width = 200
+        '
+        'Column27
+        '
+        Me.Column27.HeaderText = "R.QTY"
+        Me.Column27.Name = "Column27"
+        Me.Column27.ReadOnly = True
+        Me.Column27.Width = 70
+        '
+        'Column28
+        '
+        Me.Column28.HeaderText = "RATE"
+        Me.Column28.Name = "Column28"
+        Me.Column28.ReadOnly = True
+        '
+        'Column29
+        '
+        Me.Column29.HeaderText = "AMOUNT"
+        Me.Column29.Name = "Column29"
+        Me.Column29.ReadOnly = True
+        '
+        'Column30
+        '
+        Me.Column30.HeaderText = "STOCK"
+        Me.Column30.Name = "Column30"
+        Me.Column30.ReadOnly = True
+        '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label39.ForeColor = System.Drawing.Color.Purple
+        Me.Label39.Location = New System.Drawing.Point(256, 8)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(177, 16)
+        Me.Label39.TabIndex = 3
+        Me.Label39.Text = "IMPORT DATA FROM EXCEL"
+        '
+        'btnBrowse
+        '
+        Me.btnBrowse.Location = New System.Drawing.Point(632, 57)
+        Me.btnBrowse.Name = "btnBrowse"
+        Me.btnBrowse.Size = New System.Drawing.Size(40, 23)
+        Me.btnBrowse.TabIndex = 2
+        Me.btnBrowse.Text = "..."
+        Me.btnBrowse.UseVisualStyleBackColor = True
+        '
+        'txtFileName
+        '
+        Me.txtFileName.BackColor = System.Drawing.SystemColors.Window
+        Me.txtFileName.Location = New System.Drawing.Point(10, 57)
+        Me.txtFileName.Name = "txtFileName"
+        Me.txtFileName.ReadOnly = True
+        Me.txtFileName.Size = New System.Drawing.Size(616, 21)
+        Me.txtFileName.TabIndex = 1
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Location = New System.Drawing.Point(7, 40)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(66, 13)
+        Me.Label40.TabIndex = 0
+        Me.Label40.Text = "File Location"
+        '
+        'OFD
+        '
+        Me.OFD.FileName = "OpenFileDialog1"
+        Me.OFD.Filter = "Excel Files |*.xlsx;*.xls"
+        Me.OFD.Title = "Select Excel File"
         '
         'ManualReturn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1166, 538)
+        Me.ClientSize = New System.Drawing.Size(1233, 538)
+        Me.Controls.Add(Me.pnlExcelImport)
         Me.Controls.Add(Me.pnlFrieght)
         Me.Controls.Add(Me.pnlGList)
         Me.Controls.Add(Me.TG)
@@ -1340,6 +1550,9 @@ Partial Class ManualReturn
         CType(Me.TGGrn, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlFrieght.ResumeLayout(False)
         Me.pnlFrieght.PerformLayout()
+        Me.pnlExcelImport.ResumeLayout(False)
+        Me.pnlExcelImport.PerformLayout()
+        CType(Me.dgvExcel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1449,4 +1662,23 @@ Partial Class ManualReturn
     Friend WithEvents Column20 As DataGridViewButtonColumn
     Friend WithEvents Column4 As DataGridViewButtonColumn
     Friend WithEvents Column23 As DataGridViewButtonColumn
+    Friend WithEvents btnImportExcel As Button
+    Friend WithEvents pnlExcelImport As Panel
+    Friend WithEvents lblLoading As Label
+    Friend WithEvents btnImport As Button
+    Friend WithEvents btnExcelHide As Button
+    Friend WithEvents dgvExcel As DataGridView
+    Friend WithEvents Label39 As Label
+    Friend WithEvents btnBrowse As Button
+    Friend WithEvents txtFileName As TextBox
+    Friend WithEvents Label40 As Label
+    Friend WithEvents OFD As OpenFileDialog
+    Friend WithEvents Column9 As DataGridViewTextBoxColumn
+    Friend WithEvents Column19 As DataGridViewTextBoxColumn
+    Friend WithEvents Column25 As DataGridViewTextBoxColumn
+    Friend WithEvents Column26 As DataGridViewTextBoxColumn
+    Friend WithEvents Column27 As DataGridViewTextBoxColumn
+    Friend WithEvents Column28 As DataGridViewTextBoxColumn
+    Friend WithEvents Column29 As DataGridViewTextBoxColumn
+    Friend WithEvents Column30 As DataGridViewTextBoxColumn
 End Class
