@@ -22,7 +22,7 @@ Partial Class DiscountAssigner
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DiscountAssigner))
         Me.TG = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -198,8 +198,8 @@ Partial Class DiscountAssigner
         '
         'Column17
         '
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Column17.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Column17.DefaultCellStyle = DataGridViewCellStyle1
         Me.Column17.HeaderText = "S.Discount"
         Me.Column17.Name = "Column17"
         Me.Column17.ReadOnly = True
@@ -910,7 +910,7 @@ Partial Class DiscountAssigner
         '
         'BtnReason
         '
-        Me.BtnReason.Location = New System.Drawing.Point(696, 26)
+        Me.BtnReason.Location = New System.Drawing.Point(696, 28)
         Me.BtnReason.Name = "BtnReason"
         Me.BtnReason.Size = New System.Drawing.Size(69, 23)
         Me.BtnReason.TabIndex = 5
