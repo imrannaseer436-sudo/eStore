@@ -353,11 +353,8 @@ Public Class MainWindowX
         'DiscountAssignerNew.Visible = False
         'DiscountAssignerNew.Show(Me)
 
+        'AddTab(DiscountAssignerNew)
         pnlQV.Visible = False
-
-        'AddTab(DiscountAssigner)
-        'pnlReports.Hide()
-
 
     End Sub
 

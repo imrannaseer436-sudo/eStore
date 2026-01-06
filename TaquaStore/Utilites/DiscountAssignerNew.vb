@@ -10,61 +10,61 @@ Public Class DiscountAssignerNew
 
     Private Sub DiscountAssigner_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
 
-        'If e.KeyCode = Keys.F2 Then
+        If e.KeyCode = Keys.F2 Then
 
-        '    Dim Tmp As Integer = 0
-        '    Dim TMd As SByte = 0
-        '    Dim DVal = Val(InputBox("Enter discount percentage..!"))
+            Dim Tmp As Integer = 0
+            Dim TMd As SByte = 0
+            Dim DVal = Val(InputBox("Enter discount percentage..!"))
 
-        '    For i As Integer = 0 To TG.Rows.Count - 1
-        '        TG.Item(5, i).Value = Format(DVal, "00.0")
-        '        Tmp = Int(Val(TG.Item(4, i).Value) - ((Val(TG.Item(4, i).Value) * DVal) / 100))
-        '        TMd = Tmp Mod 5
-        '        If TMd > 0 Then
-        '            Tmp = Tmp + (5 - TMd)
-        '        End If
+            For i As Integer = 0 To TG.Rows.Count - 1
+                TG.Item(5, i).Value = Format(DVal, "00.0")
+                Tmp = Int(Val(TG.Item(4, i).Value) - ((Val(TG.Item(4, i).Value) * DVal) / 100))
+                TMd = Tmp Mod 5
+                If TMd > 0 Then
+                    Tmp = Tmp + (5 - TMd)
+                End If
 
-        '        If chkLWR.Checked = True Then
-        '            Tmp = RoundOff(Tmp)
-        '        End If
+                If chkLWR.Checked = True Then
+                    Tmp = RoundOff(Tmp)
+                End If
 
-        '        TG.Item(6, i).Value = Format(Tmp, "0.00")
-        '    Next
+                TG.Item(6, i).Value = Format(Tmp, "0.00")
+            Next
 
-        'ElseIf e.KeyCode = Keys.F3 Then
+        ElseIf e.KeyCode = Keys.F3 Then
 
-        '    Dim DVal = Val(InputBox("Enter new rate..!"))
-        '    For i As Integer = 0 To TG.Rows.Count - 1
-        '        TG.Item(6, i).Value = Format(DVal, "00.00")
-        '    Next
+            Dim DVal = Val(InputBox("Enter new rate..!"))
+            For i As Integer = 0 To TG.Rows.Count - 1
+                TG.Item(6, i).Value = Format(DVal, "00.00")
+            Next
 
-        'ElseIf e.KeyCode = Keys.F6 Then
+        ElseIf e.KeyCode = Keys.F6 Then
 
-        '    ApplyFlag(TG, 10, "YES")
+            ApplyFlag(TG, 10, "YES")
 
-        'ElseIf e.KeyCode = Keys.F7 Then
+        ElseIf e.KeyCode = Keys.F7 Then
 
-        '    ApplyFlag(TG, 10, "NO")
+            ApplyFlag(TG, 10, "NO")
 
-        'ElseIf e.KeyCode = Keys.F8 Then
+        ElseIf e.KeyCode = Keys.F8 Then
 
-        '    If MsgBox("Do you want to show discount percentage..?", MsgBoxStyle.Question + MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+            If MsgBox("Do you want to show discount percentage..?", MsgBoxStyle.Question + MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
-        '    Dim revDiscount As Double = 0
+            Dim revDiscount As Double = 0
 
-        '    For i As Integer = 0 To TG.Rows.Count - 1
+            For i As Integer = 0 To TG.Rows.Count - 1
 
-        '        revDiscount = (Val(TG.Item(6, i).Value) / Val(TG.Item(4, i).Value)) * 100
-        '        TG.Item(5, i).Value = Format(revDiscount, "0.0")
+                revDiscount = (Val(TG.Item(6, i).Value) / Val(TG.Item(4, i).Value)) * 100
+                TG.Item(5, i).Value = Format(revDiscount, "0.0")
 
-        '    Next
+            Next
 
-        'ElseIf e.KeyCode = Keys.F9 Then
+        ElseIf e.KeyCode = Keys.F9 Then
 
-        '    If TG.CurrentRow Is Nothing Then Exit Sub
-        '    TG.Rows.RemoveAt(TG.CurrentRow.Index)
+            If TG.CurrentRow Is Nothing Then Exit Sub
+            TG.Rows.RemoveAt(TG.CurrentRow.Index)
 
-        'End If
+        End If
 
     End Sub
 
@@ -78,7 +78,6 @@ Public Class DiscountAssignerNew
 
     Private Sub DiscountAssigner_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        MainWindowX.pnlQV.Visible = False
 
         TG.ColumnHeadersDefaultCellStyle.Font = New Font(TG.Font, FontStyle.Bold)
 
@@ -102,7 +101,6 @@ Public Class DiscountAssignerNew
         Catch ex As IO.DirectoryNotFoundException
             MsgBox("Sorry, Lable Format Directory not defined..!", MsgBoxStyle.Information)
         End Try
-
 
     End Sub
 
@@ -251,128 +249,130 @@ Public Class DiscountAssignerNew
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
 
-        If ReasonProvided = False Then
+        ShowDiscountReason()
 
-            MsgBox("Please select valid reason..!", vbCritical)
-            Exit Sub
+        'If ReasonProvided = False Then
 
-        End If
+        '    MsgBox("Please select valid reason..!", vbCritical)
+        '    Exit Sub
 
-        If MsgBox("Do you want to save..!", MsgBoxStyle.Question + MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+        'End If
 
-        ESSA.OpenConnection()
-        Dim Cmd = Con.CreateCommand
-        Dim Trn = Con.BeginTransaction
-        Cmd.Transaction = Trn
+        'If MsgBox("Do you want to save..!", MsgBoxStyle.Question + MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
-        Try
+        'ESSA.OpenConnection()
+        'Dim Cmd = Con.CreateCommand 
+        'Dim Trn = Con.BeginTransaction
+        'Cmd.Transaction = Trn
 
-            Dim ENo = ESSA.GenerateID("select max(eno) from discountassigner")
-            Dim Id = ESSA.GenerateID("SELECT Max(Id) FROM DiscountMaster")
+        'Try
 
-            SQL = "INSERT INTO DiscountMaster VALUES( " _
-                & Id & ",'" _
-                & CmbReason.Text.Trim & "', GetDate()," _
-                & CmbShop.SelectedValue & "," _
-                & UserID & ")"
+        '    Dim ENo = ESSA.GenerateID("select max(eno) from discountassigner")
+        '    Dim Id = ESSA.GenerateID("SELECT Max(Id) FROM DiscountMaster")
 
-            Cmd.CommandText = SQL
-            Cmd.ExecuteNonQuery()
+        '    SQL = "INSERT INTO DiscountMaster VALUES( " _
+        '        & Id & ",'" _
+        '        & CmbReason.Text.Trim & "', GetDate()," _
+        '        & CmbShop.SelectedValue & "," _
+        '        & UserID & ")"
 
-            For i As Integer = 0 To TG.Rows.Count - 1
+        '    Cmd.CommandText = SQL
+        '    Cmd.ExecuteNonQuery()
 
-                If Val(TG.Item(0, i).Value) > 0 Then
+        '    For i As Integer = 0 To TG.Rows.Count - 1
 
-                    If TG.Item(10, i).Value = "NO" Then
+        '        If Val(TG.Item(0, i).Value) > 0 Then
 
-                        SQL = "UPDATE ProductMaster SET RetailPrice={0}, WholeSalePrice={2}, MRP={2}, ISUpdated=0 WHERE PluID={1}"
-                        SQL = String.Format(SQL, Val(TG.Item(6, i).Value), Val(TG.Item(0, i).Value), Val(TG.Item(4, i).Value))
+        '            If TG.Item(10, i).Value = "NO" Then
 
-                        Cmd.CommandText = SQL
-                        Cmd.ExecuteNonQuery()
+        '                SQL = "UPDATE ProductMaster SET RetailPrice={0}, WholeSalePrice={2}, MRP={2}, ISUpdated=0 WHERE PluID={1}"
+        '                SQL = String.Format(SQL, Val(TG.Item(6, i).Value), Val(TG.Item(0, i).Value), Val(TG.Item(4, i).Value))
 
-                        SQL = "UPDATE PriceMaster SET RetailPrice={0}, WholeSalePrice={5}, MRP={5},UpdatedBy = {3},UpdatedAt = '{4}'  WHERE ShopID = {2} AND PluID={1}"
-                        SQL = String.Format(SQL, Val(TG.Item(6, i).Value), Val(TG.Item(0, i).Value), CmbShop.SelectedValue, UserID, Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss"), Val(TG.Item(4, i).Value))
+        '                Cmd.CommandText = SQL
+        '                Cmd.ExecuteNonQuery()
 
-                        Cmd.CommandText = SQL
-                        Cmd.ExecuteNonQuery()
+        '                SQL = "UPDATE PriceMaster SET RetailPrice={0}, WholeSalePrice={5}, MRP={5},UpdatedBy = {3},UpdatedAt = '{4}'  WHERE ShopID = {2} AND PluID={1}"
+        '                SQL = String.Format(SQL, Val(TG.Item(6, i).Value), Val(TG.Item(0, i).Value), CmbShop.SelectedValue, UserID, Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss"), Val(TG.Item(4, i).Value))
 
-                    Else
+        '                Cmd.CommandText = SQL
+        '                Cmd.ExecuteNonQuery()
 
-                        SQL = "UPDATE ProductMaster SET Discount = {0} WHERE PluID={1}"
-                        SQL = String.Format(SQL, Val(TG.Item(5, i).Value), Val(TG.Item(0, i).Value))
+        '            Else
 
-                        Cmd.CommandText = SQL
-                        Cmd.ExecuteNonQuery()
+        '                SQL = "UPDATE ProductMaster SET Discount = {0} WHERE PluID={1}"
+        '                SQL = String.Format(SQL, Val(TG.Item(5, i).Value), Val(TG.Item(0, i).Value))
 
-                        SQL = "UPDATE PriceMaster SET Discount = {0},UpdatedBy = {3},UpdatedAt = '{4}'  WHERE ShopID = {2} AND PluID={1}"
-                        SQL = String.Format(SQL, Val(TG.Item(5, i).Value), Val(TG.Item(0, i).Value), CmbShop.SelectedValue, UserID, Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss"))
+        '                Cmd.CommandText = SQL
+        '                Cmd.ExecuteNonQuery()
 
-                        Cmd.CommandText = SQL
-                        Cmd.ExecuteNonQuery()
+        '                SQL = "UPDATE PriceMaster SET Discount = {0},UpdatedBy = {3},UpdatedAt = '{4}'  WHERE ShopID = {2} AND PluID={1}"
+        '                SQL = String.Format(SQL, Val(TG.Item(5, i).Value), Val(TG.Item(0, i).Value), CmbShop.SelectedValue, UserID, Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss"))
 
-                    End If
+        '                Cmd.CommandText = SQL
+        '                Cmd.ExecuteNonQuery()
+
+        '            End If
 
 
-                    SQL = "insert into discountassigner values (" _
-                        & ENo & ",'" _
-                        & Format(Now, "yyyy-MM-dd HH:ss:mm") & "'," _
-                        & Val(TG.Item(0, i).Value) & "," _
-                        & Val(TG.Item(4, i).Value) & "," _
-                        & Val(TG.Item(5, i).Value) & "," _
-                        & Val(TG.Item(6, i).Value) & "," _
-                        & i + 1 & ")"
+        '            SQL = "insert into discountassigner values (" _
+        '                & ENo & ",'" _
+        '                & Format(Now, "yyyy-MM-dd HH:ss:mm") & "'," _
+        '                & Val(TG.Item(0, i).Value) & "," _
+        '                & Val(TG.Item(4, i).Value) & "," _
+        '                & Val(TG.Item(5, i).Value) & "," _
+        '                & Val(TG.Item(6, i).Value) & "," _
+        '                & i + 1 & ")"
 
-                    Cmd.CommandText = SQL
-                    Cmd.ExecuteNonQuery()
+        '            Cmd.CommandText = SQL
+        '            Cmd.ExecuteNonQuery()
 
-                    SQL = "select max(batchid) from productbatch where pluid=" & Val(TG.Item(0, i).Value)
-                    Cmd.CommandText = SQL
-                    Dim Tmp = Cmd.ExecuteScalar
-                    If IsDBNull(Tmp) = False Then
-                        Tmp = Int(Tmp) + 1
-                    Else
-                        Tmp = 1
-                    End If
+        '            SQL = "select max(batchid) from productbatch where pluid=" & Val(TG.Item(0, i).Value)
+        '            Cmd.CommandText = SQL
+        '            Dim Tmp = Cmd.ExecuteScalar
+        '            If IsDBNull(Tmp) = False Then
+        '                Tmp = Int(Tmp) + 1
+        '            Else
+        '                Tmp = 1
+        '            End If
 
-                    SQL = "insert into productbatch values (" _
-                        & Tmp & "," _
-                        & Val(TG.Item(0, i).Value) & "," _
-                        & Val(TG.Item(6, i).Value) & "," _
-                        & Val(TG.Item(4, i).Value) & ",0,'" _
-                        & Format(Now.Date, "yyyy-MM-dd HH:mm:ss") & "'," _
-                        & CmbShop.SelectedValue & "," _ 'ShopId
-                        & UserID & ")"
+        '            SQL = "insert into productbatch values (" _
+        '                & Tmp & "," _
+        '                & Val(TG.Item(0, i).Value) & "," _
+        '                & Val(TG.Item(6, i).Value) & "," _
+        '                & Val(TG.Item(4, i).Value) & ",0,'" _
+        '                & Format(Now.Date, "yyyy-MM-dd HH:mm:ss") & "'," _
+        '                & CmbShop.SelectedValue & "," _ 'ShopId
+        '                & UserID & ")"
 
-                    Cmd.CommandText = SQL
-                    Cmd.ExecuteNonQuery()
+        '            Cmd.CommandText = SQL
+        '            Cmd.ExecuteNonQuery()
 
-                    SQL = "INSERT INTO DiscountDetails VALUES( " _
-                        & Id & "," _
-                        & TG.Item(0, i).Value & "," _
-                        & TG.Item(4, i).Value & "," _
-                        & TG.Item(6, i).Value & ")"
+        '            SQL = "INSERT INTO DiscountDetails VALUES( " _
+        '                & Id & "," _
+        '                & TG.Item(0, i).Value & "," _
+        '                & TG.Item(4, i).Value & "," _
+        '                & TG.Item(6, i).Value & ")"
 
-                    Cmd.CommandText = SQL
-                    Cmd.ExecuteNonQuery()
+        '            Cmd.CommandText = SQL
+        '            Cmd.ExecuteNonQuery()
 
-                End If
+        '        End If
 
-            Next
+        '    Next
 
-            Trn.Commit()
-            Con.Close()
-            MsgBox("Updated successfully..!", MsgBoxStyle.Information)
-            btnUpdate.Enabled = False
-            ReasonProvided = False
+        '    Trn.Commit()
+        '    Con.Close()
+        '    MsgBox("Updated successfully..!", MsgBoxStyle.Information)
+        '    btnUpdate.Enabled = False
+        '    ReasonProvided = False
 
-        Catch ex As SqlException
+        'Catch ex As SqlException
 
-            Trn.Rollback()
-            Con.Close()
-            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        '    Trn.Rollback()
+        '    Con.Close()
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical)
 
-        End Try
+        'End Try
 
     End Sub
     Private Sub TG_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles TG.CellEndEdit
@@ -716,15 +716,126 @@ Public Class DiscountAssignerNew
         ReasonProvided = True
         BtnHide2.PerformClick()
 
+        If MsgBox("Do you want to save..!", MsgBoxStyle.Question + MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+        ESSA.OpenConnection()
+        Dim Cmd = Con.CreateCommand
+        Dim Trn = Con.BeginTransaction
+        Cmd.Transaction = Trn
+
+        Try
+
+            Dim ENo = ESSA.GenerateID("select max(eno) from discountassigner")
+            Dim Id = ESSA.GenerateID("SELECT Max(Id) FROM DiscountMaster")
+
+            SQL = "INSERT INTO DiscountMaster VALUES( " _
+                & Id & ",'" _
+                & CmbReason.Text.Trim & "', GetDate()," _
+                & CmbShop.SelectedValue & "," _
+                & UserID & ")"
+
+            Cmd.CommandText = SQL
+            Cmd.ExecuteNonQuery()
+
+            For i As Integer = 0 To TG.Rows.Count - 1
+
+                If Val(TG.Item(0, i).Value) > 0 Then
+
+                    If TG.Item(10, i).Value = "NO" Then
+
+                        SQL = "UPDATE ProductMaster SET RetailPrice={0}, WholeSalePrice={2}, MRP={2}, ISUpdated=0 WHERE PluID={1}"
+                        SQL = String.Format(SQL, Val(TG.Item(6, i).Value), Val(TG.Item(0, i).Value), Val(TG.Item(4, i).Value))
+
+                        Cmd.CommandText = SQL
+                        Cmd.ExecuteNonQuery()
+
+                        SQL = "UPDATE PriceMaster SET RetailPrice={0}, WholeSalePrice={5}, MRP={5},UpdatedBy = {3},UpdatedAt = '{4}'  WHERE ShopID = {2} AND PluID={1}"
+                        SQL = String.Format(SQL, Val(TG.Item(6, i).Value), Val(TG.Item(0, i).Value), CmbShop.SelectedValue, UserID, Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss"), Val(TG.Item(4, i).Value))
+
+                        Cmd.CommandText = SQL
+                        Cmd.ExecuteNonQuery()
+
+                    Else
+
+                        SQL = "UPDATE ProductMaster SET Discount = {0} WHERE PluID={1}"
+                        SQL = String.Format(SQL, Val(TG.Item(5, i).Value), Val(TG.Item(0, i).Value))
+
+                        Cmd.CommandText = SQL
+                        Cmd.ExecuteNonQuery()
+
+                        SQL = "UPDATE PriceMaster SET Discount = {0},UpdatedBy = {3},UpdatedAt = '{4}'  WHERE ShopID = {2} AND PluID={1}"
+                        SQL = String.Format(SQL, Val(TG.Item(5, i).Value), Val(TG.Item(0, i).Value), CmbShop.SelectedValue, UserID, Format(DateTime.Now, "yyyy-MM-dd HH:mm:ss"))
+
+                        Cmd.CommandText = SQL
+                        Cmd.ExecuteNonQuery()
+
+                    End If
+
+
+                    SQL = "insert into discountassigner values (" _
+                        & ENo & ",'" _
+                        & Format(Now, "yyyy-MM-dd HH:ss:mm") & "'," _
+                        & Val(TG.Item(0, i).Value) & "," _
+                        & Val(TG.Item(4, i).Value) & "," _
+                        & Val(TG.Item(5, i).Value) & "," _
+                        & Val(TG.Item(6, i).Value) & "," _
+                        & i + 1 & ")"
+
+                    Cmd.CommandText = SQL
+                    Cmd.ExecuteNonQuery()
+
+                    SQL = "select max(batchid) from productbatch where pluid=" & Val(TG.Item(0, i).Value)
+                    Cmd.CommandText = SQL
+                    Dim Tmp = Cmd.ExecuteScalar
+                    If IsDBNull(Tmp) = False Then
+                        Tmp = Int(Tmp) + 1
+                    Else
+                        Tmp = 1
+                    End If
+
+                    SQL = "insert into productbatch values (" _
+                        & Tmp & "," _
+                        & Val(TG.Item(0, i).Value) & "," _
+                        & Val(TG.Item(6, i).Value) & "," _
+                        & Val(TG.Item(4, i).Value) & ",0,'" _
+                        & Format(Now.Date, "yyyy-MM-dd HH:mm:ss") & "'," _
+                        & CmbShop.SelectedValue & "," _ 'ShopId
+                        & UserID & ")"
+
+                    Cmd.CommandText = SQL
+                    Cmd.ExecuteNonQuery()
+
+                    SQL = "INSERT INTO DiscountDetails VALUES( " _
+                        & Id & "," _
+                        & TG.Item(0, i).Value & "," _
+                        & TG.Item(4, i).Value & "," _
+                        & TG.Item(6, i).Value & ")"
+
+                    Cmd.CommandText = SQL
+                    Cmd.ExecuteNonQuery()
+
+                End If
+
+            Next
+
+            Trn.Commit()
+            Con.Close()
+            MsgBox("Updated successfully..!", MsgBoxStyle.Information)
+            btnUpdate.Enabled = False
+            ReasonProvided = False
+
+        Catch ex As SqlException
+
+            Trn.Rollback()
+            Con.Close()
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+
+        End Try
     End Sub
 
-    Private Sub BtnReason_Click(sender As Object, e As EventArgs) Handles BtnReason.Click
+    Private Sub BtnReason_Click(sender As Object, e As EventArgs)
 
-        ESSA.MovetoCenter(PnlDisReason, Me)
-        PnlDisReason.Visible = True
-        ESSA.LoadCombo(CmbReason, "SELECT DISTINCT Reason FROM DiscountMaster ORDER BY Reason", "Reason")
-        CmbReason.Focus()
-        'CmbReason.SelectedIndex = 0
+        ShowDiscountReason()
 
     End Sub
 
@@ -882,4 +993,14 @@ Public Class DiscountAssignerNew
         TG.Rows.RemoveAt(TG.CurrentRow.Index)
 
     End Sub
+
+    Private Sub ShowDiscountReason()
+
+        ESSA.MovetoCenter(PnlDisReason, Me)
+        PnlDisReason.Visible = True
+        ESSA.LoadCombo(CmbReason, "SELECT DISTINCT Reason FROM DiscountMaster ORDER BY Reason", "Reason")
+        CmbReason.Focus()
+
+    End Sub
+
 End Class

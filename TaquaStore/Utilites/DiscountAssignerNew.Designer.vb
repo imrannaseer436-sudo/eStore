@@ -23,9 +23,9 @@ Partial Class DiscountAssignerNew
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DiscountAssignerNew))
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.OFD = New System.Windows.Forms.OpenFileDialog()
         Me.btnCle = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
@@ -42,7 +42,6 @@ Partial Class DiscountAssignerNew
         Me.chkRateUpdate = New System.Windows.Forms.CheckBox()
         Me.btnBrowse = New System.Windows.Forms.Button()
         Me.txtFileName = New System.Windows.Forms.TextBox()
-        Me.BtnReason = New System.Windows.Forms.Button()
         Me.chkLESWQ = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -262,7 +261,6 @@ Partial Class DiscountAssignerNew
         Me.Panel3.Controls.Add(Me.chkRateUpdate)
         Me.Panel3.Controls.Add(Me.btnBrowse)
         Me.Panel3.Controls.Add(Me.txtFileName)
-        Me.Panel3.Controls.Add(Me.BtnReason)
         Me.Panel3.Controls.Add(Me.chkLESWQ)
         Me.Panel3.Controls.Add(Me.Label1)
         Me.Panel3.Controls.Add(Me.Label18)
@@ -282,11 +280,11 @@ Partial Class DiscountAssignerNew
         'chkLWR
         '
         Me.chkLWR.AutoSize = True
-        Me.chkLWR.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkLWR.Location = New System.Drawing.Point(147, 79)
+        Me.chkLWR.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkLWR.Location = New System.Drawing.Point(140, 79)
         Me.chkLWR.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.chkLWR.Name = "chkLWR"
-        Me.chkLWR.Size = New System.Drawing.Size(155, 17)
+        Me.chkLWR.Size = New System.Drawing.Size(152, 17)
         Me.chkLWR.TabIndex = 50
         Me.chkLWR.Text = "LOAD WITH ROUND OFF"
         Me.chkLWR.UseVisualStyleBackColor = True
@@ -294,12 +292,12 @@ Partial Class DiscountAssignerNew
         'chkLoadCostPrice
         '
         Me.chkLoadCostPrice.AutoSize = True
-        Me.chkLoadCostPrice.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkLoadCostPrice.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkLoadCostPrice.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.chkLoadCostPrice.Location = New System.Drawing.Point(15, 79)
         Me.chkLoadCostPrice.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.chkLoadCostPrice.Name = "chkLoadCostPrice"
-        Me.chkLoadCostPrice.Size = New System.Drawing.Size(124, 17)
+        Me.chkLoadCostPrice.Size = New System.Drawing.Size(117, 17)
         Me.chkLoadCostPrice.TabIndex = 46
         Me.chkLoadCostPrice.Text = "LOAD COST PRICE"
         Me.chkLoadCostPrice.UseVisualStyleBackColor = True
@@ -307,12 +305,12 @@ Partial Class DiscountAssignerNew
         'chkRate
         '
         Me.chkRate.AutoSize = True
-        Me.chkRate.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.chkRate.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkRate.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.chkRate.Location = New System.Drawing.Point(308, 79)
+        Me.chkRate.Location = New System.Drawing.Point(300, 79)
         Me.chkRate.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.chkRate.Name = "chkRate"
-        Me.chkRate.Size = New System.Drawing.Size(208, 17)
+        Me.chkRate.Size = New System.Drawing.Size(190, 17)
         Me.chkRate.TabIndex = 53
         Me.chkRate.Text = "LESS RATE INSTEAD PERCENTAGE"
         Me.chkRate.UseVisualStyleBackColor = True
@@ -332,12 +330,13 @@ Partial Class DiscountAssignerNew
         'chkRateUpdate
         '
         Me.chkRateUpdate.AutoSize = True
-        Me.chkRateUpdate.Location = New System.Drawing.Point(479, 3)
+        Me.chkRateUpdate.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkRateUpdate.Location = New System.Drawing.Point(557, 3)
         Me.chkRateUpdate.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.chkRateUpdate.Name = "chkRateUpdate"
-        Me.chkRateUpdate.Size = New System.Drawing.Size(90, 19)
+        Me.chkRateUpdate.Size = New System.Drawing.Size(92, 17)
         Me.chkRateUpdate.TabIndex = 57
-        Me.chkRateUpdate.Text = "Rate Update"
+        Me.chkRateUpdate.Text = "RATE UPDATE"
         Me.chkRateUpdate.UseVisualStyleBackColor = True
         '
         'btnBrowse
@@ -359,25 +358,16 @@ Partial Class DiscountAssignerNew
         Me.txtFileName.Size = New System.Drawing.Size(401, 21)
         Me.txtFileName.TabIndex = 59
         '
-        'BtnReason
-        '
-        Me.BtnReason.Location = New System.Drawing.Point(661, 48)
-        Me.BtnReason.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.BtnReason.Name = "BtnReason"
-        Me.BtnReason.Size = New System.Drawing.Size(80, 25)
-        Me.BtnReason.TabIndex = 35
-        Me.BtnReason.Text = "&REASON"
-        Me.BtnReason.UseVisualStyleBackColor = True
-        '
         'chkLESWQ
         '
         Me.chkLESWQ.AutoSize = True
-        Me.chkLESWQ.Location = New System.Drawing.Point(577, 3)
+        Me.chkLESWQ.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkLESWQ.Location = New System.Drawing.Point(345, 3)
         Me.chkLESWQ.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.chkLESWQ.Name = "chkLESWQ"
-        Me.chkLESWQ.Size = New System.Drawing.Size(190, 19)
+        Me.chkLESWQ.Size = New System.Drawing.Size(204, 17)
         Me.chkLESWQ.TabIndex = 50
-        Me.chkLESWQ.Text = "Load Excel Sheet With Quantity"
+        Me.chkLESWQ.Text = "LOAD EXCEL SHEET WITH QUANTITY"
         Me.chkLESWQ.UseVisualStyleBackColor = True
         '
         'Label1
@@ -571,7 +561,7 @@ Partial Class DiscountAssignerNew
         '
         'pnlHint
         '
-        Me.pnlHint.BackColor = System.Drawing.Color.White
+        Me.pnlHint.BackColor = System.Drawing.Color.WhiteSmoke
         Me.pnlHint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnlHint.Controls.Add(Me.Label22)
         Me.pnlHint.Controls.Add(Me.Label6)
@@ -584,7 +574,7 @@ Partial Class DiscountAssignerNew
         Me.pnlHint.Controls.Add(Me.SimpleLine1)
         Me.pnlHint.Controls.Add(Me.PictureBox1)
         Me.pnlHint.Controls.Add(Me.Label2)
-        Me.pnlHint.Location = New System.Drawing.Point(230, 36)
+        Me.pnlHint.Location = New System.Drawing.Point(379, 36)
         Me.pnlHint.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.pnlHint.Name = "pnlHint"
         Me.pnlHint.Size = New System.Drawing.Size(488, 340)
@@ -596,7 +586,7 @@ Partial Class DiscountAssignerNew
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label22.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Label22.Location = New System.Drawing.Point(18, 246)
+        Me.Label22.Location = New System.Drawing.Point(21, 246)
         Me.Label22.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(197, 15)
@@ -608,7 +598,7 @@ Partial Class DiscountAssignerNew
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Label6.Location = New System.Drawing.Point(18, 222)
+        Me.Label6.Location = New System.Drawing.Point(21, 222)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(228, 15)
@@ -620,7 +610,7 @@ Partial Class DiscountAssignerNew
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Label23.Location = New System.Drawing.Point(18, 272)
+        Me.Label23.Location = New System.Drawing.Point(21, 272)
         Me.Label23.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(251, 15)
@@ -632,7 +622,7 @@ Partial Class DiscountAssignerNew
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Label5.Location = New System.Drawing.Point(18, 196)
+        Me.Label5.Location = New System.Drawing.Point(21, 196)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(267, 15)
@@ -711,7 +701,7 @@ Partial Class DiscountAssignerNew
         Me.PictureBox1.Location = New System.Drawing.Point(21, 54)
         Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(248, 129)
+        Me.PictureBox1.Size = New System.Drawing.Size(216, 129)
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
@@ -734,7 +724,7 @@ Partial Class DiscountAssignerNew
         Me.TGTMP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.TGTMP.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column11, Me.Column12, Me.Column13, Me.Column14, Me.Column15, Me.Column16, Me.Column19, Me.Column20, Me.Column21, Me.Column22, Me.Column23})
         Me.TGTMP.EnableHeadersVisualStyles = False
-        Me.TGTMP.Location = New System.Drawing.Point(124, 102)
+        Me.TGTMP.Location = New System.Drawing.Point(271, 102)
         Me.TGTMP.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TGTMP.Name = "TGTMP"
         Me.TGTMP.ReadOnly = True
@@ -834,25 +824,25 @@ Partial Class DiscountAssignerNew
         Me.TG.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TG.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.TG.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(71, Byte), Integer))
-        DataGridViewCellStyle16.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle16.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.TG.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(71, Byte), Integer))
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.TG.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle13
         Me.TG.ColumnHeadersHeight = 25
         Me.TG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.TG.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column9, Me.Column8, Me.Column10, Me.Column17, Me.Column18, Me.Column24, Me.Column25, Me.Column26, Me.Column27})
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle18.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle18.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Gray
-        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.TG.DefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Gray
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.TG.DefaultCellStyle = DataGridViewCellStyle15
         Me.TG.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TG.EnableHeadersVisualStyles = False
         Me.TG.GridColor = System.Drawing.Color.WhiteSmoke
@@ -929,8 +919,8 @@ Partial Class DiscountAssignerNew
         '
         'Column17
         '
-        DataGridViewCellStyle17.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Column17.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Column17.DefaultCellStyle = DataGridViewCellStyle14
         Me.Column17.HeaderText = "S.DISCOUNT"
         Me.Column17.Name = "Column17"
         Me.Column17.ReadOnly = True
@@ -1286,7 +1276,6 @@ Partial Class DiscountAssignerNew
     Friend WithEvents BtnApply2 As Button
     Friend WithEvents Label20 As Label
     Friend WithEvents Label21 As Label
-    Friend WithEvents BtnReason As Button
     Friend WithEvents chkRate As CheckBox
     Friend WithEvents chkLESWQ As CheckBox
     Friend WithEvents pnlRM As Panel
