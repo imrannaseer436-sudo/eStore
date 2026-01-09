@@ -147,8 +147,8 @@ Module Common
 
         End If
 
-        Dim username As String = "admin"
-        Dim password As String = "nimdaessa"
+        Dim username As String = "imran"
+        Dim password As String = "imran@2002"
 
         SQL = "select userid,username,isadmin from users where username='" _
          & username & "' and password='" & ClsEncodeDecode.Encode(password) & "'"

@@ -78,29 +78,34 @@ Public Class DiscountAssignerNew
 
     Private Sub DiscountAssigner_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        'isDevelopmentMode()
+
+        pnlView.Visible = False
 
         TG.ColumnHeadersDefaultCellStyle.Font = New Font(TG.Font, FontStyle.Bold)
 
         ESSA.AlignHeader(TG, 4, DataGridViewContentAlignment.MiddleRight)
         ESSA.AlignHeader(TG, 5, DataGridViewContentAlignment.MiddleCenter)
         ESSA.AlignHeader(TG, 6, DataGridViewContentAlignment.MiddleRight)
+        ESSA.AlignHeader(TG, 7, DataGridViewContentAlignment.MiddleCenter)
         ESSA.AlignHeader(TG, 10, DataGridViewContentAlignment.MiddleCenter)
 
-        Try
-            SQL = "SELECT ShopID,ShopName FROM SHOPS ORDER BY ShopId"
-            ESSA.LoadCombo(CmbShop, SQL, "ShopName", "ShopID")
-            cmbLableFormat.Items.Clear()
-            Dim DI As New IO.DirectoryInfo(My.Application.Info.DirectoryPath & "\Lables\")
-            Dim Fl As IO.FileInfo() = DI.GetFiles()
-            For Each nfl In Fl
-                cmbLableFormat.Items.Add(nfl.Name.Trim)
-            Next
-            If cmbLableFormat.Items.Count > 0 Then
-                cmbLableFormat.SelectedIndex = 0
-            End If
-        Catch ex As IO.DirectoryNotFoundException
-            MsgBox("Sorry, Lable Format Directory not defined..!", MsgBoxStyle.Information)
-        End Try
+        SQL = "SELECT ShopID,ShopName FROM SHOPS ORDER BY ShopId"
+        ESSA.LoadCombo(CmbShop, SQL, "ShopName", "ShopID")
+
+        'Try
+        '    cmbLableFormat.Items.Clear()
+        '    Dim DI As New IO.DirectoryInfo(My.Application.Info.DirectoryPath & "\Lables\")
+        '    Dim Fl As IO.FileInfo() = DI.GetFiles()
+        '    For Each nfl In Fl
+        '        cmbLableFormat.Items.Add(nfl.Name.Trim)
+        '    Next
+        '    If cmbLableFormat.Items.Count > 0 Then
+        '        cmbLableFormat.SelectedIndex = 0
+        '    End If
+        'Catch ex As IO.DirectoryNotFoundException
+        '    MsgBox("Sorry, Label Format Directory not defined..!", MsgBoxStyle.Information)
+        'End Try
 
     End Sub
 
@@ -121,19 +126,68 @@ Public Class DiscountAssignerNew
 
                 Dim sql As String = ""
 
-                If chkRateUpdate.Checked Then
-                    If chkLESWQ.Checked Then
-                        sql = "SELECT code, SUM(qty) AS qty1, rate FROM [sheet1$] GROUP BY code, rate"
-                    Else
-                        sql = "SELECT code, COUNT(code) AS qty, rate FROM [sheet1$] GROUP BY code, rate"
-                    End If
+                'If chkRateUpdate.Checked Then
+                '    If chkLESWQ.Checked Then
+                '        sql = "SELECT code, SUM(qty) AS qty1, rate FROM [sheet1$] GROUP BY code, rate"
+                '    Else
+                '        sql = "SELECT code, COUNT(code) AS qty, rate FROM [sheet1$] GROUP BY code, rate"
+                '    End If
+                'Else
+                '    If chkLESWQ.Checked Then
+                '        sql = "SELECT code, SUM(qty) AS qty1 FROM [sheet1$] GROUP BY code"
+                '    Else
+                '        sql = "SELECT code, COUNT(code) AS qty FROM [sheet1$] GROUP BY code"
+                '    End If
+                'End If
+
+                Dim hasQty As Boolean = False
+                Dim hasRate As Boolean = False
+
+                Dim dtSchema As New DataTable
+
+                Using con As New OleDb.OleDbConnection(connectionString)
+                    con.Open()
+
+                    ' Read only schema (no data)
+                    Using cmd As New OleDb.OleDbCommand("SELECT * FROM [sheet1$] WHERE 1=0", con)
+                        Using da As New OleDb.OleDbDataAdapter(cmd)
+                            da.Fill(dtSchema)
+                        End Using
+                    End Using
+                End Using
+
+                ' Check column names (case-insensitive)
+                For Each col As DataColumn In dtSchema.Columns
+                    Select Case col.ColumnName.Trim().ToLower()
+                        Case "qty"
+                            hasQty = True
+                        Case "rate"
+                            hasRate = True
+                    End Select
+                Next
+
+                Dim selectCols As New List(Of String)
+                Dim groupByCols As New List(Of String)
+
+                ' Mandatory column
+                selectCols.Add("code")
+                groupByCols.Add("code")
+
+                ' Qty logic
+                If hasQty Then
+                    selectCols.Add("SUM(qty) AS qty")
                 Else
-                    If chkLESWQ.Checked Then
-                        sql = "SELECT code, SUM(qty) AS qty1 FROM [sheet1$] GROUP BY code"
-                    Else
-                        sql = "SELECT code, COUNT(code) AS qty FROM [sheet1$] GROUP BY code"
-                    End If
+                    selectCols.Add("COUNT(code) AS qty")
                 End If
+
+                ' Rate logic
+                If hasRate Then
+                    selectCols.Add("rate")
+                    groupByCols.Add("rate")
+                End If
+
+                sql = "SELECT " & String.Join(", ", selectCols) &
+      " FROM [sheet1$] GROUP BY " & String.Join(", ", groupByCols)
 
                 Using icon As New OleDbConnection(connectionString)
                     icon.Open()
@@ -147,7 +201,7 @@ Public Class DiscountAssignerNew
                                 TG.Item(10, TG.Rows.Count - 1).Value = "NO"
 
                                 ' Only when RateUpdate is checked
-                                If chkRateUpdate.Checked Then
+                                If hasRate Then
                                     TG.Item(6, TG.Rows.Count - 1).Value = Format(Rs.Item(2), "0.00")
                                 End If
                             End While
@@ -161,7 +215,7 @@ Public Class DiscountAssignerNew
                     MsgBox("Worksheet name should be Sheet1", MsgBoxStyle.Critical)
                     pnlHint.Visible = True
                 Else
-                    MsgBox(ex.Message)
+                    MsgBox(ex.Message, MsgBoxStyle.Critical)
                     pnlHint.Visible = True
                 End If
                 lblLoad.Visible = False
@@ -248,6 +302,10 @@ Public Class DiscountAssignerNew
     End Sub
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+
+        If TG.RowCount = 0 Then
+            Exit Sub
+        End If
 
         ShowDiscountReason()
 
@@ -646,9 +704,12 @@ Public Class DiscountAssignerNew
 
     Private Sub btnCle_Click(sender As Object, e As EventArgs) Handles btnCle.Click
 
+        txtFileName.Clear()
         TG.Rows.Clear()
         TGTMP.Rows.Clear()
         btnUpdate.Enabled = True
+        CmbShop.Enabled = True
+        CmbShop.SelectedValue = 1
 
     End Sub
 
@@ -705,7 +766,7 @@ Public Class DiscountAssignerNew
     End Sub
 
     Private Sub BtnApply2_Click(sender As Object, e As EventArgs) Handles BtnApply2.Click
-
+        'pnlDisReason btnUpdate
         If CmbReason.Text.Trim = "" Then
 
             MsgBox("please fill in reason for rate change..!", MsgBoxStyle.Critical)
@@ -726,13 +787,30 @@ Public Class DiscountAssignerNew
         Try
 
             Dim ENo = ESSA.GenerateID("select max(eno) from discountassigner")
-            Dim Id = ESSA.GenerateID("SELECT Max(Id) FROM DiscountMaster")
+            'Dim Id = ESSA.GenerateID("SELECT Max(Id) FROM DiscountMaster")
 
-            SQL = "INSERT INTO DiscountMaster VALUES( " _
-                & Id & ",'" _
-                & CmbReason.Text.Trim & "', GetDate()," _
-                & CmbShop.SelectedValue & "," _
-                & UserID & ")"
+            Dim discMode As Integer
+            If TG.Item(10, TG.CurrentRow.Index).Value.ToString().ToUpper() = "YES" Then
+                discMode = 1
+            Else
+                discMode = 0
+            End If
+
+            'SQL = "INSERT INTO DiscMaster VALUES( " _
+            '    & Id & ",'" _
+            '    & CmbReason.Text.Trim & "', GetDate()," _
+            '    & CmbShop.SelectedValue & "," _
+            '    & UserID & ")"
+            Dim Id = ESSA.GenerateID("SELECT Max(Id) FROM DiscMaster")
+
+            SQL = $"INSERT INTO DISCMASTER VALUES (
+                    {Id},
+                    '{DateTime.Now:yyyy-MM-dd HH:mm:ss}',
+                    '{CmbReason.Text}',
+                    {discMode},
+                    {CmbShop.SelectedValue},
+                    {UserID}
+                    )"
 
             Cmd.CommandText = SQL
             Cmd.ExecuteNonQuery()
@@ -805,11 +883,20 @@ Public Class DiscountAssignerNew
                     Cmd.CommandText = SQL
                     Cmd.ExecuteNonQuery()
 
-                    SQL = "INSERT INTO DiscountDetails VALUES( " _
-                        & Id & "," _
-                        & TG.Item(0, i).Value & "," _
-                        & TG.Item(4, i).Value & "," _
-                        & TG.Item(6, i).Value & ")"
+                    'SQL = "INSERT INTO DiscountDetails VALUES( " _
+                    '    & Id & "," _
+                    '    & TG.Item(0, i).Value & "," _
+                    '    & TG.Item(4, i).Value & "," _
+                    '    & TG.Item(6, i).Value & ")"
+
+                    SQL = $"INSERT INTO DiscDetails VALUES(
+                            {Id},
+                            {TG.Item(0, i).Value},
+                            {TG.Item(4, i).Value},
+                            {TG.Item(5, i).Value},
+                            {TG.Item(6, i).Value},
+                            {TG.Item(7, i).Value}
+                            )"
 
                     Cmd.CommandText = SQL
                     Cmd.ExecuteNonQuery()
@@ -833,11 +920,11 @@ Public Class DiscountAssignerNew
         End Try
     End Sub
 
-    Private Sub BtnReason_Click(sender As Object, e As EventArgs)
+    'Private Sub BtnReason_Click(sender As Object, e As EventArgs)
 
-        ShowDiscountReason()
+    '    ShowDiscountReason()
 
-    End Sub
+    'End Sub
 
     Private Sub SendLabel()
 
@@ -915,6 +1002,7 @@ Public Class DiscountAssignerNew
         ESSA.MovetoCenter(pnlRM, Me)
         ESSA.MovetoCenter(PnlDisReason, Me)
         ESSA.MovetoCenter(lblLoad, Me)
+        ESSA.MovetoCenter(pnlView, Me)
 
     End Sub
 
@@ -972,7 +1060,7 @@ Public Class DiscountAssignerNew
 
     End Sub
 
-    Private Sub btnF8SDV_Click(sender As Object, e As EventArgs) Handles btnF8SDV.Click
+    Private Sub btnF8SDV_Click(sender As Object, e As EventArgs)
 
         If MsgBox("Do you want to show discount percentage..?", MsgBoxStyle.Question + MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
@@ -998,9 +1086,86 @@ Public Class DiscountAssignerNew
 
         ESSA.MovetoCenter(PnlDisReason, Me)
         PnlDisReason.Visible = True
-        ESSA.LoadCombo(CmbReason, "SELECT DISTINCT Reason FROM DiscountMaster ORDER BY Reason", "Reason")
+        ESSA.LoadCombo(CmbReason, "SELECT DISTINCT Reason FROM DiscMaster ORDER BY Reason", "Reason")
         CmbReason.Focus()
 
     End Sub
 
+    Private Sub btnView_Click(sender As Object, e As EventArgs) Handles btnView.Click
+
+        ESSA.MovetoCenter(pnlView, Me)
+        pnlView.Visible = True
+
+        dgvView.Rows.Clear()
+
+        SQL = "SELECT M.Id,M.CreatedAt,S.ShopName,M.Reason,U.UserName FROM DiscMaster M
+               JOIN Shops S ON M.ShopId = S.ShopID 
+               JOIN USERS U ON U.UserID = M.UserID                      
+               order by M.Id desc"
+
+        With ESSA.OpenReader(SQL)
+
+            While .Read
+
+                dgvView.Rows.Add()
+                Dim index = dgvView.RowCount - 1
+                dgvView.Item(0, index).Value = .Item(0)
+                dgvView.Item(1, index).Value = .Item(0)
+                dgvView.Item(2, index).Value = Format(.Item(1), "dd-MM-yyyy")
+                dgvView.Item(3, index).Value = .Item(2).ToString()
+                dgvView.Item(4, index).Value = .Item(3).ToString()
+                dgvView.Item(5, index).Value = .Item(4).ToString()
+            End While
+            .Close()
+        End With
+    End Sub
+
+    Private Sub pnlViewClose_Click(sender As Object, e As EventArgs) Handles pnlViewClose.Click
+
+        pnlView.Visible = False
+
+    End Sub
+
+    Private Sub dgvView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvView.CellClick
+
+        If e.RowIndex < 0 Then Exit Sub
+
+        If e.ColumnIndex = 6 Then
+
+            TG.Rows.Clear()
+
+            Dim discId As Integer = dgvView.Item(0, e.RowIndex).Value
+
+            SQL = $"select dd.PluID,pm.Plucode,pm.Pluname,dd.OldRate,dd.discount,dd.NewRate,dd.Copies,dm.DiscountMode 
+                   from DiscDetails dd
+                   join ProductMaster pm on dd.PluID = pm.PluID
+                   join DiscMaster dm on dd.Id = dm.Id
+                   where dm.id = {discId}"
+
+            With ESSA.OpenReader(SQL)
+
+                While .Read
+
+                    Dim rows = TG.Rows.Add()
+
+                    TG.Item(0, rows).Value = .Item(0)
+                    TG.Item(2, rows).Value = .Item(1).ToString()
+                    TG.Item(3, rows).Value = .Item(2).ToString()
+                    TG.Item(4, rows).Value = .Item(3).ToString()
+                    TG.Item(5, rows).Value = .Item(4).ToString()
+                    TG.Item(6, rows).Value = .Item(5).ToString()
+                    TG.Item(7, rows).Value = .Item(6).ToString()
+                    TG.Item(10, rows).Value = If(CBool(.Item(7)), "YES", "NO")
+
+                End While
+                .Close()
+            End With
+            CmbShop.SelectedIndex = CmbShop.FindStringExact(dgvView.Item(3, e.RowIndex).Value)
+            CmbShop.Enabled = False
+            pnlView.Visible = False
+            btnUpdate.Enabled = False
+
+        End If
+
+    End Sub
 End Class

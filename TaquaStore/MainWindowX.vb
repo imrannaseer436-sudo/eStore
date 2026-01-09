@@ -348,12 +348,12 @@ Public Class MainWindowX
 
     Private Sub btnDayEnd2_Click(sender As Object, e As EventArgs) Handles btnDayEnd2.Click
 
-        DiscountAssigner.Visible = False
-        DiscountAssigner.Show(Me)
+        'DiscountAssigner.Visible = False
+        'DiscountAssigner.Show(Me)
         'DiscountAssignerNew.Visible = False
         'DiscountAssignerNew.Show(Me)
 
-        'AddTab(DiscountAssignerNew)
+        AddTab(DiscountAssignerNew)
         pnlQV.Visible = False
 
     End Sub
